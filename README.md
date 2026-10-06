@@ -1,24 +1,40 @@
-# 稿伴 · Draft Companion
+# Draft Companion · 稿伴
+
+Draft Companion is an Obsidian desktop plugin for discussing, reviewing, and revising the active Markdown draft. It offers six editable AI writing partners, note-specific conversations, streamed responses, diff previews, frozen selection editing, frontmatter protection, conflict checks, and conditional undo. The writing interface is currently in Chinese.
+
+## English overview
+
+Connect your own OpenAI-compatible chat provider or a compatible local service, select a model, and start with any writing task. Discussion replies remain in the sidebar. Revision replies become candidates: review the diff and explicitly apply it before any text changes. Explanations and verification notes are never written into the draft. The plugin reads the latest editor buffer before each request and refuses to apply an edit or undo when the document has changed.
+
+Requires **desktop Obsidian 1.11.4 or later**. Mobile is not supported. Download the plugin ZIP from [Releases](https://github.com/zibochen6/draft-companion/releases/latest), unzip it, place the `draft-companion` folder in `<Vault>/.obsidian/plugins/`, and enable Draft Companion in Community plugins. The source archives are for development and do not contain the compiled plugin. Community directory submission is in progress; an approved release and published listing are required before in-app installation is available.
+
+The plugin is free and requires no Draft Companion account. Your chosen AI service may require its own account, API key, and paid usage; a compatible local service can also be used. Each writing request sends the current draft, note requirements, writing preferences, active partner rules, and that note's conversation to the configured provider. API keys are referenced through Obsidian's official secret storage and only used in authentication headers. Saved local conversations, candidates, and the latest undo version may travel with your own sync setup.
+
+Draft Companion has no telemetry, ads, hosted backend, automatic retries, or self-updater. It does not scan the vault, expand embeds or images, fetch links, verify facts online, or publish articles. Clipboard use only copies a response or a saved previous draft after an explicit click; it does not read the clipboard. Cancelling disconnects the local request but cannot guarantee that the provider stops charging. Node networking does not automatically inherit system/PAC proxies.
+
+The release workflow verifies code and builds installation assets when a new version tag is published. Once listed, users install updates through Obsidian's **Check for updates** control. See [verification](docs/VERIFICATION.md), [known live-provider results](docs/REAL_API_VERIFICATION.md), and [release maintenance](docs/RELEASING.md). The project and bundled dependency licenses are included in the runtime.
+
+## 中文说明
 
 围绕当前 Markdown 文稿讨论、审稿和改稿的 Obsidian 桌面插件。修改先生成候选，经过差异预览与确认后写入文稿；首版用于公众号文章创作，也可编辑伙伴规则以用于其他题材。
 
 ![稿伴浅色界面](docs/gui-light.png)
 
-开源源码：[zibochen6/draft-companion](https://github.com/zibochen6/draft-companion)。下载安装文件：[GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest)。当前已准备官方社区目录提交材料，**尚未收录到插件市场**。
+开源源码：[zibochen6/draft-companion](https://github.com/zibochen6/draft-companion)。下载安装文件：[GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest)。官方社区目录条目已创建，正在修正自动审核反馈；**尚未收录到插件市场**。
 
 ## 安装
 
 需要 **Obsidian 桌面版 1.11.4 或以上**。最低版本依据所用官方密钥 API 确定；实际测试的应用版本、已完成与待完成验证见 [验证记录](docs/VERIFICATION.md)。移动端不在 V0.1 范围内。
 
 1. 先在独立测试 Vault 中安装并试用，使用 [合成测试文稿](fixtures/测试文稿.md)。
-2. 从 GitHub Release 下载 `draft-companion-0.1.0.zip` 并解压，或分别下载 `main.js`、`manifest.json`、`styles.css` 放入 `draft-companion` 文件夹。源码仓库不提交编译文件；开发构建后也可使用 `dist/draft-companion/`。
+2. 从 GitHub Release 下载最新的 `draft-companion-<版本>.zip` 并解压，或分别下载 `main.js`、`manifest.json`、`styles.css` 放入 `draft-companion` 文件夹。源码仓库不提交编译文件；开发构建后也可使用 `dist/draft-companion/`。
 3. 手动将该文件夹放入所选 Vault 的插件目录：`<Vault>/.obsidian/plugins/draft-companion/`。这里是安装步骤；开发代理不会浏览你的日常 Vault 隐藏目录。
 4. 在 Obsidian 的社区插件设置中允许社区插件、刷新列表并启用 **Draft Companion**。
 5. 点击左侧铅笔按钮，或在命令面板运行 **Draft Companion: 打开创作侧栏**。
 
 更新时只替换上述三个运行文件，然后重载插件。保留既有插件数据即可保留配置、编辑过的伙伴与本文会话。分发包不含用户数据或密钥。
 
-社区目录审核通过后，可在 Obsidian 设置 → 社区插件 → 浏览中搜索 `Draft Companion` 或 `稿伴` 并安装。此后在“检查更新”中获取新版；官方社区插件不会静默自动更新。推送源码不会让已安装插件立即更新，维护者需要发布新的版本。发布维护步骤见 [发布说明](docs/RELEASING.md)。
+社区目录审核通过并发布后，可在 Obsidian 设置 → 社区插件 → 浏览中搜索 `Draft Companion` 并安装。目录当前要求英文介绍，中文名称“稿伴”作为插件界面名称，不保证可用于市场搜索。此后在“检查更新”中获取新版；官方社区插件不会静默自动更新。推送源码不会让已安装插件立即更新，维护者需要发布新的版本。发布维护步骤见 [发布说明](docs/RELEASING.md)。
 
 ## 配置服务和模型
 
@@ -84,7 +100,7 @@ npm run build
 npm run package
 ```
 
-构建生成 `main.js`，打包只将 `main.js`、`manifest.json`、`styles.css` 放入可安装目录 `dist/draft-companion/`、版本目录 `dist/draft-companion-0.1.0/draft-companion/` 和 ZIP `dist/draft-companion-0.1.0.zip`。没有自动发布、推送、社区审核或文章发布动作。
+构建生成 `main.js`，打包只将 `main.js`、`manifest.json`、`styles.css` 放入可安装目录 `dist/draft-companion/`、带版本号的目录和 ZIP。本地构建没有发布、推送、社区审核或文章发布动作。
 
 本地构建不会发布。GitHub Actions 在 `main` 推送或 Pull Request 时检查代码；只有显式推送与 manifest 版本一致的纯数字版本标签（如 `0.1.0`）才构建并发布 Release。首次创建仓库时已配置此流程。
 

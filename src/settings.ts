@@ -141,7 +141,7 @@ export class DraftCompanionSettings extends PluginSettingTab {
   display(): void {
     this.disposed = false;
     this.containerEl.empty(); this.containerEl.addClass('dc-settings');
-    this.containerEl.createEl('h2', { text: '稿伴设置' });
+    new Setting(this.containerEl).setName('稿伴设置').setHeading();
     const privacy = this.containerEl.createDiv({ cls: 'dc-settings-note' });
     privacy.createEl('p', { text: '每次发送会把目标文稿最新全文、本文要求、创作偏好和本文会话发送到所选服务。双链、嵌入和其他笔记不会被读取。' });
     privacy.createEl('p', { text: 'API 密钥由 Obsidian 密钥管理器保存。会话、待应用候选及最近撤回版本保存于本地插件数据，可能随你的同步方案同步。' });

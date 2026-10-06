@@ -1,7 +1,7 @@
 import { App, MarkdownView, TFile, type TAbstractFile, type WorkspaceLeaf, type Editor } from 'obsidian';
 import { randomUUID } from 'node:crypto';
-import { bodyStart, hashText } from './editing';
-import type { DocumentRecord, DocumentSnapshot, EditScope, Session } from './types';
+import { bodyStart, hashText, replaceExact, undoAfter } from './editing';
+import type { DocumentRecord, DocumentSnapshot, EditScope, Session, UndoRecord } from './types';
 
 export class Documents {
   private target: MarkdownView | null = null;
@@ -68,8 +68,23 @@ export class Documents {
     if (selected && protect && from < start) throw new Error('选区进入了受保护的 frontmatter，请只选择正文。');
     return { documentId: document.id, path: file.path, fullText, hash: hashText(fullText), scope: selected ? 'selection' : 'body', from, to, selectedText: fullText.slice(from, to) };
   }
-  async write(id: string, expected: string, from: number, to: number, replacement: string): Promise<void> {
+  async applyRange(document: DocumentRecord, expected: string, from: number, to: number, replacement: string): Promise<void> {
+    return this.commitRange(document, expected, from, to, replacement, expected);
+  }
+  async restoreRange(document: DocumentRecord, record: UndoRecord): Promise<void> {
+    if (record.documentId !== document.id || record.path !== document.path) throw new Error('撤回记录的文稿身份不匹配。');
+    // Undo protects the original frontmatter, including when AI introduced YAML into a plain body.
+    return this.commitRange(document, undoAfter(record), record.from, record.from + record.replacement.length,
+      record.before.slice(record.from, record.to), record.before);
+  }
+  private async commitRange(document: DocumentRecord, expected: string, from: number, to: number, replacement: string, original: string): Promise<void> {
+    const id = document.id;
     const file = this.resolve(id);
+    if (file.path !== document.path || document.deleted) throw new Error('目标文稿身份已变化，请重新生成。');
+    // The target is a registered TFile, never an AI-supplied filesystem path.
+    // Validate the range here too, so future callers cannot bypass edit protection.
+    const updated = replaceExact(expected, from, to, replacement);
+    if (from < bodyStart(original)) throw new Error('修改范围进入了受保护的 frontmatter。');
     const editor = this.source(file);
     if (editor) {
       if (editor.getValue() !== expected) throw new Error('文稿已变化，旧候选不能覆盖新文字。请基于最新文稿重新生成。');
@@ -80,7 +95,7 @@ export class Documents {
       await this.app.vault.process(file, current => {
         if (this.source(file)) throw new Error('文稿刚进入编辑模式，请重试以使用编辑缓冲。');
         if (this.resolve(id) !== file || current !== expected) throw new Error('文稿已变化，已阻止覆盖。请基于最新文稿重新生成。');
-        return current.slice(0, from) + replacement + current.slice(to);
+        return updated;
       });
     }
   }

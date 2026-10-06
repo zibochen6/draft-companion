@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { Notice, type App } from 'obsidian';
 import { Documents } from './documents';
-import { candidateAfter, parseEdit, undoAfter } from './editing';
+import { candidateAfter, parseEdit } from './editing';
 import { chat, listModels } from './provider';
 import { buildMessages, estimateTokens } from './prompts';
 import { Store } from './store';
@@ -135,7 +135,8 @@ export class Controller implements UIHost {
     candidate.state = 'applying'; this.changed();
     try {
       candidateAfter(candidate);
-      await this.documents.write(candidate.documentId, candidate.baseline, candidate.from, candidate.to, candidate.replacement);
+      if (session.document.id !== candidate.documentId) throw new Error('目标文稿身份不匹配，请重新生成。');
+      await this.documents.applyRange(session.document, candidate.baseline, candidate.from, candidate.to, candidate.replacement);
       candidate.state = 'applied';
       if (session.candidate !== candidate && session.candidate?.state === 'ready') session.candidate.state = 'stale';
       session.undo = { documentId: candidate.documentId, path: this.documents.resolve(candidate.documentId).path, before: candidate.baseline, from: candidate.from, to: candidate.to, replacement: candidate.replacement, candidateId: candidate.id };
@@ -160,8 +161,8 @@ export class Controller implements UIHost {
     // Claim the record synchronously to make repeated clicks harmless.
     session.undo = undefined;
     try {
-      const expected = undoAfter(record);
-      await this.documents.write(record.documentId, expected, record.from, record.from + record.replacement.length, record.before.slice(record.from, record.to));
+      if (session.document.id !== record.documentId) throw new Error('撤回记录的文稿身份不匹配。');
+      await this.documents.restoreRange(session.document, record);
       if (session.candidate?.id === record.candidateId) session.candidate.state = 'undone';
       else if (session.candidate?.state === 'ready') session.candidate.state = 'stale';
       this.event(session, `已撤回候选 ${record.candidateId}。正文已恢复至该次修改前版本。`);

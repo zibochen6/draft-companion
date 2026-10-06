@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import { renderSafeMarkdown, safeLink } from '../src/render';
 
 describe('safe message Markdown', () => {
@@ -30,6 +31,10 @@ describe('safe message Markdown', () => {
     expect(safeLink('data:text/html,bad')).toBe(false);
     expect(safeLink('/relative.md')).toBe(false);
     expect(safeLink('mailto:hello@example.com')).toBe(true);
+  });
+  it('does not regress to an HTML parser or direct element factory for message content', () => {
+    const implementation = readFileSync('src/render.ts', 'utf8');
+    expect(implementation).not.toMatch(/\b(?:innerHTML|outerHTML)\b|\.createElement\(/);
   });
 });
 

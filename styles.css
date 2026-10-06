@@ -1,15 +1,18 @@
 /* Native Obsidian theme variables keep the panel legible in both themes. */
-.dc-sidebar {
-  display: flex; flex-direction: column; flex: 1 1 0; height: 0; min-height: 0; overflow: hidden !important;
-  gap: 8px; padding: 10px !important; padding-bottom: calc(10px + var(--status-bar-height, 26px)) !important; font-size: var(--font-ui-small); color: var(--text-normal);
+.dc-sidebar,
+.workspace-leaf-content[data-type="draft-companion-view"] > .view-content.dc-sidebar {
+  display: flex; flex-direction: column; flex: 1 1 0; height: 0; min-height: 0; overflow: hidden;
+  gap: 8px; padding: 10px; padding-bottom: calc(10px + var(--status-bar-height, 26px)); font-size: var(--font-ui-small); color: var(--text-normal);
 }
 .workspace-leaf-content[data-type="draft-companion-view"] { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
-.workspace-leaf-content[data-type="draft-companion-view"] > .view-content.dc-sidebar { flex: 1 1 0; height: 0; min-height: 0; overflow: hidden !important; }
 .dc-sidebar *, .dc-settings *, .dc-candidate-modal *, .dc-settings-modal * { box-sizing: border-box; }
 .dc-header, .dc-actions, .dc-global-running, .dc-candidate-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .dc-header strong { font-size: var(--font-ui-medium); flex: 1; }
 .dc-header button { font-size: var(--font-ui-smaller); }
-.dc-text-button { background: transparent !important; box-shadow: none !important; color: var(--text-muted); padding-inline: 5px; }
+.dc-sidebar button.dc-text-button,
+.dc-settings button.dc-text-button,
+.dc-candidate-modal button.dc-text-button,
+.dc-settings-modal button.dc-text-button { background: transparent; box-shadow: none; color: var(--text-muted); padding-inline: 5px; }
 .dc-top-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
 .dc-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .dc-field > span { font-size: var(--font-ui-smaller); color: var(--text-muted); }
@@ -87,8 +90,13 @@
 .dc-model-list { max-height: 55vh; overflow-y: auto; margin-block: 10px; display: flex; flex-direction: column; gap: 5px; }
 .dc-model-option { width: 100%; text-align: start; overflow-wrap: anywhere; height: auto; padding: 8px; }
 @media (max-width: 460px) {
-  .dc-sidebar { gap: 8px; padding: 8px !important; padding-bottom: calc(8px + var(--status-bar-height, 26px)) !important; }
+  .dc-sidebar,
+  .workspace-leaf-content[data-type="draft-companion-view"] > .view-content.dc-sidebar { gap: 8px; padding: 8px; padding-bottom: calc(8px + var(--status-bar-height, 26px)); }
   .dc-settings-modal .setting-item { flex-wrap: wrap; gap: 8px; }
   .dc-settings-modal .setting-item-control { flex: 1 1 100%; justify-content: flex-start; }
 }
-@media (prefers-reduced-motion: reduce) { .dc-sidebar *, .dc-candidate-modal *, .dc-settings-modal * { scroll-behavior: auto !important; } }
+@media (prefers-reduced-motion: reduce) {
+  .workspace-leaf-content[data-type="draft-companion-view"] > .view-content.dc-sidebar *,
+  .modal.dc-candidate-modal *,
+  .modal.dc-settings-modal * { scroll-behavior: auto; }
+}

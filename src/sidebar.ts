@@ -204,10 +204,10 @@ export class DraftCompanionView extends ItemView {
       this.roleId = role?.id || ''; this.modeSelect.value = role?.defaultMode || 'discuss';
       this.chosenModes.set(id, this.modeSelect.value as TaskMode);
     }
-    if (document.activeElement !== this.briefInput) this.briefInput.value = session?.brief || '';
+    if (this.briefInput.ownerDocument.activeElement !== this.briefInput) this.briefInput.value = session?.brief || '';
     this.fillSelect(this.roleSelect, this.host.data.roles, session?.selectedRoleId || '', '请先添加伙伴');
     this.fillSelect(this.providerSelect, this.host.data.providers, this.host.data.activeProviderId, '请先配置服务');
-    if (document.activeElement !== this.modelInput) this.modelInput.value = provider?.model || '';
+    if (this.modelInput.ownerDocument.activeElement !== this.modelInput) this.modelInput.value = provider?.model || '';
     this.targetEl.setText(target ? `文稿：${target.path}` : '请聚焦一篇 Markdown 文稿');
     this.targetEl.title = target?.path || '侧栏始终绑定最近聚焦的文稿';
     const scopeLabel = this.scopeSelect.value === 'body' ? '正文' : this.scopeSelect.value === 'selection' ? '选中部分' : '选中部分 / 正文（自动）';

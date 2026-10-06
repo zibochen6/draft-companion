@@ -5,6 +5,10 @@ import { Controller } from './controller';
 import { DraftCompanionView, VIEW_TYPE } from './sidebar';
 import { DraftCompanionSettings } from './settings';
 
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 export default class DraftCompanionPlugin extends Plugin {
   controller!: Controller;
   async onload(): Promise<void> {
@@ -24,7 +28,7 @@ export default class DraftCompanionPlugin extends Plugin {
       this.addSettingTab(new DraftCompanionSettings(this, this.controller));
       this.addRibbonIcon('pencil-line', '打开稿伴', () => { void this.openSidebar(); });
       this.addCommand({ id: 'open-sidebar', name: '打开创作侧栏', callback: () => { void this.openSidebar(); } });
-      this.addCommand({ id: 'undo-last-edit', name: '撤回当前文稿最近 AI 修改', callback: () => { void this.controller.undo().catch(e => new Notice(String(e.message ?? e))); } });
+      this.addCommand({ id: 'undo-last-edit', name: '撤回当前文稿最近 AI 修改', callback: () => { void this.controller.undo().catch(error => new Notice(errorMessage(error))); } });
       this.registerEvent(this.app.workspace.on('active-leaf-change', leaf => { documents.focus(leaf); this.controller.changed(); }));
       this.registerEvent(this.app.workspace.on('layout-change', () => this.controller.changed()));
       this.registerEvent(this.app.vault.on('rename', (file, oldPath) => {

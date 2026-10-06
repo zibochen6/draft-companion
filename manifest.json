@@ -1,9 +1,9 @@
 {
   "id": "draft-companion",
   "name": "Draft Companion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minAppVersion": "1.11.4",
-  "description": "稿伴: Discuss, review, and revise drafts with custom AI roles, diff previews, and undo.",
+  "description": "Discuss, review, and revise Markdown drafts with custom AI roles, diff previews, and undo.",
   "author": "zibochen6",
   "authorUrl": "https://github.com/zibochen6",
   "isDesktopOnly": true

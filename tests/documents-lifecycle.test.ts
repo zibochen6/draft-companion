@@ -45,6 +45,35 @@ function restored(raw: PluginData, f: ReturnType<typeof appFixture>) {
 }
 
 describe('document identity and conservative lifecycle recovery', () => {
+  it('can undo AI-introduced YAML while still protecting the original frontmatter', async () => {
+    for (const replacement of ['---\ntitle: 新增 YAML\n---\n新的正文', '---\n未闭合的新增 YAML']) {
+      const saved = withSavedEdit(); const f = appFixture(); const r = restored(saved.raw, f);
+      const session = r.controller.currentSession()!;
+      const candidate = session.candidate!;
+      candidate.baseline = '原始正文🙂'; candidate.baselineHash = hashText(candidate.baseline);
+      candidate.from = 0; candidate.to = candidate.baseline.length; candidate.replacement = replacement;
+      f.editor.text = candidate.baseline;
+      await r.controller.apply(candidate);
+      expect(f.editor.text).toBe(replacement);
+      await r.controller.undo();
+      expect(f.editor.text).toBe(candidate.baseline);
+      expect(candidate.state).toBe('undone');
+    }
+  });
+
+  it('validates the registered document, bounds, and frontmatter at the final edit boundary', async () => {
+    const saved = withSavedEdit(); const f = appFixture(); const r = restored(saved.raw, f);
+    const document = r.documents.current()!;
+    const start = ORIGINAL.indexOf('中文原文');
+    await expect(r.documents.applyRange({ ...document, path: '其他文稿.md' }, ORIGINAL, start, ORIGINAL.length, '新稿')).rejects.toThrow('身份');
+    await expect(r.documents.applyRange({ ...document, id: 'unknown-document' }, ORIGINAL, start, ORIGINAL.length, '新稿')).rejects.toThrow('身份无法确认');
+    for (const [from, to] of [[-1, start], [start + 0.5, ORIGINAL.length], [start, ORIGINAL.length + 1]]) {
+      await expect(r.documents.applyRange(document, ORIGINAL, from!, to!, '新稿')).rejects.toThrow('范围无效');
+    }
+    await expect(r.documents.applyRange(document, ORIGINAL, 0, start, '新稿')).rejects.toThrow('frontmatter');
+    expect(f.editor.text).toBe(ORIGINAL); expect(f.editor.transactions).toBe(0);
+  });
+
   it('restores confirmed path/ctime identity and still compares the full editor baseline on apply', async () => {
     const saved = withSavedEdit(); const f = appFixture(); const r = restored(saved.raw, f);
     expect(r.documents.current()?.id).toBe(saved.documentId);

@@ -1,6 +1,7 @@
 import * as http from 'node:http';
 import * as https from 'node:https';
 import { StringDecoder } from 'node:string_decoder';
+import { clearTimeout as clearNodeTimeout, setTimeout as setNodeTimeout } from 'node:timers';
 import { createBrotliDecompress, createGunzip, createInflate } from 'node:zlib';
 import type { Readable } from 'node:stream';
 import type { ChatMessage, ChatResult, ModelInfo, Provider } from './types';
@@ -13,6 +14,21 @@ export class ProviderError extends Error {
 }
 
 const MAX_RESPONSE_BYTES = 16 * 1024 * 1024;
+
+type JsonObject = Record<string, unknown>;
+
+function isJsonObject(value: unknown): value is JsonObject {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function field(object: JsonObject, name: string): unknown {
+  return object[name];
+}
+
+function parseUnknownJson(text: string): unknown {
+  const parse: (source: string) => unknown = JSON.parse;
+  return parse(text);
+}
 
 /** Preserve the configured base path; a bare host is not silently given /v1. */
 export function endpoint(baseUrl: string, resource: string): string {
@@ -38,12 +54,14 @@ function cancelled(): ProviderError {
 function errorKind(status: number, body: string): string {
   let code = '';
   try {
-    const parsed: unknown = JSON.parse(body);
-    if (parsed && typeof parsed === 'object' && 'error' in parsed) {
-      const error = (parsed as { error: unknown }).error;
-      if (error && typeof error === 'object') {
-        const fields = error as Record<string, unknown>;
-        code = [fields.code, fields.type, fields.message].filter(value => typeof value === 'string').join(' ').toLowerCase();
+    const parsed = parseUnknownJson(body);
+    if (isJsonObject(parsed)) {
+      const error = field(parsed, 'error');
+      if (isJsonObject(error)) {
+        code = [field(error, 'code'), field(error, 'type'), field(error, 'message')]
+          .filter((value): value is string => typeof value === 'string')
+          .join(' ')
+          .toLowerCase();
       }
     }
   } catch { /* Do not surface raw provider bodies: they may repeat private content. */ }
@@ -85,9 +103,12 @@ function request(options: RequestOptions): Promise<TransportResult> {
     let req: http.ClientRequest | undefined;
     let response: http.IncomingMessage | undefined;
     let decodedStream: Readable | undefined;
-    let timer: ReturnType<typeof setTimeout> | undefined;
+    let timer: NodeJS.Timeout | undefined;
     const cleanup = () => {
-      if (timer) clearTimeout(timer);
+      if (timer) {
+        clearNodeTimeout(timer);
+        timer = undefined;
+      }
       options.signal?.removeEventListener('abort', abort);
     };
     const fail = (error: ProviderError) => {
@@ -114,7 +135,7 @@ function request(options: RequestOptions): Promise<TransportResult> {
     options.signal?.addEventListener('abort', abort, { once: true });
     if (options.signal?.aborted) { abort(); return; }
     const timeout = Number.isFinite(options.timeoutMs) && options.timeoutMs > 0 ? options.timeoutMs : 120_000;
-    timer = setTimeout(() => fail(new ProviderError('network', '请求超时，连接已中止。请检查网络或调整高级选项中的超时。')), timeout);
+    timer = setNodeTimeout(() => fail(new ProviderError('network', '请求超时，连接已中止。请检查网络或调整高级选项中的超时。')), timeout);
     const headers: Record<string, string> = { Accept: options.onText ? 'text/event-stream' : 'application/json', 'Accept-Encoding': 'identity' };
     if (options.key) headers.Authorization = `Bearer ${options.key}`;
     if (options.body !== undefined) {
@@ -168,14 +189,13 @@ function request(options: RequestOptions): Promise<TransportResult> {
   });
 }
 
-function parseJson(text: string): Record<string, unknown> {
+function parseJson(text: string): JsonObject {
   let value: unknown;
-  try { value = JSON.parse(text); }
+  try { value = parseUnknownJson(text); }
   catch { throw new ProviderError('format', '服务返回的 JSON 格式不兼容。'); }
-  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new ProviderError('format', '服务返回的 JSON 结构不兼容。');
-  const result = value as Record<string, unknown>;
-  if (result.error) throw serviceError(0, text);
-  return result;
+  if (!isJsonObject(value)) throw new ProviderError('format', '服务返回的 JSON 结构不兼容。');
+  if (field(value, 'error')) throw serviceError(0, text);
+  return value;
 }
 
 export async function listModels(provider: Provider, key: string | undefined, signal?: AbortSignal): Promise<ModelInfo[]> {
@@ -183,13 +203,18 @@ export async function listModels(provider: Provider, key: string | undefined, si
   if (signal?.aborted) throw cancelled();
   if (result.status < 200 || result.status >= 300) throw serviceError(result.status, result.text);
   const parsed = parseJson(result.text);
-  if (!Array.isArray(parsed.data)) throw new ProviderError('format', '模型列表格式不兼容；可在高级选项中手动填写模型 ID。');
+  const data = field(parsed, 'data');
+  if (!Array.isArray(data)) throw new ProviderError('format', '模型列表格式不兼容；可在高级选项中手动填写模型 ID。');
   const ids = new Set<string>();
-  for (const row of parsed.data) {
-    if (!row || typeof row !== 'object' || typeof row.id !== 'string' || !row.id.trim()) {
+  for (const row of data) {
+    if (!isJsonObject(row)) {
       throw new ProviderError('format', '模型列表中的模型 ID 格式不兼容；可手动填写模型 ID。');
     }
-    ids.add(row.id);
+    const id = field(row, 'id');
+    if (typeof id !== 'string' || !id.trim()) {
+      throw new ProviderError('format', '模型列表中的模型 ID 格式不兼容；可手动填写模型 ID。');
+    }
+    ids.add(id);
   }
   return [...ids].map(id => ({ id })).sort((a, b) => a.id.localeCompare(b.id));
 }
@@ -236,21 +261,24 @@ class ChatStream {
     }
     if (event === 'error') throw serviceError(0, body);
     const parsed = parseJson(body);
-    if (!Array.isArray(parsed.choices)) throw new ProviderError('format', '流式响应缺少 choices，格式不兼容。');
-    if (!parsed.choices.length) return; // Final usage events may have no choices.
-    const choice = parsed.choices.find(row => row && typeof row === 'object' && (row.index === 0 || row.index === undefined));
+    const choices = field(parsed, 'choices');
+    if (!Array.isArray(choices)) throw new ProviderError('format', '流式响应缺少 choices，格式不兼容。');
+    if (!choices.length) return; // Final usage events may have no choices.
+    const choice = choices.find(row => isJsonObject(row) && (field(row, 'index') === 0 || field(row, 'index') === undefined));
     if (!choice) return;
-    const delta = choice.delta;
-    if (!delta || typeof delta !== 'object' || Array.isArray(delta)) throw new ProviderError('format', '流式响应缺少 delta，格式不兼容。');
-    if (delta.content !== undefined && delta.content !== null && typeof delta.content !== 'string') throw new ProviderError('format', '流式正文格式不兼容。');
-    if (typeof delta.content === 'string' && delta.content) {
+    const delta = field(choice, 'delta');
+    if (!isJsonObject(delta)) throw new ProviderError('format', '流式响应缺少 delta，格式不兼容。');
+    const content = field(delta, 'content');
+    if (content !== undefined && content !== null && typeof content !== 'string') throw new ProviderError('format', '流式正文格式不兼容。');
+    if (typeof content === 'string' && content) {
       if (this.result.finishReason) throw new ProviderError('format', '流式响应在完成标记后继续返回正文。');
-      this.result.text += delta.content;
-      this.onChunk(delta.content);
+      this.result.text += content;
+      this.onChunk(content);
     }
-    if (choice.finish_reason !== null && choice.finish_reason !== undefined) {
-      if (typeof choice.finish_reason !== 'string' || !choice.finish_reason) throw new ProviderError('format', '流式完成原因格式不兼容。');
-      this.result.finishReason = choice.finish_reason;
+    const finishReason = field(choice, 'finish_reason');
+    if (finishReason !== null && finishReason !== undefined) {
+      if (typeof finishReason !== 'string' || !finishReason) throw new ProviderError('format', '流式完成原因格式不兼容。');
+      this.result.finishReason = finishReason;
     }
   }
 
@@ -278,13 +306,23 @@ export async function chat(provider: Provider, key: string | undefined, messages
   if (result.status < 200 || result.status >= 300) throw serviceError(result.status, result.text);
   if (stream) return parser.finish();
   const parsed = parseJson(result.text);
-  if (!Array.isArray(parsed.choices) || !parsed.choices.length) throw new ProviderError('format', '聊天响应缺少 choices，格式不兼容。');
-  const choice = parsed.choices[0];
-  if (!choice || typeof choice !== 'object' || !choice.message || typeof choice.message.content !== 'string'
-    || typeof choice.finish_reason !== 'string' || !choice.finish_reason) {
+  const choices = field(parsed, 'choices');
+  if (!Array.isArray(choices) || !choices.length) throw new ProviderError('format', '聊天响应缺少 choices，格式不兼容。');
+  const choice = choices[0];
+  if (!isJsonObject(choice)) {
     throw new ProviderError('format', '聊天响应缺少正文或完成原因，不能确认生成完整。');
   }
-  onChunk(choice.message.content);
+  const message = field(choice, 'message');
+  const finishReason = field(choice, 'finish_reason');
+  if (!isJsonObject(message) || typeof field(message, 'content') !== 'string'
+    || typeof finishReason !== 'string' || !finishReason) {
+    throw new ProviderError('format', '聊天响应缺少正文或完成原因，不能确认生成完整。');
+  }
+  const content = field(message, 'content');
+  if (typeof content !== 'string') {
+    throw new ProviderError('format', '聊天响应缺少正文或完成原因，不能确认生成完整。');
+  }
+  onChunk(content);
   if (signal.aborted) throw cancelled();
-  return { text: choice.message.content, finishReason: choice.finish_reason };
+  return { text: content, finishReason };
 }

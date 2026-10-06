@@ -59,6 +59,7 @@ describe('provider URLs and model discovery', () => {
     [400, { error: { code: 'context_length_exceeded' } }, 'context'],
     [200, { models: ['other-shape'] }, 'format'],
     [200, { data: [{ name: 'no-id' }] }, 'format'],
+    [200, { data: ['not-a-model-object'] }, 'format'],
   ])('classifies HTTP %s responses without exposing remote error content', async (status, body, kind) => {
     const baseUrl = await server((_req, res) => { res.statusCode = status; res.end(JSON.stringify(body)); });
     const error = await expectKind(listModels(provider(baseUrl), 'fake-test-token'), kind);
@@ -159,6 +160,7 @@ describe('chat transport', () => {
   it.each([
     { choices: [{ message: { content: '正文' } }] },
     { choices: [{ message: { content: null }, finish_reason: 'stop' }] },
+    { choices: ['not-a-choice-object'] },
     { choices: [] },
   ])('rejects incomplete non-stream response structures', async body => {
     const baseUrl = await server((_req, res) => res.end(JSON.stringify(body)));
