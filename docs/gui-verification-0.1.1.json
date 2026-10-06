@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-07",
+  "windowTitle": "新标签页 - TestVault - Obsidian 1.14.4",
+  "provider": "local deterministic mock, no real API key",
+  "checks": [
+    "真实插件加载、原生侧栏打开、Node 模型列表连接",
+    "侧栏焦点保持绑定；实际请求包含编辑器最新中文全文",
+    "真实差异弹窗点击应用；冻结选区外字符相等；编辑器事务与条件撤回",
+    "真实应用冲突与撤回冲突阻止覆盖后续编辑",
+    "真实 A/B 切换隔离、生成模型冻结、停止后不污染 B",
+    "真实侧栏中文输入法事件不误发送",
+    "真实设置面板与深色主题渲染",
+    "真实官方密钥组件可打开；模型获取、搜索与选择界面通过（未输入真实密钥）",
+    "真实 Obsidian 六角色创作完整流程；正文不混入说明、核实清单或标题摘要",
+    "真实插件重载恢复会话与拒绝记录；重命名关联更新；删除使候选失效",
+    "真实侧栏安全渲染：原始 HTML 为文本，未创建图片、iframe、script 或 SVG，图片和双链保持惰性引用，布局正常"
+  ],
+  "timezone": "Asia/Shanghai",
+  "pluginVersion": "0.1.1",
+  "obsidianVersion": "1.14.4",
+  "vault": "<isolated temporary TestVault>"
+}

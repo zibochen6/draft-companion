@@ -264,7 +264,7 @@ class ChatStream {
     const choices = field(parsed, 'choices');
     if (!Array.isArray(choices)) throw new ProviderError('format', '流式响应缺少 choices，格式不兼容。');
     if (!choices.length) return; // Final usage events may have no choices.
-    const choice = choices.find(row => isJsonObject(row) && (field(row, 'index') === 0 || field(row, 'index') === undefined));
+    const choice = choices.find((row): row is JsonObject => isJsonObject(row) && (field(row, 'index') === 0 || field(row, 'index') === undefined));
     if (!choice) return;
     const delta = field(choice, 'delta');
     if (!isJsonObject(delta)) throw new ProviderError('format', '流式响应缺少 delta，格式不兼容。');
@@ -308,7 +308,7 @@ export async function chat(provider: Provider, key: string | undefined, messages
   const parsed = parseJson(result.text);
   const choices = field(parsed, 'choices');
   if (!Array.isArray(choices) || !choices.length) throw new ProviderError('format', '聊天响应缺少 choices，格式不兼容。');
-  const choice = choices[0];
+  const choice: unknown = choices[0];
   if (!isJsonObject(choice)) {
     throw new ProviderError('format', '聊天响应缺少正文或完成原因，不能确认生成完整。');
   }
