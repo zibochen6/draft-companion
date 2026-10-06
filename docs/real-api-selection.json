@@ -1,0 +1,103 @@
+{
+  "startedAt": "2026-10-06T21:08:47.401Z",
+  "completedAt": "2026-10-06T21:09:10.062Z",
+  "mode": "editing-only",
+  "provider": "real user-authorized API",
+  "baseUrl": "https://api.meai.cloud/v1",
+  "model": "claude-haiku-4-5",
+  "stream": true,
+  "timeoutMs": 120000,
+  "isolatedVaultVerified": true,
+  "secretPersisted": false,
+  "getterInstalled": true,
+  "memorySecretAndGetterCleaned": true,
+  "formatRepairAttempted": false,
+  "checks": [
+    {
+      "number": 1,
+      "name": "隔离真实 Obsidian 宿主与内存密钥配置",
+      "passed": true,
+      "durationMs": 27.5101250000007,
+      "details": {
+        "isolatedVault": true,
+        "memoryOnlySecret": true,
+        "stream": true,
+        "timeoutMs": 120000
+      }
+    },
+    {
+      "number": 2,
+      "name": "选区测试准备：合成 A 文稿与实际未落盘编辑器",
+      "passed": true,
+      "durationMs": 9.331874999999854,
+      "details": {
+        "sourceEditorBuffer": true,
+        "sidebarFocusBoundToA": true
+      }
+    },
+    {
+      "number": 3,
+      "name": "实际 API：冻结发送选区并在生成时移动光标",
+      "passed": true,
+      "durationMs": 16085.534750000003,
+      "details": {
+        "status": "completed",
+        "characters": 60,
+        "roleName": "改稿编辑",
+        "candidateReady": true,
+        "candidateCharacters": 20,
+        "mode": "edit",
+        "scope": "selection",
+        "jsonValidatedByActualPlugin": true
+      }
+    },
+    {
+      "number": 4,
+      "name": "实际选区候选通过原生差异弹窗应用",
+      "passed": true,
+      "durationMs": 12.315542000000278,
+      "details": {
+        "path": "A.md",
+        "actualModalClick": true
+      }
+    },
+    {
+      "number": 5,
+      "name": "冻结选区范围外逐字符一致，重复应用被阻止，撤回恢复全文",
+      "passed": true,
+      "durationMs": 7.161291000000347,
+      "details": {
+        "selectionFrozen": true,
+        "outsideCharactersIdentical": true,
+        "repeatedApplyBlocked": true,
+        "exactUndo": true
+      }
+    },
+    {
+      "number": 6,
+      "name": "本地明确删除候选复用：手动改动后应用冲突不覆盖",
+      "passed": true,
+      "durationMs": 16.397291000001132,
+      "details": {
+        "noAdditionalModelRequest": true,
+        "manualChangesPreserved": true
+      }
+    },
+    {
+      "number": 7,
+      "name": "本地明确删除候选复用：后续手动编辑导致撤回冲突",
+      "passed": true,
+      "durationMs": 14.558208000002196,
+      "details": {
+        "noAdditionalModelRequest": true,
+        "laterEditPreserved": true,
+        "oldVersionStillAvailable": true
+      }
+    }
+  ],
+  "passed": true,
+  "limitations": [
+    "Synthetic materials only; this verifies basic plugin behavior, not factual accuracy or publication readiness.",
+    "Stopping a request does not guarantee that the provider stops billing."
+  ]
+}

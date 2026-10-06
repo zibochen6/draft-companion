@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-06T15:29:26.699Z",
+  "vault": "<isolated temporary TestVault>",
+  "requestActuallyCompleted": true,
+  "reply": [
+    {
+      "status": "completed",
+      "characters": 116
+    },
+    {
+      "status": "completed",
+      "characters": 193
+    },
+    {
+      "status": "completed",
+      "characters": 501
+    }
+  ],
+  "candidate": {
+    "state": "ready",
+    "characters": 422,
+    "frontmatterExcluded": true,
+    "authorJudgmentPreserved": true
+  }
+}

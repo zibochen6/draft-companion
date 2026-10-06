@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "baseUrl": "https://api.meai.cloud/v1",
+  "model": "claude-haiku-4-5",
+  "obsidianVersion": "1.12.7",
+  "basicOperationsVerified": true,
+  "allLiveRequestsNormal": false,
+  "allListedModelsTested": false,
+  "modelCount": 37,
+  "checks": [
+    {
+      "name": "模型列表与两种聊天协议",
+      "passed": true,
+      "evidence": "real-api-transport.json"
+    },
+    {
+      "name": "选题与大纲仅讨论",
+      "passed": true,
+      "evidence": "real-api-gui-first-run.json"
+    },
+    {
+      "name": "真实初稿生成及原生弹窗应用",
+      "passed": true,
+      "evidence": [
+        "real-api-recovery.json",
+        "real-api-gui-resumed.json"
+      ]
+    },
+    {
+      "name": "审稿、拒绝决定记录与标题摘要",
+      "passed": true,
+      "evidence": "real-api-gui-resumed.json"
+    },
+    {
+      "name": "真实指定改稿候选、应用与精确撤回",
+      "passed": true,
+      "evidence": [
+        "real-api-revision.json",
+        "real-api-revision-audit.json"
+      ]
+    },
+    {
+      "name": "冻结选区、范围外逐字符保护、应用、重复应用拦截与撤回",
+      "passed": true,
+      "evidence": "real-api-selection.json"
+    },
+    {
+      "name": "实际编辑器应用冲突与撤回冲突",
+      "passed": true,
+      "note": "Local explicit deletion candidates exercise the same atomic write and undo path without another model request.",
+      "evidence": "real-api-selection.json"
+    },
+    {
+      "name": "真实流式A/B隔离及实际侧栏停止",
+      "passed": true,
+      "evidence": "real-api-editing-recheck.json"
+    },
+    {
+      "name": "密钥未进入插件序列化数据",
+      "passed": true,
+      "evidence": "real-api-storage.json"
+    }
+  ],
+  "observedIssues": [
+    {
+      "kind": "stream_protocol",
+      "message": "One long-output request ended without a finish reason and was rejected. No completed candidate was created.",
+      "evidence": "real-api-editing.json"
+    },
+    {
+      "kind": "model_instruction",
+      "message": "A requested single-word change also replaced 作者 with author. Diff review remains necessary.",
+      "evidence": "real-api-revision-audit.json"
+    },
+    {
+      "kind": "incomplete_test_rounds",
+      "message": "Two earlier 60-second test rounds were stopped; desktop debugging and wall-clock waits also interfered. These are not sufficient evidence to attribute the delay solely to the provider.",
+      "evidence": "real-api-gui-resumed.json"
+    }
+  ],
+  "harnessCorrections": [
+    "Preserved first debugging timeout and recovered the already completed draft without resending it.",
+    "Fixed newline escaping in generated desktop expressions and repeated only affected selection/conflict cases.",
+    "Added deferred-view loading, stable leaf references and monotonic deadlines.",
+    "Compared B against its baseline including the normal clear-session event."
+  ],
+  "secrets": {
+    "persisted": false,
+    "serializedPluginDataContainsCredential": false,
+    "inMemoryGettersRestored": true
+  },
+  "automatedTests": {
+    "files": 8,
+    "passed": 99,
+    "failed": 0
+  },
+  "runtimePackage": {
+    "path": "dist/draft-companion-0.1.0.zip",
+    "bytes": 217478,
+    "sha256": "eb282c0045db01fc4bf083b3e2ef3b6872368ffa1e555aab7be3a5cf7d72bc57"
+  }
+}

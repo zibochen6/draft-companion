@@ -1,0 +1,10 @@
+node_modules/
+dist/
+main.js
+*.js.map
+.DS_Store
+.env
+.env.*
+*.local.*
+data.json
+需求.md

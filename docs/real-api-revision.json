@@ -1,0 +1,22 @@
+{
+  "startedAt": "2026-10-06T21:02:26.550Z",
+  "baseUrl": "https://api.meai.cloud/v1",
+  "model": "claude-haiku-4-5",
+  "checks": [
+    {
+      "name": "真实指定改稿JSON候选",
+      "passed": true,
+      "durationMs": 58945,
+      "ready": true,
+      "role": "改稿编辑",
+      "status": "completed",
+      "rejectionPresent": true,
+      "characters": 426
+    }
+  ],
+  "passed": false,
+  "error": "The expression evaluated to a falsy value:\n\n  assert(result.onlyIntendedChange)\n",
+  "memoryCleaned": true,
+  "completedAt": "2026-10-06T21:03:25.849Z",
+  "secretPersisted": false
+}

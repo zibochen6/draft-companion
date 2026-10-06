@@ -1,0 +1,38 @@
+{
+  "name": "draft-companion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && node esbuild.config.mjs production",
+    "test": "vitest run",
+    "package": "npm run build && node scripts/package.mjs",
+    "check:release": "node scripts/check-release.mjs",
+    "version:next": "node scripts/bump-version.mjs"
+  },
+  "dependencies": {
+    "diff": "9.0.0",
+    "markdown-it": "15.0.2"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "14.1.2",
+    "@types/node": "22.15.17",
+    "esbuild": "0.28.2",
+    "jsdom": "26.1.0",
+    "obsidian": "1.13.1",
+    "typescript": "5.8.3",
+    "vitest": "5.0.3"
+  },
+  "license": "MIT",
+  "author": "zibochen6",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zibochen6/draft-companion.git"
+  },
+  "homepage": "https://github.com/zibochen6/draft-companion",
+  "bugs": {
+    "url": "https://github.com/zibochen6/draft-companion/issues"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-06T12:46:17.085Z",
+  "baseUrl": "https://api.meai.cloud/v1",
+  "endpoints": {
+    "models": "https://api.meai.cloud/v1/models",
+    "chat": "https://api.meai.cloud/v1/chat/completions"
+  },
+  "credentialStorage": "memory only, not persisted",
+  "checks": [
+    {
+      "name": "models",
+      "pass": true,
+      "durationMs": 2776,
+      "count": 37
+    },
+    {
+      "name": "nonstream",
+      "model": "claude-haiku-4-5",
+      "pass": true,
+      "durationMs": 6071,
+      "finishReason": "stop",
+      "characters": 13,
+      "chunks": 1,
+      "response": "稿伴连接成功，中文正常😀"
+    },
+    {
+      "name": "stream",
+      "model": "claude-haiku-4-5",
+      "pass": true,
+      "durationMs": 5364,
+      "finishReason": "stop",
+      "characters": 13,
+      "chunks": 3,
+      "response": "稿伴连接成功，中文正常😀"
+    },
+    {
+      "name": "edit",
+      "model": "claude-haiku-4-5",
+      "pass": true,
+      "durationMs": 22015,
+      "finishReason": "stop",
+      "validCandidateFields": true,
+      "replacementCharacters": 21
+    },
+    {
+      "name": "cancel",
+      "model": "claude-haiku-4-5",
+      "pass": true,
+      "durationMs": 15205,
+      "receivedChunks": 1,
+      "callbacksAfterStop": 0
+    },
+    {
+      "name": "timeout",
+      "model": "claude-haiku-4-5",
+      "pass": true,
+      "durationMs": 11,
+      "intentionalDeadlineMs": 1,
+      "noRetry": true
+    }
+  ],
+  "modelCount": 37
+}

@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-06T21:04:02.486Z",
+  "candidateState": "applied",
+  "baselineContainedRequestedWord": true,
+  "bodyActuallyChanged": true,
+  "onlyRequestedReplacement": false,
+  "frontmatterPreserved": true,
+  "authorJudgmentPreserved": true,
+  "originalCharacters": 464,
+  "appliedCharacters": 468,
+  "originalWikiLinksPreserved": true,
+  "notesOutsideBody": true,
+  "undoRestoredExactFullText": true,
+  "characterChanges": [
+    {
+      "added": false,
+      "removed": true,
+      "text": "作者"
+    },
+    {
+      "added": true,
+      "removed": false,
+      "text": "author"
+    },
+    {
+      "added": false,
+      "removed": true,
+      "text": "容易"
+    },
+    {
+      "added": true,
+      "removed": false,
+      "text": "可能"
+    }
+  ]
+}

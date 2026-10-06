@@ -1,0 +1,118 @@
+{
+  "startedAt": "2026-10-06T12:55:26.471Z",
+  "completedAt": "2026-10-06T13:12:05.425Z",
+  "provider": "real user-authorized API",
+  "baseUrl": "https://api.meai.cloud/v1",
+  "model": "claude-haiku-4-5",
+  "stream": true,
+  "timeoutMs": 60000,
+  "isolatedVaultVerified": true,
+  "secretPersisted": false,
+  "getterInstalled": true,
+  "memorySecretAndGetterCleaned": false,
+  "formatRepairAttempted": false,
+  "fatal": "Desktop debugging operation timed out.",
+  "checks": [
+    {
+      "number": 1,
+      "name": "隔离真实 Obsidian 宿主与内存密钥配置",
+      "passed": true,
+      "durationMs": 281,
+      "details": {
+        "isolatedVault": true,
+        "memoryOnlySecret": true,
+        "stream": true,
+        "timeoutMs": 60000
+      }
+    },
+    {
+      "number": 2,
+      "name": "真实宿主获取模型列表",
+      "passed": true,
+      "durationMs": 783,
+      "details": {
+        "modelCount": 37,
+        "suppliedModelListed": true,
+        "manualConfiguredModelRetained": true
+      }
+    },
+    {
+      "number": 3,
+      "name": "真实宿主独立聊天测试且不创建会话消息",
+      "passed": true,
+      "durationMs": 5053,
+      "details": {
+        "responseCharacters": 5,
+        "sessionMessagesUnchanged": true
+      }
+    },
+    {
+      "number": 4,
+      "name": "六角色：选题",
+      "passed": true,
+      "durationMs": 8079,
+      "details": {
+        "status": "completed",
+        "characters": 116,
+        "roleName": "选题编辑",
+        "candidateReady": false,
+        "candidateCharacters": 0,
+        "mode": "discuss",
+        "scope": "body",
+        "jsonValidatedByActualPlugin": false
+      }
+    },
+    {
+      "number": 5,
+      "name": "选题仅讨论，不写回正文",
+      "passed": true,
+      "durationMs": 1,
+      "details": {
+        "unchanged": true
+      }
+    },
+    {
+      "number": 6,
+      "name": "六角色：大纲",
+      "passed": true,
+      "durationMs": 11357,
+      "details": {
+        "status": "completed",
+        "characters": 193,
+        "roleName": "大纲编辑",
+        "candidateReady": false,
+        "candidateCharacters": 0,
+        "mode": "discuss",
+        "scope": "body",
+        "jsonValidatedByActualPlugin": false
+      }
+    },
+    {
+      "number": 7,
+      "name": "大纲仅讨论，不写回正文",
+      "passed": true,
+      "durationMs": 0,
+      "details": {
+        "unchanged": true
+      }
+    },
+    {
+      "number": 8,
+      "name": "六角色：初稿 JSON 候选",
+      "passed": false,
+      "durationMs": 55356,
+      "error": "Desktop debugging operation timed out."
+    },
+    {
+      "name": "初稿应用",
+      "passed": false,
+      "skipped": true,
+      "error": "Model output failed actual plugin validation; no format repair or application was attempted."
+    }
+  ],
+  "passed": false,
+  "limitations": [
+    "Synthetic materials only; this verifies basic plugin behavior, not factual accuracy or publication readiness.",
+    "Stopping a request does not guarantee that the provider stops billing."
+  ]
+}

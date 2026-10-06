@@ -1,0 +1,168 @@
+{
+  "startedAt": "2026-10-06T16:48:05.853Z",
+  "completedAt": "2026-10-06T17:31:14.255Z",
+  "mode": "resumed-workflow",
+  "provider": "real user-authorized API",
+  "baseUrl": "https://api.meai.cloud/v1",
+  "model": "claude-haiku-4-5",
+  "stream": true,
+  "timeoutMs": 60000,
+  "isolatedVaultVerified": true,
+  "secretPersisted": false,
+  "getterInstalled": true,
+  "memorySecretAndGetterCleaned": true,
+  "formatRepairAttempted": false,
+  "checks": [
+    {
+      "number": 1,
+      "name": "恢复现有真实宿主、内存密钥与已完成初稿候选",
+      "passed": true,
+      "durationMs": 5,
+      "details": {
+        "reusedActualHost": true,
+        "historyRetained": true,
+        "priorRequestsNotRepeated": true,
+        "candidateReady": true,
+        "candidateCharacters": 422
+      }
+    },
+    {
+      "number": 2,
+      "name": "恢复流程：实际差异弹窗应用已有初稿",
+      "passed": true,
+      "durationMs": 191,
+      "details": {
+        "path": "Workflow.md",
+        "actualModalClick": true
+      }
+    },
+    {
+      "number": 3,
+      "name": "六角色：审稿",
+      "passed": true,
+      "durationMs": 21359,
+      "details": {
+        "status": "completed",
+        "characters": 74,
+        "roleName": "责任编辑",
+        "candidateReady": false,
+        "candidateCharacters": 422,
+        "mode": "discuss",
+        "scope": "body",
+        "jsonValidatedByActualPlugin": false
+      }
+    },
+    {
+      "number": 4,
+      "name": "六角色：记录用户明确拒绝",
+      "passed": false,
+      "durationMs": 673113,
+      "error": "The real provider operation exceeded its 60-second request timeout plus cleanup allowance."
+    },
+    {
+      "number": 5,
+      "name": "审稿及拒绝记录保持正文不变",
+      "passed": true,
+      "durationMs": 196,
+      "details": {
+        "unchanged": true,
+        "userRejectionInActualSession": true
+      }
+    },
+    {
+      "number": 6,
+      "name": "六角色：指定最小改稿 JSON 候选",
+      "passed": false,
+      "durationMs": 916630,
+      "error": "The real provider operation exceeded its 60-second request timeout plus cleanup allowance."
+    },
+    {
+      "name": "指定改稿应用",
+      "passed": false,
+      "skipped": true,
+      "error": "Model output failed actual plugin validation; no format repair or application was attempted."
+    },
+    {
+      "number": 7,
+      "name": "六角色：标题与摘要",
+      "passed": true,
+      "durationMs": 51965,
+      "details": {
+        "status": "completed",
+        "characters": 156,
+        "roleName": "标题与发布检查",
+        "candidateReady": false,
+        "candidateCharacters": 422,
+        "mode": "discuss",
+        "scope": "body",
+        "jsonValidatedByActualPlugin": false
+      }
+    },
+    {
+      "number": 8,
+      "name": "六角色结果保留作者判断和 Markdown，标题摘要不混入正文",
+      "passed": true,
+      "durationMs": 3,
+      "details": {
+        "frontmatterPreserved": true,
+        "authorJudgmentPreserved": true,
+        "bodyCharacters": 422,
+        "shortDraft": false,
+        "h1": true,
+        "h2": true,
+        "wiki": true,
+        "embed": true,
+        "image": true,
+        "link": true,
+        "code": true,
+        "proseOnly": true
+      }
+    },
+    {
+      "number": 9,
+      "name": "选区测试准备：合成 A 文稿与实际未落盘编辑器",
+      "passed": false,
+      "durationMs": 3,
+      "error": "An Obsidian operation failed; raw exception and expression omitted."
+    },
+    {
+      "number": 10,
+      "name": "实际 API：冻结发送选区并在生成时移动光标",
+      "passed": false,
+      "durationMs": 147,
+      "error": "An Obsidian operation failed; raw exception and expression omitted."
+    },
+    {
+      "name": "选区应用与撤回",
+      "passed": false,
+      "skipped": true,
+      "error": "No valid real-model edit candidate; no format repair was attempted."
+    },
+    {
+      "number": 11,
+      "name": "本地明确删除候选复用：手动改动后应用冲突不覆盖",
+      "passed": false,
+      "durationMs": 1,
+      "error": "An Obsidian operation failed; raw exception and expression omitted."
+    },
+    {
+      "number": 12,
+      "name": "本地明确删除候选复用：后续手动编辑导致撤回冲突",
+      "passed": false,
+      "durationMs": 0,
+      "error": "An Obsidian operation failed; raw exception and expression omitted."
+    },
+    {
+      "number": 13,
+      "name": "真实流式 A/B 隔离：首个文本块后切 B，并从实际侧栏停止",
+      "passed": false,
+      "durationMs": 918703,
+      "error": "An actual streamed block must arrive before stopping."
+    }
+  ],
+  "passed": false,
+  "limitations": [
+    "Synthetic materials only; this verifies basic plugin behavior, not factual accuracy or publication readiness.",
+    "Stopping a request does not guarantee that the provider stops billing."
+  ]
+}
