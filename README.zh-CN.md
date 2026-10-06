@@ -6,7 +6,7 @@
 
 ![稿伴浅色界面](docs/gui-light-0.1.1.png)
 
-开源源码：[zibochen6/draft-companion](https://github.com/zibochen6/draft-companion)。下载安装文件：[GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest)。[官方社区目录条目](https://community.obsidian.md/plugins/draft-companion)已发布，0.1.1 自动审核完成且无阻断错误。目录搜索与客户端列表可能需要等待同步；当前也可通过 GitHub Release 手动安装。
+开源源码：[zibochen6/draft-companion](https://github.com/zibochen6/draft-companion)。下载安装文件：[GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest)。[官方社区目录条目](https://community.obsidian.md/plugins/draft-companion)已发布，0.1.1 自动审核完成且无阻断错误。官方网站搜索已找到条目；旧客户端的插件列表仍需等待同步，当前也可通过 GitHub Release 手动安装。
 
 ## 安装
 

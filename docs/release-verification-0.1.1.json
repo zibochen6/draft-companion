@@ -50,6 +50,17 @@
     "published": true,
     "review": "Completed",
     "blockingErrors": 0,
-    "searchPropagation": "not yet confirmed"
+    "searchPropagation": "official website search verified",
+    "anonymousHttpStatus": 200,
+    "webSearch": {
+      "query": "Draft Companion",
+      "url": "https://community.obsidian.md/search?q=Draft%20Companion",
+      "found": true
+    },
+    "legacyCatalog": {
+      "url": "https://github.com/obsidianmd/obsidian-releases/blob/master/community-plugins.json",
+      "containsEntry": false
+    },
+    "clientInstallVerified": false
   }
 }

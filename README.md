@@ -6,7 +6,7 @@ Draft Companion is a Chinese-language desktop plugin for Obsidian that helps you
 
 > Requires **Obsidian desktop 1.11.4 or later**. Mobile is not supported.
 
-The [official community-directory listing](https://community.obsidian.md/plugins/draft-companion) is published. Version 0.1.1 completed its automated review with no blocking errors. Search and client catalog synchronization may take time; [GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest) remains available for manual installation.
+The [official community-directory listing](https://community.obsidian.md/plugins/draft-companion) is published. Version 0.1.1 completed its automated review with no blocking errors. Website search for **Draft Companion** is verified. Older client catalogs may take time to synchronize; [GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest) remains available for manual installation.
 
 ![Draft Companion in the light theme](docs/gui-light-0.1.1.png)
 
