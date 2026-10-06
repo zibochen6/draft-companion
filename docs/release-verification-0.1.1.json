@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-07",
+  "timezone": "Asia/Shanghai",
+  "version": "0.1.1",
+  "release": "https://github.com/zibochen6/draft-companion/releases/tag/0.1.1",
+  "commit": "ffed776e2ce8850603f4e77bd09499eb34723858",
+  "workflow": "https://github.com/zibochen6/draft-companion/actions/runs/37540539842",
+  "workflowConclusion": "success",
+  "testCount": 104,
+  "assets": [
+    {
+      "name": "draft-companion-0.1.1.zip",
+      "bytes": 232985,
+      "digest": "sha256:4ad2b1bc1cdf3e3a850d30d4e2e752bb712d859231ae4037eb9e77c10d2fe641",
+      "matchesLocal": true
+    },
+    {
+      "name": "main.js",
+      "bytes": 223643,
+      "digest": "sha256:d8fe33b923cf02b30c20eec48ffe315513c0900a85ab85eb8c424f77513afdc7",
+      "matchesLocal": true
+    },
+    {
+      "name": "manifest.json",
+      "bytes": 318,
+      "digest": "sha256:d59eb3ceb8ec473eff818ac60ffb8b64eebbd23e38d76b7e3cada5382e90d7f5",
+      "matchesLocal": true
+    },
+    {
+      "name": "styles.css",
+      "bytes": 8618,
+      "digest": "sha256:1465cb7e104243e51b6a7d86fa82440b9978566994f2292d65a615976cef042b",
+      "matchesLocal": true
+    }
+  ],
+  "downloadedZipMatchesLocal": true,
+  "verifiedProvenance": {
+    "files": [
+      "main.js",
+      "styles.css"
+    ],
+    "signerWorkflow": "zibochen6/draft-companion/.github/workflows/release.yml",
+    "sourceRef": "refs/tags/0.1.1",
+    "sourceCommit": "ffed776e2ce8850603f4e77bd09499eb34723858",
+    "runner": "github-hosted",
+    "denySelfHostedRunners": true
+  },
+  "directory": {
+    "url": "https://community.obsidian.md/plugins/draft-companion",
+    "published": true,
+    "review": "Completed",
+    "blockingErrors": 0,
+    "searchPropagation": "not yet confirmed"
+  }
+}

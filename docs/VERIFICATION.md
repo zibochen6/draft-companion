@@ -1,6 +1,6 @@
 # V0.1 验证记录
 
-验证日期：2026-10-06 至 2026-10-07（Asia/Shanghai）。源码和安装包版本：0.1.0。
+验证日期：2026-10-06 至 2026-10-07（Asia/Shanghai）。以下首轮记录对应源码和安装包 0.1.0；0.1.1 补充验证见文末。
 
 ## 环境与边界
 
@@ -92,3 +92,5 @@
 官方目录发布结果与新版实际桌面复验应以本节后续记录为准。0.1.1 本轮未使用真实 API 密钥，不新增真实模型质量结论。
 
 新版实际桌面复验：在库外独立 TestVault 和独立应用配置中，以明确标注的本地模拟服务运行现有桌面 QA，全部 10 项流程通过；另通过消息渲染 DOM 安全检查。新配置的宿主更新为 **Obsidian 1.14.4**，前述 0.1.0 记录仍对应 1.12.7。此次未使用真实密钥。最低版本 1.11.4 未单独实机验证，输入法仍为事件验证。机器记录见 [gui-verification-0.1.1.json](gui-verification-0.1.1.json)，浅色与深色截图见 [gui-light-0.1.1.png](gui-light-0.1.1.png)、[gui-dark-0.1.1.png](gui-dark-0.1.1.png)。
+
+0.1.1 正式发布：[GitHub Release](https://github.com/zibochen6/draft-companion/releases/tag/0.1.1)，发布工作流与 CI 均成功；四个附件的大小和 SHA-256 与本地文件相同，实际下载的 ZIP 逐字节相等。官方 `gh attestation verify` 核验 main.js 与 styles.css 的签名、版本标签、提交、release.yml 及 GitHub hosted runner 均通过。官方目录已发布 [Draft Companion](https://community.obsidian.md/plugins/draft-companion)，0.1.1 审核状态 Completed，0 个阻断错误；剩余控件辅助函数和新版设置搜索等建议不阻断提交。保留 ZIP 供手动安装，复制操作只写入剪贴板并已在 README 披露。机器核对记录见 [release-verification-0.1.1.json](release-verification-0.1.1.json)。目录搜索与旧客户端列表同步尚未确认。

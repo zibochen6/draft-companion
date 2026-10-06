@@ -64,3 +64,7 @@ git push origin 0.1.2
 参考：[Obsidian 官方更新说明](https://help.obsidian.md/Extending+Obsidian/Community+plugins)。
 
 市场收录前，用户从 [GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest) 下载最新 ZIP，替换三个运行文件并重载插件。保留既有插件数据即可继续使用已有配置、会话和撤回记录。
+
+## 当前发布状态（2026-10-07）
+
+0.1.1 已正式发布到 GitHub；[官方目录条目](https://community.obsidian.md/plugins/draft-companion)已执行 Publish，0.1.1 自动审核 Completed，无阻断错误。搜索和客户端目录的同步尚未确认；不能把公开条目可访问等同于所有客户端已经能搜索到。当前可从 Release 下载 ZIP 手动安装。发布字节与构建来源证明核对见 [验证记录](VERIFICATION.md)。

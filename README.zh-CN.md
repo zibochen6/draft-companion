@@ -6,7 +6,7 @@
 
 ![稿伴浅色界面](docs/gui-light-0.1.1.png)
 
-开源源码：[zibochen6/draft-companion](https://github.com/zibochen6/draft-companion)。下载安装文件：[GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest)。官方社区目录条目已创建，正在修正自动审核反馈；**尚未收录到插件市场**。
+开源源码：[zibochen6/draft-companion](https://github.com/zibochen6/draft-companion)。下载安装文件：[GitHub Releases](https://github.com/zibochen6/draft-companion/releases/latest)。[官方社区目录条目](https://community.obsidian.md/plugins/draft-companion)已发布，0.1.1 自动审核完成且无阻断错误。目录搜索与客户端列表可能需要等待同步；当前也可通过 GitHub Release 手动安装。
 
 ## 安装
 
@@ -20,7 +20,7 @@
 
 更新时只替换上述三个运行文件，然后重载插件。保留既有插件数据即可保留配置、编辑过的伙伴与本文会话。分发包不含用户数据或密钥。
 
-社区目录审核通过并发布后，可在 Obsidian 设置 → 社区插件 → 浏览中搜索 `Draft Companion` 并安装。目录当前要求英文介绍，中文名称“稿伴”作为插件界面名称，不保证可用于市场搜索。此后在“检查更新”中获取新版；官方社区插件不会静默自动更新。推送源码不会让已安装插件立即更新，维护者需要发布新的版本。发布维护步骤见 [发布说明](docs/RELEASING.md)。
+社区目录已发布。客户端列表同步后，可在 Obsidian 设置 → 社区插件 → 浏览中搜索 `Draft Companion` 并安装。目录当前要求英文介绍，中文名称“稿伴”作为插件界面名称，不保证可用于市场搜索。此后在“检查更新”中获取新版；官方社区插件不会静默自动更新。推送源码不会让已安装插件立即更新，维护者需要发布新的版本。发布维护步骤见 [发布说明](docs/RELEASING.md)。
 
 ## 配置服务和模型
 
