@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-07T06:24:54.774Z",
+  "version": "0.2.0",
+  "environment": "macOS ARM64 / actual Obsidian desktop",
+  "isolatedVault": true,
+  "liveRequested": false,
+  "checks": [
+    {
+      "name": "真实插件加载、审阅协议与未落盘全文",
+      "passed": true,
+      "suggestions": 5,
+      "sourceHighlight": true,
+      "frontmatterPreserved": true
+    },
+    {
+      "name": "宽版三种只读预览与当前建议同步",
+      "passed": true,
+      "editorKept": true,
+      "previewWrites": 0,
+      "previewRequests": 0
+    },
+    {
+      "name": "大幅改动第一句后继续采纳第二句，重叠失效，自动下一条",
+      "passed": true,
+      "independentSuggestionKept": true,
+      "overlapInvalidated": true,
+      "duplicateApplyBlocked": true
+    },
+    {
+      "name": "逐条撤回保留第二条与后续手写文字",
+      "passed": true,
+      "laterAcceptanceKept": true,
+      "manualEditKept": true
+    },
+    {
+      "name": "重复句精确定位、忽略不写入与自动下一条",
+      "passed": true,
+      "secondOccurrence": true,
+      "ignoreWrites": 0
+    },
+    {
+      "name": "批注追问不覆盖候选，新改法保留旧版本与原作者",
+      "passed": true,
+      "versions": 2,
+      "ordinaryReplyKeptCandidate": true,
+      "unrelatedEditDuringRevisionKept": true
+    },
+    {
+      "name": "A/B 文稿隔离、停止与迟到结果",
+      "passed": true,
+      "stopped": true,
+      "bUnchanged": true
+    },
+    {
+      "name": "中文组词与普通 Enter 不发送",
+      "passed": true,
+      "compositionEvents": true,
+      "enterIsNewline": true,
+      "physicalIME": false
+    },
+    {
+      "name": "重启恢复校验、配置和批注状态",
+      "passed": true,
+      "schema": 2,
+      "ignoredKept": true
+    },
+    {
+      "name": "明暗主题、两种窗口与三种侧栏宽度",
+      "passed": true,
+      "layouts": [
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "sidebar": 360,
+          "theme": "light",
+          "width": 360,
+          "height": 860,
+          "reading": 532.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "sidebar": 360,
+          "theme": "dark",
+          "width": 360,
+          "height": 860,
+          "reading": 532.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "sidebar": 420,
+          "theme": "light",
+          "width": 420,
+          "height": 860,
+          "reading": 532.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "sidebar": 420,
+          "theme": "dark",
+          "width": 420,
+          "height": 860,
+          "reading": 532.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "sidebar": 480,
+          "theme": "light",
+          "width": 480,
+          "height": 860,
+          "reading": 532.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1440,
+            900
+          ],
+          "sidebar": 480,
+          "theme": "dark",
+          "width": 480,
+          "height": 860,
+          "reading": 532.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "sidebar": 360,
+          "theme": "light",
+          "width": 360,
+          "height": 760,
+          "reading": 432.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "sidebar": 360,
+          "theme": "dark",
+          "width": 360,
+          "height": 760,
+          "reading": 432.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "sidebar": 420,
+          "theme": "light",
+          "width": 420,
+          "height": 760,
+          "reading": 432.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "sidebar": 420,
+          "theme": "dark",
+          "width": 420,
+          "height": 760,
+          "reading": 432.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "sidebar": 480,
+          "theme": "light",
+          "width": 480,
+          "height": 760,
+          "reading": 432.609375,
+          "horizontalOverflow": false
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "sidebar": 480,
+          "theme": "dark",
+          "width": 480,
+          "height": 760,
+          "reading": 432.609375,
+          "horizontalOverflow": false
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "limitations": [
+    "Physical Chinese IME candidate-window interaction requires manual follow-up; composition events are tested.",
+    "Windows/Linux and minimum Obsidian 1.11.4 are not verified.",
+    "CRLF source writes are deliberately blocked; host mode switching may also normalize them. Raw Vault CAS preserves CRLF only without source buffers.",
+    "Remote billing cancellation is not guaranteed."
+  ]
+}

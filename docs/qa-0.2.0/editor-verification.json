@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-07T06:24:51.181Z",
+  "version": "0.2.0",
+  "isolatedVault": true,
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "隔离宿主、合成文稿和本地模拟服务",
+      "passed": true,
+      "syntheticOnly": true,
+      "mockProvider": true
+    },
+    {
+      "name": "纯源文与 Live Preview 高亮、阅读模式隐藏高亮与长文滚动",
+      "passed": true,
+      "sourceMarks": 4,
+      "livePreviewMarks": 4,
+      "returnedLiveMarks": 4,
+      "hostLivePreviewPreference": true,
+      "restoredAfterScroll": true
+    },
+    {
+      "name": "被动单击、拖选、修饰键与已有选区",
+      "passed": true,
+      "clickSelected": true,
+      "dragPreservedSelection": true,
+      "modifierIgnored": true,
+      "nonemptySelectionIgnored": true
+    },
+    {
+      "name": "双源文窗格回声只映射一次，随后原生撤销与重做恢复状态",
+      "passed": true,
+      "multiPaneShiftedOnce": true,
+      "nativeUndoRestored": true,
+      "nativeRedoRestored": true
+    },
+    {
+      "name": "程序定位不冒充用户选区",
+      "passed": true,
+      "summary": "body"
+    },
+    {
+      "name": "CRLF 源文保护及关闭源文后的原始 CAS",
+      "passed": true,
+      "sourceBlocked": true,
+      "rawCasPreservedCRLF": true,
+      "hostModeSwitchNormalizedCRLF": true
+    }
+  ],
+  "passed": true,
+  "limitations": [
+    "This script requires the separately started localhost mock provider on port 43127.",
+    "The host normalizes CRLF through its source editor; plugin protection and raw Vault CAS are checked instead."
+  ]
+}

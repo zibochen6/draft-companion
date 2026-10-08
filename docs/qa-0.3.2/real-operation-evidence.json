@@ -1,0 +1,37 @@
+[
+  {
+    "flow": "real-model-topic",
+    "source": "# 合成选题库（非真实项目）\n\n以下只是合成验收素材，所有链接均为保留测试域名，不能声称读过网页。\n\n- [ ] **synthetic-doc-checker** — 帮助内容作者按自己提供的核对清单标记文案缺项。材料只有这句描述。｜ https://example.invalid/checker\n- [ ] **synthetic-cost-notes** — 把作者自己填写的用量记录列为费用表，不会自动取得账户费用。材料只有这句描述。｜ https://example.invalid/cost\n- [ ] **synthetic-idea-box** — 为已提供的想法按目标读者整理标签，读者判断由作者完成。材料只有这句描述。｜ https://example.invalid/ideas\n\n作者声明：这是合成测试库，不是用户的真实文章。\n\n- [ ] **synthetic-writing-note-1** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/1\n- [ ] **synthetic-writing-note-2** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/2\n- [ ] **synthetic-writing-note-3** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/3\n- [ ] **synthetic-writing-note-4** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/4\n- [ ] **synthetic-writing-note-5** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/5\n- [ ] **synthetic-writing-note-6** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/6\n- [ ] **synthetic-writing-note-7** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/7\n- [ ] **synthetic-writing-note-8** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/8\n- [ ] **synthetic-writing-note-9** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/9\n- [ ] **synthetic-writing-note-10** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/10\n- [ ] **synthetic-writing-note-11** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/11\n- [ ] **synthetic-writing-note-12** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/12\n",
+    "after": "# 合成选题库（非真实项目）\n\n以下只是合成验收素材，所有链接均为保留测试域名，不能声称读过网页。\n\n- [x] **synthetic-doc-checker** — 帮助内容作者按自己提供的核对清单标记文案缺项。材料只有这句描述。｜ https://example.invalid/checker\n- [ ] **synthetic-cost-notes** — 把作者自己填写的用量记录列为费用表，不会自动取得账户费用。材料只有这句描述。｜ https://example.invalid/cost\n- [ ] **synthetic-idea-box** — 为已提供的想法按目标读者整理标签，读者判断由作者完成。材料只有这句描述。｜ https://example.invalid/ideas\n\n作者声明：这是合成测试库，不是用户的真实文章。\n\n- [ ] **synthetic-writing-note-1** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/1\n- [ ] **synthetic-writing-note-2** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/2\n- [ ] **synthetic-writing-note-3** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/3\n- [ ] **synthetic-writing-note-4** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/4\n- [ ] **synthetic-writing-note-5** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/5\n- [ ] **synthetic-writing-note-6** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/6\n- [ ] **synthetic-writing-note-7** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/7\n- [ ] **synthetic-writing-note-8** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/8\n- [ ] **synthetic-writing-note-9** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/9\n- [ ] **synthetic-writing-note-10** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/10\n- [ ] **synthetic-writing-note-11** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/11\n- [ ] **synthetic-writing-note-12** — 这也是合成项目，只把作者提供的写作笔记按场景归档：记录一个具体问题、已有材料和缺少证据，不会联网抓取内容，也不能代替作者的判断。｜ https://example.invalid/notes/12\n",
+    "feedback": "已按本轮授权勾选一个选题（选题上限为 1，其余条目未改动）。\n\n## 选题讨论（三个方向）\n\n**方向一：synthetic-doc-checker（已勾选，首推）**\n- **目标读者**：需要写产品文档、发布说明、帮助文案的内容作者。\n- **具体问题**：文案交出去后总被发现漏了适用场景、限制、尝试方式这类关键项，靠人脑核对容易漏。\n- **核心角度**：把\"作者自己提供的核对清单\"变成发稿前的最后一道自检，AI 只负责按清单标记缺项，不替你判断内容对不对。\n- **已有材料**：一句项目描述 + 链接占位。\n- **待补材料**：一份可用的核对清单样例、一个具体的漏项案例、工具输出的示例截图（需你提供）。\n\n**方向二：synthetic-cost-notes**\n- **目标读者**：自己记录 AI 用量、想算清楚成本的个人或小团队。\n- **核心角度**：费用表只反映你填进去的记录，不会自动同步账户账单——把\"数据来源边界\"讲清楚。\n- **待补材料**：一份你自己填过的用量记录样例、和真实账单对比后发现的差异点。\n\n**方向三：synthetic-idea-box**\n- **目标读者**：攒了很多 AI 产出的想法、但不知道哪条值得写的人。\n- **核心角度**：工具只按目标读者整理标签，筛选和取舍仍然由人做——谈\"AI 归档、人做判断\"的分工。\n- **待补材料**：一批真实想法样本、你实际的标签体系。\n\n**推荐方向一**：它有最具体的失效场景（发稿后才发现漏项），读者关系最直接；方向二、三需要你先提供记录样例或想法样本才能撑起正文。另外提醒：这份选题库标注为合成测试素材、链接为保留测试域名，成文时不能当作真实案例引用。\n\n## 选题最终反馈\n\n- **实际项目**：synthetic-doc-checker（目标文件：0.3真实模型合成选题库.md，已勾选）\n- **简短理由**：三个候选里唯一自带明确失效场景的选题，\"发稿后被挑出缺项\"是内容作者普遍经历过的麻烦，缺口材料也最容易补。\n- **一句话切入角度**：发稿前让 AI 按你自己的清单逐项标记缺项——它只查漏，不替你判断内容好坏。\n- **首推标题**：《发稿前漏掉的那几项，让 AI 按你的清单帮你查》\n- **备选标题（四个不同角度）**：\n  1. 痛点角度：《文案又被挑出\"缺场景、缺限制\"？试试把核对清单交给 AI》\n  2. 方法角度：《我用一份自检清单，让 AI 只做文案缺项检查》\n  3. 边界角度：《AI 只负责标记缺项：内容自检里人和工具的分工》\n  4. 场景角度：《发布说明、帮助文档交稿前，先过一遍 AI 缺项核对》\n\n说明：以上是标题风格参考，我没有发布数据或阅读量依据，无法承诺\"爆款\"效果；标题中的\"我用过\"式表述若你没有实际经历，建议改成客观描述。",
+    "receipts": [
+      {
+        "kind": "topic-check",
+        "state": "applied",
+        "before": " ",
+        "replacement": "x",
+        "label": "勾选「synthetic-doc-checker」"
+      }
+    ],
+    "exactLocalUndo": true
+  },
+  {
+    "flow": "real-model-local-edit",
+    "done": true,
+    "after": "---\ntitle: 合成局部执行\n---\n# 合成文稿\n\n先核对材料，再写出建议。😀\n\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n",
+    "feedback": "已完成替换：选中段落现为“先核对材料，再写出建议。😀”，文稿其余内容保持逐字不变。",
+    "receipts": [
+      {
+        "kind": "replace",
+        "state": "applied",
+        "label": "替换冻结选区"
+      }
+    ],
+    "before": "---\ntitle: 合成局部执行\n---\n# 合成文稿\n\n这段合成表达需要更直接一些。😀\n\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n",
+    "syntheticOnly": true,
+    "onlyFrozenSelectionChanged": true,
+    "undo": "---\ntitle: 合成局部执行\n---\n# 合成文稿\n\n这段合成表达需要更直接一些。😀\n\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n作者后来追加的独立文字。",
+    "undoPreservesUnrelatedEdit": true,
+    "passed": true
+  }
+]

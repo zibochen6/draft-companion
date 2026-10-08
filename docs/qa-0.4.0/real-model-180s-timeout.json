@@ -1,0 +1,55 @@
+{
+  "provider": "seeed_api",
+  "model": "deepseek-v4.1-flash",
+  "version": "0.4.0",
+  "at": "2026-10-08T02:52:04.337Z",
+  "status": "failed",
+  "message": "请求超时，连接已中止。可检查网络或调整请求超时。",
+  "category": "timeout",
+  "sources": [
+    {
+      "name": "Git Stars",
+      "status": "failed",
+      "message": "来源返回 HTTP 403。",
+      "at": 1791427611897
+    },
+    {
+      "name": "GitHub",
+      "status": "fallback",
+      "message": "Git Stars 受阻，使用 GitHub 官方仓库搜索补充；不是 Git Stars 榜单。",
+      "at": 1791427614258
+    },
+    {
+      "name": "AIHOT 精选",
+      "status": "failed",
+      "message": "公开来源连接中断。",
+      "at": 1791427612219
+    },
+    {
+      "name": "AIHOT 热点",
+      "status": "success",
+      "message": "已读取当前事件热点排序。",
+      "at": 1791427612363
+    }
+  ],
+  "stages": [
+    {
+      "stage": "采集中",
+      "at": "2026-10-08T02:46:51.812Z"
+    },
+    {
+      "stage": "筛选中",
+      "at": "2026-10-08T02:46:54.845Z"
+    },
+    {
+      "stage": "读取材料",
+      "at": "2026-10-08T02:49:00.850Z"
+    },
+    {
+      "stage": "筛选中",
+      "at": "2026-10-08T02:49:03.879Z"
+    }
+  ],
+  "officialSecretStorage": true,
+  "secretExported": false
+}

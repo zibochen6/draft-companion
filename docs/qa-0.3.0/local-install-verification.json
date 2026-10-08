@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-07T22:46:29.249Z",
+  "success": true,
+  "fromVersion": "0.2.2",
+  "version": "0.3.0",
+  "backup": ".obsidian/plugins/draft-companion/rollback-agent-0.2.2-1791413188378",
+  "backupVerified": true,
+  "runtimeVerified": true,
+  "enabled": true,
+  "configurationAndSessionsPreserved": true,
+  "unsentDraftsPreserved": true,
+  "sidebarViews": 1,
+  "unsentCharacters": 0,
+  "editorTextAndSelectionPreserved": true,
+  "sidebarVisible": true,
+  "controlsInside": true,
+  "moreUsesPopover": true,
+  "schema": 3,
+  "liveFileIdentityHandoff": true,
+  "modelRequests": 0,
+  "articleWrites": 0
+}

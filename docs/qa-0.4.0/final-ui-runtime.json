@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-08T03:33:17.201Z",
+  "version": "0.4.0",
+  "enabled": true,
+  "canUndo": true,
+  "scheduleEnabled": true,
+  "time": "09:00",
+  "timeZone": "Asia/Shanghai",
+  "handledDate": "2026-10-08",
+  "runCount": 1,
+  "status": "completed",
+  "candidates": 10,
+  "selected": 5,
+  "viewResultButtonRetainedAcrossRefresh": true,
+  "busy": false,
+  "secretExported": false
+}

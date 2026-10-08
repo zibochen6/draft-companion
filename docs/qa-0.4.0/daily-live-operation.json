@@ -1,0 +1,119 @@
+{
+  "at": "2026-10-08T03:11:56.113Z",
+  "version": "0.4.0",
+  "enabled": true,
+  "scheduleEnabled": true,
+  "scheduleTime": "09:00",
+  "scheduleTimeZone": "Asia/Shanghai",
+  "handledDate": "2026-10-08",
+  "origin": "scheduled",
+  "date": "2026-10-08",
+  "status": "completed",
+  "message": "已新增 10 个候选，其中 5 个优选已勾选。",
+  "provider": "seeed_api",
+  "model": "deepseek-v4.1-flash",
+  "timeoutMs": 300000,
+  "stream": true,
+  "durationMs": 281601,
+  "candidates": 10,
+  "selected": 5,
+  "sources": [
+    {
+      "name": "Git Stars",
+      "status": "failed",
+      "message": "来源返回 HTTP 403。",
+      "at": 1791428834728
+    },
+    {
+      "name": "GitHub",
+      "status": "fallback",
+      "message": "Git Stars 受阻，使用 GitHub 官方仓库搜索补充；不是 Git Stars 榜单。",
+      "at": 1791428836681
+    },
+    {
+      "name": "AIHOT 精选",
+      "status": "failed",
+      "message": "公开来源连接中断。",
+      "at": 1791428835128
+    },
+    {
+      "name": "AIHOT 热点",
+      "status": "success",
+      "message": "已读取当前事件热点排序。",
+      "at": 1791428835416
+    }
+  ],
+  "entries": [
+    {
+      "sourceId": "source_da99f29def532746c2cb",
+      "title": "sandbox-quantum/switch",
+      "url": "https://github.com/sandbox-quantum/switch",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    },
+    {
+      "sourceId": "source_d048d8234527a64b76cc",
+      "title": "pgrundev/pgbot",
+      "url": "https://github.com/pgrundev/pgbot",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    },
+    {
+      "sourceId": "source_ec87af677260312c0c52",
+      "title": "xzf-thu/VoiceMem",
+      "url": "https://github.com/xzf-thu/voicemem",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    },
+    {
+      "sourceId": "source_12efed556f13acd0d9bf",
+      "title": "Paritok-official/paritok-4b-v1",
+      "url": "https://github.com/paritok-official/paritok-4b-v1",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    },
+    {
+      "sourceId": "source_555d2c46014cb8061e73",
+      "title": "bytedoger/awesome-OpenPrice",
+      "url": "https://github.com/bytedoger/awesome-openprice",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    },
+    {
+      "sourceId": "source_92a0c4e337fe48e9234a",
+      "title": "Google 开源多模态嵌入模型 EmbeddingGemma 2",
+      "url": "https://aihot.news/items/g1k2ragppm8j4apj75qu1k4ug",
+      "source": "AIHOT"
+    },
+    {
+      "sourceId": "source_07165c778c61ff0ded64",
+      "title": "Google 全球开放 SynthID 水印检测器",
+      "url": "https://aihot.news/items/don06si59xc143ed92gdmlnvo",
+      "source": "AIHOT"
+    },
+    {
+      "sourceId": "source_2ee25439d034de1c8fff",
+      "title": "Alisa0808/vox-director",
+      "url": "https://github.com/alisa0808/vox-director",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    },
+    {
+      "sourceId": "source_b0826d93c67f06c03f8e",
+      "title": "zeronsh/zeron",
+      "url": "https://github.com/zeronsh/zeron",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    },
+    {
+      "sourceId": "source_6e883335f8b1dd57dfe9",
+      "title": "TypeLLM/TypeLLM",
+      "url": "https://github.com/typellm/typellm",
+      "source": "GitHub（Git Stars 受阻后的补充）"
+    }
+  ],
+  "receiptState": "applied",
+  "canUndo": false,
+  "originalContentPreserved": true,
+  "otherEditorBuffersPreserved": true,
+  "libraryIdentityPreserved": true,
+  "scheduledRunsStarted": 1,
+  "topicLibrary": "Projects/选题库.md",
+  "officialSecretStorage": true,
+  "secretExported": false,
+  "canUndoAtFinalCheck": true,
+  "finalCheckAt": "2026-10-08T03:17:37.861Z"
+}

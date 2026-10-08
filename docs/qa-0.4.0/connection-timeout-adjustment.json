@@ -1,0 +1,49 @@
+{
+  "at": "2026-10-08T02:46:45.044Z",
+  "lastCompletedEvidenceAt": "2026-10-08T03:03:54.084Z",
+  "serviceConnected": true,
+  "probeDurationMs": 1481,
+  "syntheticProbeResponse": "连接成功。",
+  "previousTimeoutMs": 60000,
+  "firstExplicitAdjustmentMs": 180000,
+  "configuredTimeoutMs": 300000,
+  "provider": "seeed_api",
+  "model": "deepseek-v4.1-flash",
+  "stream": true,
+  "reason": "The 60-second trial timed out during screening. An explicit 180-second trial completed screening but timed out in the second stage. A separate explicit 300-second trial completed in 281.2 seconds, respecting the configured model and streaming setting.",
+  "automaticRetry": false,
+  "automaticModelSwitch": false,
+  "automaticProtocolSwitch": false,
+  "trials": [
+    {
+      "timeoutMs": 60000,
+      "status": "timeout",
+      "stage": "first-stage screening",
+      "at": "2026-10-08T02:44:03.550Z",
+      "evidence": "real-model-initial-timeout.json"
+    },
+    {
+      "timeoutMs": 180000,
+      "status": "timeout",
+      "firstStageCompleted": true,
+      "stage": "second-stage card generation",
+      "at": "2026-10-08T02:52:04.337Z",
+      "evidence": "real-model-180s-timeout.json"
+    },
+    {
+      "timeoutMs": 300000,
+      "status": "completed",
+      "durationMs": 281228,
+      "candidates": 10,
+      "selected": 5,
+      "zeroTargetNoteWrite": true,
+      "zeroPersistedDataChange": true,
+      "at": "2026-10-08T03:03:54.084Z",
+      "evidence": "real-model.json",
+      "helperRecovery": "The CLI polling helper stalled after a complete response; a separate guarded read recovered the actual completed result. This was not a model failure."
+    }
+  ],
+  "freshChineseDescriptionProtocol": "not verified by these trials; a separate read-only real-model check is pending",
+  "officialSecretStorage": true,
+  "secretExported": false
+}

@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-07T22:44:07.535Z",
+  "version": "0.3.0",
+  "syntheticOnly": true,
+  "actualObsidian": true,
+  "nativeUndoStateVerified": true,
+  "nativeRedoStateVerified": true,
+  "restartNoReplay": true,
+  "strongIdentityRestored": true,
+  "exactUndoAfterRestart": true,
+  "modelProtocol": "native",
+  "modelIsMock": true,
+  "passed": true
+}

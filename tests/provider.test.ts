@@ -51,7 +51,7 @@ describe('provider URLs and model discovery', () => {
 
   it.each([
     [401, { error: { message: 'fake-test-token' } }, 'auth'],
-    [403, {}, 'auth'],
+    [403, {}, 'permission'],
     [404, {}, 'unsupported'],
     [405, {}, 'unsupported'],
     [500, {}, 'service'],
@@ -64,6 +64,66 @@ describe('provider URLs and model discovery', () => {
     const baseUrl = await server((_req, res) => { res.statusCode = status; res.end(JSON.stringify(body)); });
     const error = await expectKind(listModels(provider(baseUrl), 'fake-test-token'), kind);
     expect(error.message).not.toContain('fake-test-token');
+    expect(error.diagnostics).toMatchObject({ category: kind, stage: 'models', httpStatus: status });
+  });
+
+  it.each([
+    [429, { code: 'insufficient_quota', message: 'Rate limit or private details' }, 'quota'],
+    [403, { type: 'authentication_error', message: 'private details' }, 'auth'],
+    [401, { code: 'permission_denied', message: 'private details' }, 'permission'],
+    [400, { code: 'rate_limit_exceeded', message: 'private details' }, 'rate-limit'],
+    [404, { code: 'model_not_found', message: 'private details' }, 'model-unavailable'],
+    [400, { code: 'model_not_supported', message: 'private details' }, 'model-unavailable'],
+    [500, { type: 'invalid_request_error', message: 'The model requested is not available' }, 'model-unavailable'],
+    [400, { message: '账户余额不足，请充值。' }, 'quota'],
+    [400, { message: '当前账户没有权限访问。' }, 'permission'],
+    [400, { message: '请求过于频繁，请稍后再试。' }, 'rate-limit'],
+    [500, { code: 'request_timeout', message: 'private details' }, 'timeout'],
+    [400, { type: 'upstream_connection_error', message: 'private details' }, 'connection'],
+  ])('uses the actual service error over generic HTTP %s classification', async (status, remoteError, kind) => {
+    let requests = 0;
+    const privateDraft = 'PRIVATE_SYNTHETIC_DOCUMENT_不得记录';
+    const baseUrl = await server((_req, res) => {
+      requests++;
+      res.statusCode = status;
+      res.end(JSON.stringify({ error: { ...remoteError, privateDraft, authorization: 'Bearer fake-test-token' } }));
+    });
+    const error = await expectKind(chat(provider(baseUrl, false), 'fake-test-token', [], () => {}, new AbortController().signal), kind);
+    expect(error.diagnostics).toEqual({ category: kind, stage: 'chat', httpStatus: status, code: kind.replaceAll('-', '_') });
+    const exposed = JSON.stringify({ message: error.message, diagnostics: error.diagnostics });
+    expect(exposed).not.toContain(privateDraft);
+    expect(exposed).not.toContain('fake-test-token');
+    expect(requests).toBe(1);
+  });
+
+  it('keeps an ambiguous 429 honest and never exposes an unknown remote error code', async () => {
+    const baseUrl = await server((_req, res) => {
+      res.statusCode = 429;
+      res.end(JSON.stringify({ error: { code: 'fake-test-token-PRIVATE_DOCUMENT', message: 'Opaque failure' } }));
+    });
+    const error = await expectKind(listModels(provider(baseUrl), 'fake-test-token'), 'service');
+    expect(error.message).toContain('未明确说明');
+    expect(error.diagnostics).toEqual({ category: 'service', stage: 'models', httpStatus: 429, code: 'service' });
+    expect(JSON.stringify(error)).not.toContain('fake-test-token');
+    expect(JSON.stringify(error)).not.toContain('PRIVATE_DOCUMENT');
+  });
+
+  it('classifies explicit permission denial separately from missing models', async () => {
+    const baseUrl = await server((_req, res) => {
+      res.statusCode = 404;
+      res.end(JSON.stringify({ error: { code: 'permission_denied', message: 'You do not have access to this model' } }));
+    });
+    const error = await expectKind(listModels(provider(baseUrl), undefined), 'permission');
+    expect(error.diagnostics.code).toBe('permission');
+  });
+
+  it('classifies top-level compatible error fields without retaining their private message', async () => {
+    const baseUrl = await server((_req, res) => {
+      res.statusCode = 400;
+      res.end(JSON.stringify({ code: 'insufficient_quota', message: 'PRIVATE_DOCUMENT fake-test-token' }));
+    });
+    const error = await expectKind(listModels(provider(baseUrl), 'fake-test-token'), 'quota');
+    expect(JSON.stringify({ message: error.message, diagnostics: error.diagnostics })).not.toMatch(/PRIVATE_DOCUMENT|fake-test-token/);
   });
 
   it('rejects a redirect without making a second request', async () => {
@@ -76,11 +136,61 @@ describe('provider URLs and model discovery', () => {
   it('distinguishes invalid JSON and refused connections', async () => {
     const baseUrl = await server((_req, res) => res.end('<html>not JSON</html>'));
     await expectKind(listModels(provider(baseUrl), undefined), 'format');
-    await expectKind(listModels(provider('http://127.0.0.1:1', true, 500), undefined), 'network');
+    const error = await expectKind(listModels(provider('http://127.0.0.1:1', true, 500), undefined), 'connection');
+    expect(error.diagnostics).toEqual({ category: 'connection', stage: 'models', code: 'connection_failed' });
+  });
+
+  it('cancels model discovery, closes its connection, and does not retry', async () => {
+    let connected!: () => void, disconnected!: () => void;
+    const ready = new Promise<void>(resolve => { connected = resolve; });
+    const closed = new Promise<void>(resolve => { disconnected = resolve; });
+    let requests = 0;
+    const baseUrl = await server((_req, res) => {
+      requests++; res.writeHead(200); res.flushHeaders(); connected();
+      const timer = setTimeout(() => res.end(JSON.stringify({ data: [{ id: 'late-model' }] })), 500);
+      res.on('close', () => { clearTimeout(timer); disconnected(); });
+    });
+    const abort = new AbortController();
+    const pending = listModels(provider(baseUrl), undefined, abort.signal);
+    await ready; abort.abort();
+    await expectKind(pending, 'cancelled'); await closed;
+    expect(requests).toBe(1);
+  });
+
+  it('times out model discovery and actively closes the connection', async () => {
+    let disconnected!: () => void;
+    const closed = new Promise<void>(resolve => { disconnected = resolve; });
+    let requests = 0;
+    const baseUrl = await server((_req, res) => {
+      requests++; res.writeHead(200); res.flushHeaders(); res.on('close', disconnected);
+    });
+    const error = await expectKind(listModels(provider(baseUrl, true, 100), undefined), 'timeout');
+    expect(error.diagnostics).toMatchObject({ category: 'timeout', stage: 'models', code: 'request_timeout' });
+    await closed; expect(requests).toBe(1);
   });
 });
 
 describe('chat transport', () => {
+  it('classifies a streamed service error and stops without retry or executable output', async () => {
+    let requests = 0;
+    const baseUrl = await server((_req, res) => {
+      requests++;
+      res.end(`event: error\ndata: ${JSON.stringify({ error: { code: 'insufficient_quota', message: 'PRIVATE_DOCUMENT fake-test-token' } })}\n\n`);
+    });
+    const received: string[] = [];
+    const error = await expectKind(chat(provider(baseUrl), 'fake-test-token', [], text => received.push(text), new AbortController().signal), 'quota');
+    expect(error.diagnostics).toEqual({ category: 'quota', stage: 'chat', code: 'quota', httpStatus: 200 });
+    expect(received).toEqual([]);
+    expect(requests).toBe(1);
+    expect(JSON.stringify({ message: error.message, diagnostics: error.diagnostics })).not.toMatch(/PRIVATE_DOCUMENT|fake-test-token/);
+  });
+
+  it('reports configuration failures without sending a request or exposing the invalid URL', async () => {
+    const error = await expectKind(chat(provider('https://user:fake-test-token@example.com'), undefined, [], () => {}, new AbortController().signal), 'format');
+    expect(error.diagnostics).toEqual({ category: 'format', stage: 'configuration', code: 'invalid_base_url' });
+    expect(error.message).not.toContain('fake-test-token');
+  });
+
   it('decodes fragmented Chinese UTF-8 and CRLF SSE and resolves before a lingering connection ends', async () => {
     const output = Buffer.from(`: comment\r\n\r\n${chunk('你好，')}${chunk('世界')}${chunk(null, 'stop')}data: [DONE]\r\n\r\n`);
     const baseUrl = await server((_req, res) => {
@@ -201,7 +311,8 @@ describe('chat transport', () => {
     let requests = 0;
     let closed = false;
     const baseUrl = await server((_req, res) => { requests++; res.writeHead(200); res.flushHeaders(); res.on('close', () => { closed = true; }); });
-    await expectKind(chat(provider(baseUrl, true, 35), undefined, [], () => {}, new AbortController().signal), 'network');
+    const error = await expectKind(chat(provider(baseUrl, true, 35), undefined, [], () => {}, new AbortController().signal), 'timeout');
+    expect(error.diagnostics).toMatchObject({ category: 'timeout', stage: 'chat', code: 'request_timeout' });
     await new Promise(resolve => setTimeout(resolve, 20));
     expect(requests).toBe(1);
     expect(closed).toBe(true);
@@ -209,7 +320,8 @@ describe('chat transport', () => {
 
   it('rejects a premature socket close after partial output', async () => {
     const baseUrl = await server((_req, res) => { res.write(chunk('部分内容')); setTimeout(() => res.destroy(), 10); });
-    await expectKind(chat(provider(baseUrl), undefined, [], () => {}, new AbortController().signal), 'network');
+    const error = await expectKind(chat(provider(baseUrl), undefined, [], () => {}, new AbortController().signal), 'connection');
+    expect(error.diagnostics).toMatchObject({ category: 'connection', stage: 'chat', code: 'response_interrupted' });
   });
 
   it('makes no request for an already cancelled signal', async () => {

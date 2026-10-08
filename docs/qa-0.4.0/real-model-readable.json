@@ -1,0 +1,336 @@
+{
+  "at": "2026-10-08T04:16:29.507Z",
+  "mode": "real public sources and configured model; no vault note read or write",
+  "provider": "seeed_api",
+  "model": "deepseek-v4.1-flash",
+  "durationMs": 191432,
+  "sourceCount": 10,
+  "sources": [
+    {
+      "name": "Git Stars",
+      "status": "failed",
+      "message": "来源返回 HTTP 403。",
+      "at": 1791432798359
+    },
+    {
+      "name": "GitHub",
+      "status": "fallback",
+      "message": "Git Stars 受阻，使用 GitHub 官方仓库搜索补充；不是 Git Stars 榜单。",
+      "at": 1791432800160
+    },
+    {
+      "name": "AIHOT 精选",
+      "status": "success",
+      "message": "已读取最近 24 小时精选。",
+      "at": 1791432798399
+    },
+    {
+      "name": "AIHOT 热点",
+      "status": "success",
+      "message": "已读取当前事件热点排序。",
+      "at": 1791432798444
+    }
+  ],
+  "summary": "从十条候选中选出五条可写：发布前审稿、Agent 改真实 Office 文件、行业热点站框架、本地决策模型微调、拼贴解说视频流水线。",
+  "noChanges": false,
+  "cards": [
+    {
+      "title": "yuwen-cool/yuwen-publish-precheck",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_052e83336a4e86a08338",
+      "selected": true,
+      "description": "一个本地运行的审稿 Agent Skill：发抖音、小红书、视频号之前先检查哪句有风险、依据哪条官方规则、给出可直接替换的改法，还会把作者的踩坑沉淀成本地规则库。",
+      "reason": "目标读者里的内容创作者最关心的正是“发出去会不会出问题”；它给的不是违禁词表，而是词面线索加语境判定，还提供可替换改法，作者能据此写出一套发布前自检工作流。",
+      "potential": "high",
+      "angle": "把“发之前先审一遍”做成固定工作流：从词面线索到语境判定，再到可直接替换的改法。",
+      "primaryTitle": "发布前让 AI 审一遍：它不给违禁词表，给的是改法",
+      "alternativeTitles": [
+        "发布前审这类 Agent Skill，和一张违禁词表差在哪",
+        "同一句“月入过万”，为什么它不一定会拦",
+        "把踩过的坑沉淀成本地规则库：一个审稿 Skill 的用法",
+        "内容发布前的分层检查：平台、行业与商业属性"
+      ],
+      "opening": "做内容的人都撞过同一个死循环：选题平淡没流量，选题劲爆怕违规。平台不会在发布前告诉你哪句话会出问题，等提示出现时，往往已经是违规通知。有一类 Agent Skill 想填的就是这段空白——发之前先审一遍，说清哪句有问题、依据哪条规则、可以怎么改。",
+      "outline": [
+        "冲突：平台拦的往往是表达方式，不是话题本身",
+        "两层检测：词面预检找线索，语义判定结合语境下结论",
+        "看一个真实例子：原稿的三处必改项与复检后的改法",
+        "本地规则库：一句反馈如何变成下次自动生效的规则",
+        "边界：不承诺过审、不提供绕审，以及它覆盖不到的场景"
+      ],
+      "gaps": [
+        "需要作者实际安装并跑一篇自己的稿子，保留真实审核输出",
+        "涉及的具体平台规则需标注来源与核验日期",
+        "示例原稿与修改稿能否公开引用需确认"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_052e83336a4e86a08338",
+          "quote": "词面命中只是线索，违规与否由语境决定"
+        },
+        {
+          "sourceId": "source_052e83336a4e86a08338",
+          "quote": "平台最终判定受内部模型、账号状态等不可见因素影响，谁敢承诺谁是骗子"
+        }
+      ]
+    },
+    {
+      "title": "genspark-ai/genoffice",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_c05891aaab26c8c1b0c0",
+      "selected": true,
+      "description": "免费开源的 AI Office 套件，能打开并保存真实的 .docx/.xlsx/.pptx，自带可回滚的 AI 编辑面板，并提供命令行与 agent skill，让编码智能体在本地创建、转换和修改 Office 文件。",
+      "reason": "对想把 Agent 用进日常办公的读者最直接：复制粘贴改文档是普遍痛点，而这个项目把“让编码智能体直接改真实 Office 文件”拆成编辑器、保真策略、CLI 三条可展开的线索。",
+      "potential": "high",
+      "angle": "从“复制粘贴改文档”的返工切入，讲让 Agent 直接读写真实 Office 文件这条路径。",
+      "primaryTitle": "让编码智能体直接改 Word 和 Excel：这套开源 Office 怎么接",
+      "alternativeTitles": [
+        "Agent 改文档为什么容易坏格式，这个项目想解决什么",
+        "从聊天框到改文件：AI 办公助手的一条分界线",
+        "命令行加 agent skill：不打开窗口也能改 Office",
+        "只重写你改过的部分：文档保真的一个思路"
+      ],
+      "opening": "让 AI 帮忙改文档，多数人的做法是把内容贴进聊天框，改完再粘回来，格式基本靠重排。另一条路是让 Agent 直接打开 .docx、.xlsx、.pptx，改完存回原格式。开源的 genoffice 把 AI 面板放进编辑器里，还配套命令行和 agent skill，试图把这件事变成一条可重复的流程。",
+      "outline": [
+        "场景：复制粘贴改文档，代价落在格式和返工上",
+        "它的做法：AI 面板直接读文件、改文件，改动可回滚",
+        "保真思路：只重写被编辑的部分，其余按字节保留",
+        "CLI 与 agent skill：编码智能体不开窗口也能改 Office",
+        "待验证项：安装、密钥、实际效果与已知限制"
+      ],
+      "gaps": [
+        "需要作者实际安装试用，记录真实操作流程与截图",
+        "仓库成熟度、安装成功率与已知限制需自行验证",
+        "AI 调用需自备密钥，费用口径以实际使用为准"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_c05891aaab26c8c1b0c0",
+          "quote": "Only what you edit is rewritten."
+        },
+        {
+          "sourceId": "source_c05891aaab26c8c1b0c0",
+          "quote": "Files open, edit, save and convert on your machine."
+        }
+      ]
+    },
+    {
+      "title": "KKKKhazix/AIHOT",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_d2448b9c94b4355b0440",
+      "selected": true,
+      "description": "一个开源的行业热点站框架：把信源、精选标准和打分门槛换成自己行业的，就能自动采集、打分、聚簇并生成日报周报，代码、提示词与入选门槛全部公开可改。",
+      "reason": "对做知识管理和信息流的读者，它把“每天追热点”变成可搭建的流水线，且提示词与门槛公开可改；材料完整覆盖六步流程、聚簇与热度算法，足以讲清架构与取舍。",
+      "potential": "high",
+      "angle": "不写“又一个热点站”，而写怎么把采集、打分、聚簇这条流水线改成自己行业的信源过滤器。",
+      "primaryTitle": "把 AIHOT 换成你的行业：开关在提示词和入选门槛",
+      "alternativeTitles": [
+        "每天追热点这件事，能不能交给一条流水线",
+        "六步走完：从信源到日报，一个热点站是怎么运转的",
+        "热度按文章算还是按事件算，差别在哪",
+        "提示词和门槛都公开：一个热点站可以改哪些部分"
+      ],
+      "opening": "做行业信息汇总的人大多有一套手工流程：翻几个信源，挑几条，写摘要，发出去。这套动作重复、耗时，而且很难说清“为什么选这条”。开源项目 AIHOT 把线上引擎放了出来：采集、预筛、两次评分、写作、聚簇、出刊六步，提示词和入选门槛都在仓库里，换掉信源就是另一个行业站。",
+      "outline": [
+        "手工追热点的三个成本：翻信源、挑条目、写摘要",
+        "六步流水线：采集、预筛、两次评分、写作、聚簇、出刊",
+        "聚簇与热度：为什么按事件算，而不是按文章算",
+        "改造成自己行业：信源、提示词、门槛分别动什么",
+        "代价与边界：模型成本、无自建信源名单与维护量"
+      ],
+      "gaps": [
+        "需要作者实际部署一次，记录耗时、算力与模型成本",
+        "线上性能数字来自项目自述，引用时需注明来源",
+        "自选行业信源与精选标准的调整过程需作者补充"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_d2448b9c94b4355b0440",
+          "quote": "同一件事，官网发一篇、媒体转十篇、X 上吵一天，读者只需要看到一次。"
+        },
+        {
+          "sourceId": "source_d2448b9c94b4355b0440",
+          "quote": "把信源换成你的，把精选标准换成你的 KnowHow，它就是你的行业热点站。"
+        }
+      ]
+    },
+    {
+      "title": "Unsloth 开源教程：本地训练 Qwen3.5 0.8B 决策模型，准确率从 20.7% 提升至 74.3%",
+      "source": "AIHOT",
+      "primaryUrl": "https://x.com/UnslothAI/status/2107868866361930236",
+      "sourceId": "source_46bf35eb6c48194061ce",
+      "selected": true,
+      "description": "Unsloth 公开的教程与开源仓库，把 Qwen3.5 0.8B 等小模型微调成输出选项概率的决策模型，按其自述在 4GB 显存下三个决策基准的合计准确率从 20.7% 升到 74.3%。",
+      "reason": "对想在本地用小模型做判断类任务的读者，它给出可复现的微调路径与显存门槛；正文可以围绕“哪些判断任务值得训成决策模型”展开，而不只是转述一组数字。",
+      "potential": "high",
+      "angle": "不从“微调大模型”切入，而是问：哪些日常判断任务，值得训一个本地小决策模型。",
+      "primaryTitle": "4GB 显存训一个决策小模型：哪些任务真的值得微调",
+      "alternativeTitles": [
+        "把打分从提示词里拿出来：小模型决策器的训练思路",
+        "0.8B 模型也能做判断？先看这份教程在解决什么",
+        "本地训练决策模型，门槛低在哪、高在哪",
+        "分类头加 LoRA：一次单轮微调为什么能改变下游表现"
+      ],
+      "opening": "让模型做判断，常见做法是在提示词里塞一堆规则，再让它输出结论。另一种做法是把判断本身训进模型：输出每个选项的概率，而不是一段解释。Unsloth 公开的教程走的是后一条路，用 0.8B 级小模型在 4GB 显存下训练，按其自述，三个决策基准的合计准确率从 20.7% 提升到 74.3%。",
+      "outline": [
+        "判断类任务的两条路：写提示词规则，还是把判断训进模型",
+        "它做了什么：加分类头配 LoRA，单轮微调",
+        "数字怎么读：基准、合计准确率与 4GB 显存的前提",
+        "适合与不适合：哪些任务值得训一个专用小模型",
+        "复现清单：仓库、教程与需要自备的环境"
+      ],
+      "gaps": [
+        "需要作者实际跑通教程，记录耗时、显存占用与踩坑",
+        "数字来自项目方自述，需注明出处且未独立复现",
+        "决策模型适合的具体业务场景需作者自行举例验证"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_46bf35eb6c48194061ce",
+          "quote": "We increased Qwen3.5 0.8B’s aggregate accuracy from 20.7% to 74.3% across 3 decision benchmarks - on just 4GB VRAM."
+        },
+        {
+          "sourceId": "source_46bf35eb6c48194061ce",
+          "quote": "We fine-tuned with a Clef head using Unsloth and LoRA (r=64) for one epoch, increasing downstream accuracy from 30–37% to 78%."
+        }
+      ]
+    },
+    {
+      "title": "Alisa0808/vox-director",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_2ee25439d034de1c8fff",
+      "selected": true,
+      "description": "一个把单个选题做成 Vox 风格纸拼贴解说视频的 agent skill：脚本、拼贴关键帧、动效、配音、音乐与字幕串成流水线，在 Atlas Cloud 加本地 ffmpeg 上端到端跑完。",
+      "reason": "对做内容创作的读者，它值得写的不是模型清单，而是多阶段生成流水线怎么串、人工确认关口设在哪；这种编排思路可迁移，但成片质量需作者自行验证。",
+      "potential": "medium",
+      "angle": "拆开一条生成流水线看：为什么它把“风格”压在关键帧一步，而不是交给视频模型。",
+      "primaryTitle": "一句话做一个解说视频：这条 agent 流水线把检查点设在哪",
+      "alternativeTitles": [
+        "从选题到成片：六个阶段串起来的一条视频流水线",
+        "纸拼贴风解说视频，为什么关键帧才是成败点",
+        "生成视频总失控？看它把人工确认放在哪两步",
+        "A-roll、B-roll、C-roll：同一套引擎的三种输入"
+      ],
+      "opening": "把一个选题做成成片，通常要经过脚本、画面、动效、配音、剪辑好几道工序，而多数 AI 工具只覆盖其中一环。开源的 vox-director 换个思路：用一个 agent skill 把流程串起来，从一句主题出发依次生成叙事骨架、拼贴关键帧、动效、旁白与音乐，最后用 ffmpeg 合成 mp4，中间留两个人工确认关口。",
+      "outline": [
+        "一句话主题进去，成片出来的六个阶段",
+        "两个确认关口：先定叙事骨架，再挑视觉风格",
+        "关键判断：风格要在关键帧那一步就成立",
+        "三种输入：只有主题、已有口播、只有一张照片",
+        "使用门槛与成本：编码 agent、API Key、ffmpeg"
+      ],
+      "gaps": [
+        "需要作者实际跑一次，记录耗时、调用成本与失败情况",
+        "Atlas Cloud 的可用性与付费口径需按控制台确认",
+        "成片质量与风格稳定性需自行验证，不替项目背书"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_2ee25439d034de1c8fff",
+          "quote": "Two human decision gates keep you in control (approve the beat map; pick the style); everything else is automated."
+        },
+        {
+          "sourceId": "source_2ee25439d034de1c8fff",
+          "quote": "hand-cut paper cut-outs, torn edges, tape, halftone dots, newspaper clippings, bold flat color per beat, big cut-out headlines"
+        }
+      ]
+    },
+    {
+      "title": "LangChain 重构 Deep Agents 的 Skills 支持，新增工具绑定、固定技能与线程内重载",
+      "source": "AIHOT",
+      "primaryUrl": "https://www.langchain.com/blog/revamping-skills-in-deep-agents",
+      "sourceId": "source_d53c86417866892af8c4",
+      "selected": false,
+      "description": "LangChain 重构 Deep Agents 的 Skills 支持：工具可以绑定到技能并按需加载、显式请求可固定技能、长线程不重开也能重载技能，面向企业技能库扩容。",
+      "reason": "对 Agent 构建者是清晰的设计参考，三个改动都围绕上下文工程；但更偏框架文档，读者面偏窄，材料只读到开头，需补齐配置细节再定。",
+      "potential": "medium",
+      "gaps": [
+        "需补充工具绑定与固定技能的完整配置示例",
+        "需要作者给出一个可运行的最小示例",
+        "技能库规模扩大后的真实效果需更多材料"
+      ]
+    },
+    {
+      "title": "Stanford HAI 研究：想让员工拥抱 AI，别把它包装成效率工具",
+      "source": "AIHOT",
+      "primaryUrl": "https://hai.stanford.edu/news/want-employees-to-embrace-ai-stop-selling-it-as-a-productivity-tool",
+      "sourceId": "source_069466c86b056ee3ea5d",
+      "selected": false,
+      "description": "Stanford HAI 报道的一项职场研究：把 AI 介绍成提效工具时员工不太愿用，介绍成丰富工作并配套培训与探索时间时使用意愿明显提升，还涉及考核指标该怎么调整。",
+      "reason": "给负责推 AI 落地的读者一个反直觉角度：问题常不在工具，而在引入说法与考核方式；但这是研究报道，需要作者转译成可执行的落地建议。",
+      "potential": "medium",
+      "gaps": [
+        "需补充研究原文与样本细节，避免只依赖二手报道",
+        "报道中的百分比数字需标注来源与统计口径",
+        "需要至少一个中文企业场景来承接结论"
+      ]
+    },
+    {
+      "title": "Google 发布 Developer Knowledge API 生态，为 AI 智能体提供官方文档检索",
+      "source": "AIHOT",
+      "primaryUrl": "https://developers.googleblog.com/supercharge-your-development-with-the-google-developer-knowledge-api-ecosystem/",
+      "sourceId": "source_326127a0a0d030078766",
+      "selected": false,
+      "description": "Google 推出的开发者文档 API 生态，用结构化接口和 Markdown 文档替代网页抓取，提供语义与关键词检索、文档分块和有依据问答，并配套 CLI、agent skill 与多语言客户端库。",
+      "reason": "对给 Agent 接知识源的读者有参考价值，“官方文档检索替代抓取”是清楚的问题；但属于厂商发布，接入成本与实际适用范围需要作者自行判断。",
+      "potential": "medium",
+      "gaps": [
+        "需要实际调用一次并记录返回结构与配额限制",
+        "能否用于非 Google 文档场景需说明",
+        "特定网络与账号条件下的可用性需核实"
+      ]
+    },
+    {
+      "title": "Anthropic 发布 Claude Haiku 5.5，运行成本平均降低约 75%",
+      "source": "AIHOT",
+      "primaryUrl": "https://www.anthropic.com/claude-haiku-5-5",
+      "sourceId": "source_927c5bd99bf8aca292d5",
+      "selected": false,
+      "description": "Anthropic 发布的小模型 Claude Haiku 5.5，主打高频低成本任务，官方称运行成本平均降低约 75%，并给出知识工作、计算机操作与编码等基准与分级定价。",
+      "reason": "模型发布信息密集但同质化偏高，单独成篇价值有限，更适合作为“大小模型如何分工”一文的素材，因此保留为未选候选。",
+      "potential": "medium",
+      "gaps": [
+        "需要作者用自己的任务做一次成本与效果对照",
+        "基准口径与定价需注明来源与日期",
+        "可搭配的子智能体场景需要真实例子"
+      ]
+    },
+    {
+      "title": "jzjzzzzzzz/agent-me",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_e2029c9ded2492015500",
+      "selected": false,
+      "description": "一个开源的 AI 数字分身架构：把个人知识、记忆和决策沉淀为可审查的 Markdown，用检索、计划、批评、写作与校验的多角色流程回答，并公开执行轨迹。",
+      "reason": "与知识管理兴趣契合，“可审查的执行轨迹”是可写的点；但项目自述仍在早期，能力边界较多，材料只读到开头，需要更多事实再判断。",
+      "potential": "needs-materials",
+      "gaps": [
+        "需要作者实际跑一次并记录当前可用功能范围",
+        "哪些是已实现能力、哪些属于路线图需逐条核对",
+        "需要一份真实的个人知识库样例作为演示"
+      ]
+    }
+  ],
+  "zeroTargetNoteWrite": false,
+  "zeroPersistedDataChange": true,
+  "officialSecretStorage": true,
+  "secretExported": false,
+  "stages": [
+    {
+      "stage": "采集中",
+      "at": "2026-10-08T04:13:18.124Z"
+    },
+    {
+      "stage": "筛选中",
+      "at": "2026-10-08T04:13:21.165Z"
+    },
+    {
+      "stage": "读取材料",
+      "at": "2026-10-08T04:14:05.583Z"
+    },
+    {
+      "stage": "筛选中",
+      "at": "2026-10-08T04:14:08.615Z"
+    }
+  ],
+  "status": "completed"
+}

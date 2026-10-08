@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-07T22:57:28.320Z",
+  "version": "0.3.1",
+  "syntheticOnly": true,
+  "actualObsidian": true,
+  "passed": true,
+  "headerButton": {
+    "visible": true,
+    "inside": true,
+    "label": "清空对话"
+  },
+  "allMessagesEmpty": true,
+  "bothTabInputsEmpty": true,
+  "taskReset": true,
+  "confirmationTargetFrozen": true,
+  "otherDocumentHistoryAndDraftPreserved": true,
+  "articleUnchangedByClear": true,
+  "requirementsPreserved": true,
+  "localUndoStillAccessible": true,
+  "emptyHistorySurvivesReload": true,
+  "modelRequests": 0
+}

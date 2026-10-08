@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-07T09:27:30.091Z",
+  "version": "0.2.2",
+  "provider": "test_api",
+  "model": "mimo-v2.6-flash",
+  "stream": true,
+  "durationMs": 19783,
+  "status": "completed",
+  "added": 2,
+  "pending": 2,
+  "comments": 0,
+  "unlocated": 0,
+  "unchanged": true,
+  "snapshotMatches": true,
+  "repeatedQuoteCorrect": true,
+  "syntheticOnly": true,
+  "officialSecretStorage": true
+}

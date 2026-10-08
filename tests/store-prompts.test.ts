@@ -1,8 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 import { buildMessages, estimateTokens } from '../src/prompts';
 import { createDefaultRoles, DEFAULT_PREFERENCES } from '../src/roles';
-import { Store } from '../src/store';
+import { DATA_VERSION, Store } from '../src/store';
+import { appendTopicMethodToRole, TOPIC_METHOD_BLOCK, TOPIC_METHOD_MARKER } from '../src/topic-method';
 import type { Candidate, PluginData, RequestSnapshot, Session, UndoRecord } from '../src/types';
+import type { AgentActionReceipt } from '../src/agent-types';
 
 function fresh(): Store { return new Store(null, async () => {}); }
 
@@ -20,6 +22,14 @@ function candidate(s: Session, state: Candidate['state'] = 'ready'): Candidate {
 
 function undo(s: Session): UndoRecord {
   return { documentId: s.document.id, path: s.document.path, before: '开头原文结尾', from: 2, to: 4, replacement: '改后', candidateId: 'candidate-1' };
+}
+
+function agentAction(s: Session, state: AgentActionReceipt['state'] = 'applied'): AgentActionReceipt {
+  return {
+    id: 'action-1', requestId: 'request-action', documentId: s.document.id, path: s.document.path, at: 1,
+    kind: 'replace', label: '替换原句', before: '开头原文结尾', replacement: '改后',
+    anchor: { from: 2, to: 4, text: '原文', valid: true }, beforeHash: 'before-hash', afterHash: 'after-hash', state,
+  };
 }
 
 function snapshot(overrides: Partial<RequestSnapshot> = {}): RequestSnapshot {
@@ -65,6 +75,41 @@ describe('editable role seeds', () => {
     expect(restored.data.roles[0]!.systemPrompt).toBe('用户保留的独立规则');
     store.data.roles = [];
     expect(new Store(store.data, async () => {}).data.roles).toEqual([]);
+  });
+
+  it('explicitly adds the topic method once, preserving custom data through save, restart and request creation', async () => {
+    let saved: PluginData | undefined;
+    const store = new Store(null, async data => { saved = structuredClone(data); });
+    const target = store.data.roles[0]!;
+    target.name = '我的选题助手';
+    target.description = '我自己写的说明';
+    target.systemPrompt = '我的规则：面向实际工作，不用夸张词。\n\n';
+    target.quickTasks = ['我的任务', '我的任务'];
+    const s = session(store);
+    s.brief = '本文保留我的判断';
+    s.messages.push({ id: 'kept', role: 'user', content: '已经明确拒绝某个方向', at: 1 });
+    const before = structuredClone(store.data);
+    const updated = appendTopicMethodToRole(target);
+    expect(updated.systemPrompt.startsWith(target.systemPrompt)).toBe(true);
+    expect(updated.quickTasks.slice(0, 2)).toEqual(target.quickTasks);
+    expect({ ...updated, systemPrompt: target.systemPrompt, quickTasks: target.quickTasks }).toEqual(target);
+    store.data.roles[0] = updated;
+    expect(appendTopicMethodToRole(updated)).toEqual(updated);
+    expect(appendTopicMethodToRole(store.data.roles[1]!)).toEqual(store.data.roles[1]);
+    await store.save();
+    const restored = new Store(saved, async () => {});
+    const restoredRole = restored.data.roles[0]!;
+    const expected = structuredClone(before);
+    expected.roles[0] = updated;
+    expect(restored.data).toEqual(expected);
+    const messages = buildMessages(snapshot({ role: restoredRole, mode: 'discuss', input: '判断这个选题值不值得写。' }));
+    expect(messages[0]!.content).toContain(TOPIC_METHOD_BLOCK);
+    expect(messages[0]!.content.split(TOPIC_METHOD_MARKER)).toHaveLength(2);
+    expect(messages[0]!.content).toContain(target.systemPrompt);
+    expect(messages[0]!.content).toContain('你没有联网搜索');
+    for (const other of restored.data.roles.slice(1)) expect(messages[0]!.content).not.toContain(other.systemPrompt);
+    restoredRole.systemPrompt = restoredRole.systemPrompt.replace('最多给 6 个', '最多给 4 个');
+    expect(appendTopicMethodToRole(restoredRole).systemPrompt).toBe(restoredRole.systemPrompt);
   });
 });
 
@@ -116,7 +161,7 @@ describe('Store persistence and recovery', () => {
     const invalid = fresh(); const s = session(invalid); s.candidate = { ...candidate(s), documentId: a.id };
     expect(() => new Store(invalid.data, persist)).toThrow('关联无效');
     expect(persist).not.toHaveBeenCalled();
-    expect(raw.version).toBe(1);
+    expect(raw.version).toBe(DATA_VERSION);
   });
 
   it('deep-snapshots each save and writes queued snapshots in invocation order', async () => {
@@ -140,15 +185,24 @@ describe('Store persistence and recovery', () => {
     expect(calls).toBe(2);
   });
 
-  it('clears discussion and the candidate, retaining brief and the last undo record', () => {
-    const store = fresh(); const a = session(store); a.brief = '必须保留个人观点'; a.candidate = candidate(a); a.undo = undo(a);
+  it('persists an exactly empty conversation while retaining this document metadata and another document session', async () => {
+    const saved: PluginData[] = [];
+    const store = new Store(null, async data => { saved.push(structuredClone(data)); });
+    const a = session(store); const b = session(store, 'document-b', '测试/B.md');
+    a.brief = '必须保留个人观点'; a.candidate = candidate(a); a.undo = undo(a);
+    a.agentActions = [agentAction(a)];
     a.messages.push({ id: 'old', role: 'user', content: '旧讨论', at: 1 });
-    const savedUndo = a.undo; const savedDocument = { ...a.document };
+    b.brief = 'B 的要求'; b.messages.push({ id: 'b-old', role: 'assistant', content: 'B 的讨论', at: 2 });
+    const savedUndo = a.undo; const savedActions = a.agentActions; const savedDocument = { ...a.document };
     store.clear(a);
     expect(a.brief).toBe('必须保留个人观点'); expect(a.undo).toBe(savedUndo); expect(a.document).toEqual(savedDocument);
-    expect(a.candidate).toBeUndefined(); expect(a.messages).toHaveLength(1);
-    expect(a.messages[0]!.role).toBe('event'); expect(a.messages[0]!.candidateId).toBe('candidate-1');
-    expect(a.messages[0]!.content).toContain('当前候选已放弃');
+    expect(a.agentActions).toBe(savedActions);
+    expect(a.candidate).toBeUndefined(); expect(a.messages).toEqual([]);
+    expect(b).toMatchObject({ brief: 'B 的要求', messages: [{ id: 'b-old', content: 'B 的讨论' }] });
+    await store.save();
+    expect(saved).toHaveLength(1);
+    expect(saved[0]!.sessions[a.document.id]).toMatchObject({ brief: '必须保留个人观点', undo: savedUndo, agentActions: savedActions, messages: [] });
+    expect(saved[0]!.sessions[b.document.id]).toMatchObject({ brief: 'B 的要求', messages: [{ id: 'b-old', content: 'B 的讨论' }] });
   });
 });
 

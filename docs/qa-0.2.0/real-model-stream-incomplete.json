@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-07T05:49:05.032Z",
+  "version": "0.2.0",
+  "environment": "macOS ARM64 / actual Obsidian desktop",
+  "isolatedVault": true,
+  "liveRequested": true,
+  "checks": [
+    {
+      "name": "真实服务：只发送合成材料、官方密钥引用与完整审稿结果",
+      "passed": false
+    }
+  ],
+  "fatal": "Stream missing finish_reason: incomplete response rejected; no applicable annotations and no document writes.",
+  "passed": false,
+  "limitations": [
+    "Physical Chinese IME candidate-window interaction requires manual follow-up; composition events are tested.",
+    "Windows/Linux and minimum Obsidian 1.11.4 are not verified.",
+    "CRLF source writes are deliberately blocked because Obsidian normalizes them; use reading mode and review again.",
+    "Remote billing cancellation is not guaranteed."
+  ]
+}

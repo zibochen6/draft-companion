@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-08T04:17:47.770Z",
+  "version": "0.4.0",
+  "schema": 4,
+  "enabled": true,
+  "runtime": {
+    "main.js": "2ad0cf636d382eaf8cf6e32b58e3cc17832fec232fae5959de65596e69906526",
+    "manifest.json": "a2d99a6f610a1bb41b30993a8f19eb15f729e26ee9396d681586d56b774b7560",
+    "styles.css": "ac09ba14c9fa2098538d7af2ddc1bb77a75a81eea15f505102914c50e715799e"
+  },
+  "postwriteSynchronizationGuardLoaded": true,
+  "path": "Projects/选题库.md",
+  "runCount": 1,
+  "lastRunStatus": "completed",
+  "candidates": 10,
+  "selected": 5,
+  "receiptState": "applied",
+  "allTenAnchorsExact": true,
+  "expectedVersionExact": true,
+  "canUndo": true,
+  "bufferCount": 2,
+  "allBuffersExact": true,
+  "visibleTechnicalMarkerCount": 0,
+  "rawTechnicalMarkersPreserved": true,
+  "latestFormatDiagnostics": {
+    "canReformat": true,
+    "path": "Projects/选题库.md",
+    "receiptId": "e63de577-054a-4ebe-b4bd-655ce8796dd3",
+    "candidates": 10,
+    "selected": 5,
+    "changeRanges": 0
+  },
+  "scheduleEnabled": true,
+  "handledDate": "2026-10-08",
+  "time": "09:00",
+  "timeZone": "Asia/Shanghai",
+  "nextDue": "2026-10-09 09:00 Asia/Shanghai",
+  "recoveryBackups": [
+    ".obsidian/plugins/draft-companion/backup-topic-format-recovery-1791432196267"
+  ],
+  "officialSecretValueExported": false
+}

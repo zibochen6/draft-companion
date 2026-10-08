@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-07T06:19:42.906Z",
+  "version": "0.2.0",
+  "environment": "macOS ARM64 / actual Obsidian desktop",
+  "isolatedVault": true,
+  "liveRequested": true,
+  "checks": [
+    {
+      "name": "真实服务：独立聊天测试，不发送文稿",
+      "passed": false,
+      "error": "",
+      "stream": true
+    }
+  ],
+  "fatal": "网络连接失败，请检查 Base URL、网络及桌面端代理配置。",
+  "passed": false,
+  "limitations": [
+    "Physical Chinese IME candidate-window interaction requires manual follow-up; composition events are tested.",
+    "Windows/Linux and minimum Obsidian 1.11.4 are not verified.",
+    "CRLF source writes are deliberately blocked; host mode switching may also normalize them. Raw Vault CAS preserves CRLF only without source buffers.",
+    "Remote billing cancellation is not guaranteed."
+  ]
+}

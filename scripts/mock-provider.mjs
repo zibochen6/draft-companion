@@ -51,6 +51,18 @@ function editReply(snapshot, number) {
 
 function reply(messages, number) {
   const snapshot = context(messages);
+  const protocol = messages.find(message=>message.role==='system')?.content ?? '';
+  if (protocol.includes('本轮方式：句级审阅')) {
+    const candidates = [
+      {type:'表达',title:'把便利落在具体工作上',quote:'这款工具非常非常方便，真的特别好用。',contextBefore:'',contextAfter:'',reason:'【本地模拟】重复的形容词没有交代用途。'+(/TEST:LONG/.test(snapshot.input)?'可以先描述写作时整理材料、查看候选和逐条采纳的场景。'.repeat(25):''),replacement:'这款工具把讨论与修改建议放在文稿旁边：作者可以先整理写作材料，再查看原句的批注，对照三种只读预览决定是否逐条采纳；需要调整时继续追问，并在可以验证的情况下撤回某一条修改。它提供了一条可检查的写作流程，效果仍需要作者结合自己的任务评估。'},
+      {type:'事实依据',title:'收回没有依据的传播承诺',quote:'只要用了 AI，就能保证每篇文章都成为爆款。',contextBefore:'',contextAfter:'',reason:'【本地模拟】没有测试数据，不能保证传播效果。待作者补充依据。',replacement:'AI 可以协助整理和修改文章，传播效果仍取决于选题、内容与读者反馈。'},
+      {type:'冗余',title:'第二处重复可以更具体',quote:'工具要解决具体问题。',contextBefore:'第二处重复：',contextAfter:'',reason:'【本地模拟】用前文区分相同句子，只调整第二处。',replacement:'工具应该帮助作者完成一个明确的写作任务。'},
+      {type:'重叠测试',title:'减少重复的程度词',quote:'非常非常方便',contextBefore:'',contextAfter:'',reason:'【本地模拟】这是与第一条重叠的建议，用于检验关联失效。',replacement:'便于整理材料'},
+      {type:'待核实',title:'补充真实材料',quote:'数据需要作者补充。',contextBefore:'',contextAfter:'',reason:'【本地模拟】仅评论，不编造所谓正确数据，也没有进行联网核查。',replacement:null},
+    ];
+    return JSON.stringify({summary:'【本地模拟】重点改进具体用途与事实边界。所有建议尚未采纳。',overall:[{type:'结构',title:'先说明读者能完成什么',reason:'【本地模拟】合成文章保留结构、引用、代码与表情。'}],suggestions:candidates.filter(s=>snapshot.target.includes(s.quote))});
+  }
+  if (protocol.includes('本轮仅对当前批注再改一版')) return JSON.stringify({reason:'【本地模拟】根据用户追问更具体。',replacement:'这款工具帮助作者逐条检查建议，保留自己的表达。',evidenceQuotes:[]});
   const bodyText = snapshot.target.replace(/^\uFEFF?---[\t ]*\r?\n[\s\S]*?\r?\n(?:---|\.\.\.)[\t ]*(?:\r?\n|$)/, '');
   const first = bodyText.split(/\r?\n/).find(line => line.trim() && !/^(?:#|!|\[|```|~~~)/.test(line)) ?? '当前文章';
   if (/TEST:EDIT\b/.test(snapshot.input) || messages.some(message => message.role === 'system' && message.content.includes('本轮方式：改稿'))) return editReply(snapshot, number);

@@ -23,6 +23,7 @@ export class TestEditor {
     const lines = this.text.slice(0, offset).split('\n');
     return { line: lines.length - 1, ch: lines[lines.length - 1]!.length };
   }
+  setSelection(anchor: { line: number; ch: number }, head = anchor) { this.selection = { anchor, head }; }
   transaction(spec: { changes: { from: { line: number; ch: number }; to: { line: number; ch: number }; text: string }[] }) {
     this.transactions++;
     for (const change of spec.changes) {
@@ -33,3 +34,7 @@ export class TestEditor {
 }
 export class Notice { constructor(_message: string) {} }
 export class App {}
+// Editor extensions import this public Obsidian field. Unit tests that exercise
+// the document service do not construct a CodeMirror state, but exporting it
+// keeps the mock's module surface aligned with the desktop API.
+export const editorInfoField = {};

@@ -1,0 +1,170 @@
+[
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "sidebar": 340,
+    "theme": "light",
+    "height": 860,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 545.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "sidebar": 340,
+    "theme": "dark",
+    "height": 860,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 545.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "sidebar": 400,
+    "theme": "light",
+    "height": 860,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 545.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "sidebar": 400,
+    "theme": "dark",
+    "height": 860,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 545.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "sidebar": 460,
+    "theme": "light",
+    "height": 860,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 545.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1440,
+      900
+    ],
+    "sidebar": 460,
+    "theme": "dark",
+    "height": 860,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 545.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "sidebar": 340,
+    "theme": "light",
+    "height": 760,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 445.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "sidebar": 340,
+    "theme": "dark",
+    "height": 760,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 445.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "sidebar": 400,
+    "theme": "light",
+    "height": 760,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 445.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "sidebar": 400,
+    "theme": "dark",
+    "height": 760,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 445.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "sidebar": 460,
+    "theme": "light",
+    "height": 760,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 445.8046875,
+    "overflow": false,
+    "controlsInside": true
+  },
+  {
+    "viewport": [
+      1280,
+      800
+    ],
+    "sidebar": 460,
+    "theme": "dark",
+    "height": 760,
+    "inputHeight": 130,
+    "inputScrollable": true,
+    "readerHeight": 445.8046875,
+    "overflow": false,
+    "controlsInside": true
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "done": true,
+  "result": {
+    "result": {
+      "status": "needs-check",
+      "changed": true,
+      "documentId": "dd630dc1-6534-4c63-984f-8fcb9dc5f9e3",
+      "path": "Projects/选题库.md",
+      "receiptId": "e63de577-054a-4ebe-b4bd-655ce8796dd3",
+      "candidates": 10,
+      "selected": 5,
+      "backup": ".obsidian/plugins/draft-companion/backup-topic-format-1791431979811-0120ad5b-a241-4230-ab97-6848d7d261a5",
+      "message": "已整理，记录待检查；请查看正文，不要重复执行。"
+    },
+    "state": "needs-check",
+    "invalidReason": "已提交整理，但结果确认或记录保存失败；请检查正文，不要重复执行。",
+    "expectedHash": "1949bcaccfb9de39473bf7db02c93c13258776011402afa5c1c20b130679157f",
+    "diskHash": "87718ef481ae9991ecb91d05448d0a201821c98e2322bdadba6cadfa068247c6",
+    "diskChars": 10098,
+    "editors": [
+      {
+        "leafId": "b45352cf4f7f12c9",
+        "hash": "87718ef481ae9991ecb91d05448d0a201821c98e2322bdadba6cadfa068247c6",
+        "chars": 10098
+      },
+      {
+        "leafId": "89eecb4cc166a1d6",
+        "hash": "87718ef481ae9991ecb91d05448d0a201821c98e2322bdadba6cadfa068247c6",
+        "chars": 10098
+      }
+    ],
+    "readHash": "87718ef481ae9991ecb91d05448d0a201821c98e2322bdadba6cadfa068247c6",
+    "allAnchorsExact": false,
+    "canUndo": false,
+    "originalOutsideManagedAreaUnchanged": true,
+    "settingsUnchanged": true,
+    "runCount": 1
+  }
+}

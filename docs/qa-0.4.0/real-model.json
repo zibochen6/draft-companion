@@ -1,0 +1,311 @@
+{
+  "at": "2026-10-08T03:03:54.084Z",
+  "mode": "real public sources and configured model; no vault note read or write",
+  "provider": "seeed_api",
+  "model": "deepseek-v4.1-flash",
+  "durationMs": 281228,
+  "sourceCount": 10,
+  "sources": [
+    {
+      "name": "Git Stars",
+      "status": "failed",
+      "message": "来源返回 HTTP 403。",
+      "at": 1791428353092
+    },
+    {
+      "name": "GitHub",
+      "status": "fallback",
+      "message": "Git Stars 受阻，使用 GitHub 官方仓库搜索补充；不是 Git Stars 榜单。",
+      "at": 1791428355343
+    },
+    {
+      "name": "AIHOT 精选",
+      "status": "success",
+      "message": "已读取最近 24 小时精选。",
+      "at": 1791428353103
+    },
+    {
+      "name": "AIHOT 热点",
+      "status": "success",
+      "message": "已读取当前事件热点排序。",
+      "at": 1791428353197
+    }
+  ],
+  "summary": "从 10 条候选中优选 5 条：自建行业热点站、确定性验证、发布前审稿、Agent 技能上下文、AI 落地说法，其余列为候补。",
+  "noChanges": false,
+  "cards": [
+    {
+      "title": "KKKKhazix/AIHOT",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_d2448b9c94b4355b0440",
+      "selected": true,
+      "reason": "材料完整未截断，六步流程、六种信源、可改文件与校准方法都能逐条兑现，读者能照着把站改成自己行业。",
+      "potential": "high",
+      "angle": "把信源清单和精选标准换成你行业的 KnowHow，这个开源框架就能变成你自己的行业热点站。",
+      "primaryTitle": "把信源和精选标准换成你的：AIHOT 能变成你行业的热点站",
+      "alternativeTitles": [
+        "开源热点站 AIHOT：六种信源怎么汇成一份行业日报",
+        "搭行业热点站要改的几乎只有两个文件夹：site 和 industry",
+        "把「什么才算行业热点」写进提示词，而不是写进代码",
+        "不想再刷通用 AI 新闻？给自己的行业搭一个热点站"
+      ],
+      "opening": "很多人每天刷的是通用 AI 新闻，但法律、HR、金融这些行业真正要看的内容，散在几十个信源里。这个开源项目的作者说得很直白：他做不了别人的行业站，因为不知道哪些信源有用、什么消息才算热点，但你们懂。于是他开源了引擎、精选流程、聚簇和热度算法，连提示词原文和入选门槛都放了出来。把信源和 KnowHow 换成你自己的，它就是你行业的热点站。",
+      "outline": [
+        "先看清它是什么：采集、预筛、两次评分、写作、聚簇、成刊六步",
+        "六种信源与三级门槛：官方一手、官方账号、媒体与个人的入选差异",
+        "要改的几乎都在 site/ 和 industry/：站名、分类、信源、提示词、门槛",
+        "最该花时间的是评分标准：用一两百条自标注样本跑评测再回头改",
+        "落地提醒：仓库只带 18 个示范信源，行业信源与 KnowHow 要自己补"
+      ],
+      "gaps": [
+        "线上原站与线上引擎表现未由本轮核验",
+        "作者自述的设计师背景属其个人陈述"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_d2448b9c94b4355b0440",
+          "quote": "把信源换成你的，把精选标准换成你的 KnowHow，它就是你的行业热点站。"
+        },
+        {
+          "sourceId": "source_d2448b9c94b4355b0440",
+          "quote": "这半年，很多做法律、做 HR、做金融、做贵金属的朋友问我，能不能也给他们的行业做一个。"
+        }
+      ]
+    },
+    {
+      "title": "2akouwu/reverify",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_00785b6165cadc4fc321",
+      "selected": true,
+      "reason": "反幻觉的验证回路、CLI 与 MCP 接入都写得具体，适合已在用 Agent 的读者；基准数字属仓库自述，正文须标明来源。",
+      "potential": "high",
+      "angle": "把判定权从模型手里拿走：模型提假设，确定性工具跑出 VERIFIED 或 REFUTED 并附上实际观察到的字节。",
+      "primaryTitle": "别让 AI 自己宣布事实：Reverify 把判定交给工具",
+      "alternativeTitles": [
+        "模型提假设、工具出证据：一套能接进 Agent 的验证回路",
+        "MCP + CLI：让结构性结论先跑出 VERIFIED 或 REFUTED",
+        "长任务不靠反复 /clear：reverify rollover 的交接思路",
+        "从二进制到普通代码：同一套「先验证再算事实」的做法"
+      ],
+      "opening": "让 AI 读代码或分析二进制时，最烦的不是它不会，而是它很确定地编：编一个 API、编一个结构体字段、编一个偏移量，还说得像事实。Reverify 换了个位置摆放模型——模型只负责提出假设，判定交给确定性的工具，结果只有 VERIFIED、REFUTED 或 INCONCLUSIVE，并附上工具实际观察到的字节。它有一句话很关键：模型没有资格自己宣布一个事实。",
+      "outline": [
+        "问题场景：模型在结构性判断上自信地编，人肉核对成本高",
+        "验证回路：提交 claim、工具判定、返回证据，出现 refuted 就非零退出",
+        "接入方式：MCP server 给 Claude Code、Cursor 等 Agent，也可单跑 CLI",
+        "另一个用法 rollover：用文件交接替代有损摘要，长任务不用反复清上下文",
+        "边界：数字来自仓库自述，且明确限定在授权的逆向与自有软件场景"
+      ],
+      "gaps": [
+        "仅读到 README 前 8000 字符，rollover 章节未读完",
+        "71 个样本、97% 等数字为仓库自述，未经第三方核验"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_00785b6165cadc4fc321",
+          "quote": "It proposes; deterministic tools check every claim against ground truth, and only what's verified counts."
+        },
+        {
+          "sourceId": "source_00785b6165cadc4fc321",
+          "quote": "The model never gets to assert a fact on its own."
+        }
+      ]
+    },
+    {
+      "title": "yuwen-cool/yuwen-publish-precheck",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_052e83336a4e86a08338",
+      "selected": true,
+      "reason": "材料未截断，两层检测、真实改稿示例、辟谣与本地沉淀都有原文支撑，对内容创作者是可上手的发布前检查流程。",
+      "potential": "high",
+      "angle": "发布前把稿子过一遍：哪句踩线、依据哪条官方规则、给能直接替换的句子，并把踩过的坑存成本地规则。",
+      "primaryTitle": "发抖音、小红书前先过一遍：哪句踩线、依据哪条规则、怎么改",
+      "alternativeTitles": [
+        "「加我微信」违规，「微信」不违规：审核为什么必须看语境",
+        "被限流别急着换谐音字：先弄清你踩的是哪一类规则",
+        "把踩过的坑变成你本地的规则库：一个越用越准的审稿 Skill",
+        "不承诺过审、不给绕审技巧：一个发布前审稿工具的边界"
+      ],
+      "opening": "做内容的人常困在同一个死循环里：选题平淡没流量，选题劲爆就违规，而平台不会在发布前告诉你哪里会出问题。这个本地 Skill 的思路是两层检测——先用脚本秒级定位词面候选，再让 AI 结合语境下结论，并说清依据哪条官方规则、能直接替换成哪句。它举的例子也很实在：「微信」两个字本身不违规，违规的是「加我+微信号」这个导流动作。",
+      "outline": [
+        "死循环与它的前提：平台拦的多是表达方式，不是话题本身",
+        "两层检测怎么分工：词面命中只是线索，违规与否由语境决定",
+        "改稿示例：从原稿到复检 0 命中的替换稿，看它保留什么、拆掉什么",
+        "沉淀机制：黑名单、白名单与安全表达库存本地目录，越用越准",
+        "边界与辟谣：不承诺过审、不给绕审技巧，谐音变体会被单独盯上"
+      ],
+      "gaps": [
+        "38 篇校准样本与 80+ 条引文的实际覆盖度未核验",
+        "官方规则原文链接与核验日期本轮未逐条打开"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_052e83336a4e86a08338",
+          "quote": "这个 Skill 帮你在发布前找到\"同样劲爆但不违规\"的说法。"
+        },
+        {
+          "sourceId": "source_052e83336a4e86a08338",
+          "quote": "平台最终判定受内部模型、账号状态等不可见因素影响，谁敢承诺谁是骗子；"
+        }
+      ]
+    },
+    {
+      "title": "LangChain 重构 Deep Agents 的 Skills 支持，新增工具绑定、固定技能与线程内重载",
+      "source": "AIHOT",
+      "primaryUrl": "https://www.langchain.com/blog/revamping-skills-in-deep-agents",
+      "sourceId": "source_d53c86417866892af8c4",
+      "selected": true,
+      "reason": "三项更新各有机理说明，指向 Agent 构建者真实的上下文问题；材料仅读到 8000 字符，重载部分需补读后再写。",
+      "potential": "medium",
+      "angle": "技能库涨到几千个之后，把工具绑定进技能、按需披露，让上下文只增长任务真正需要的那部分。",
+      "primaryTitle": "技能涨到几千个之后：Deep Agents 把工具藏进技能里",
+      "alternativeTitles": [
+        "工具绑定、固定技能、线程内重载：Agent 上下文的三处调整",
+        "为什么 Agent 一开始不该看到所有工具的 schema",
+        "用户打一句 /meeting-prep，技能该在第一次模型调用前就位",
+        "长线程不用重启：中途也能加载新增或改动的技能"
+      ],
+      "opening": "技能是给 Agent 补领域知识的好办法：一个技能就是一个文件夹，核心是一份 markdown。它靠渐进披露省上下文——启动时只看到名字和描述，任务需要时才读全文。但当企业的技能库涨到几千个，老做法开始别扭：技能和工具分开披露，Agent 可能找到并调用一个工具，却从没读过解释它的技能。这次更新改的正是这个错位。",
+      "outline": [
+        "渐进披露三级：发现、激活、执行，上下文只按任务需要增长",
+        "工具绑定技能：schema 不进上下文，读到技能才解锁，调用顺序被强制",
+        "固定技能：用户显式点名后，指令在第一次模型调用前就位，省一个来回",
+        "线程内重载：把 skills_metadata 设为 None，长线程接住新增或改动的技能",
+        "对写技能的人意味着什么：把工具使用说明和工具本身放在一起维护"
+      ],
+      "gaps": [
+        "仅读到前 8000 字符，线程内重载后段原文未读全",
+        "缓存命中与模型适配效果未独立验证"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_d53c86417866892af8c4",
+          "quote": "We're seeing enterprise skill registries grow to thousands of skills, shared across teams and agents."
+        },
+        {
+          "sourceId": "source_d53c86417866892af8c4",
+          "quote": "A pinned skill's instructions are already in the conversation, so the agent starts the work on model call 1 instead of model call 2."
+        }
+      ]
+    },
+    {
+      "title": "Stanford HAI 研究：想让员工拥抱 AI，别把它包装成效率工具",
+      "source": "AIHOT",
+      "primaryUrl": "https://hai.stanford.edu/news/want-employees-to-embrace-ai-stop-selling-it-as-a-productivity-tool",
+      "sourceId": "source_069466c86b056ee3ea5d",
+      "selected": true,
+      "reason": "有访谈样本量、两年对照设计和具体百分比，角度不从工具出发，能补上「怎么推 AI」这一层；数字均出自该报道原文。",
+      "potential": "high",
+      "angle": "团队推 AI 卡住，问题常不在工具，而在你怎么介绍它、给不给探索时间、用什么指标考核使用。",
+      "primaryTitle": "别再把 AI 说成提效工具：一份研究给了三个落地条件",
+      "alternativeTitles": [
+        "同一个 LawBot，两个部门：使用量差 58%、新用法多 70%",
+        "用 token 消耗量考核 AI 使用，会鼓励出什么行为",
+        "想让同事用 AI，先回答他的工作会变成什么样",
+        "AI 落地难的不是工具：培训、探索时间和要改的考核指标"
+      ],
+      "opening": "斯坦福 HAI 报道的一项研究观察了三家公司：律所、广告公司和 IT 服务公司。结论有点反直觉——把 AI 介绍成生产力工具时，员工往往不愿用；介绍成让工作更丰富的手段时，员工反而愿意琢磨怎么用好它。在一家律所两个几乎一样的部门里，只是管理者介绍 LawBot 的方式不同，使用量差了 58%，尝试新用法多了 70%。",
+      "outline": [
+        "研究怎么做的：184 人访谈，加上两年里两个同质部门的对照观察",
+        "两种介绍方式带来什么：做机器上的一个齿轮，还是腾出时间做想做的事",
+        "光有好说法不够：培训、周会、答疑与留出的探索时间才算兑现承诺",
+        "考核指标要跟着改：按案件量或 token 消耗量衡量，会催生刷量行为",
+        "什么岗位适合先上：任务弱捆绑的岗位，比强捆绑的岗位更好落地"
+      ],
+      "gaps": [
+        "原始研究论文未读，仅依据 Stanford HAI 报道",
+        "三个行业之外的可迁移性材料未提供"
+      ],
+      "evidence": [
+        {
+          "sourceId": "source_069466c86b056ee3ea5d",
+          "quote": "When AI was framed as a productivity tool, employees tended not to engage with it."
+        },
+        {
+          "sourceId": "source_069466c86b056ee3ea5d",
+          "quote": "Paralegals in this division used LawBot 58% more than their peers in the other division and experimented with it 70% more."
+        }
+      ]
+    },
+    {
+      "title": "genspark-ai/genoffice",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_c05891aaab26c8c1b0c0",
+      "selected": false,
+      "reason": "让 coding agent 直接产出真实 Office 文件的方向实用，但本轮只读到 README 前 8000 字符，CLI 与 MCP 细节未核，暂列候补。",
+      "potential": "medium",
+      "gaps": [
+        "CLI、agent skill 与 MCP server 章节未读到",
+        "本地转换与格式保真的实际表现未确认"
+      ]
+    },
+    {
+      "title": "Anthropic 发布 Claude Haiku 5.5，运行成本平均降低约 75%",
+      "source": "AIHOT",
+      "primaryUrl": "https://www.anthropic.com/claude-haiku-5-5",
+      "sourceId": "source_927c5bd99bf8aca292d5",
+      "selected": false,
+      "reason": "小模型做高吞吐任务的分工是读者关心的题，但材料是厂商发布稿与自报基准，容易写成参数复述，等有实际用法再写更稳。",
+      "potential": "medium",
+      "gaps": [
+        "价格与降幅为厂商口径，需按实际计费页复核",
+        "System Card 与完整评测方法未读"
+      ]
+    },
+    {
+      "title": "Unsloth 开源教程：本地训练 Qwen3.5 0.8B 决策模型，准确率从 20.7% 提升至 74.3%",
+      "source": "AIHOT",
+      "primaryUrl": "https://x.com/UnslothAI/status/2107868866361930236",
+      "sourceId": "source_46bf35eb6c48194061ce",
+      "selected": false,
+      "reason": "本地小模型训成决策模型、4GB 显存这类信息有吸引力，但材料只有一条 X 帖，数字为厂商自述，教程细节缺口较大。",
+      "potential": "medium",
+      "gaps": [
+        "仅一条 X 帖，教程与 Notebook 未读",
+        "准确率提升数字为厂商自述，无第三方复现"
+      ]
+    },
+    {
+      "title": "LlamaIndex 发布 OpenDocRouter：一个 API 统一调用多种文档解析模型",
+      "source": "AIHOT",
+      "primaryUrl": "https://www.llamaindex.ai/blog/introducing-opendocrouter",
+      "sourceId": "source_8da20c01555e90bf175e",
+      "selected": false,
+      "reason": "一个 API 调十个文档解析模型、按 token 计费，对做文档处理的人有用，但更接近产品发布，缺真实文档上的对比样本。",
+      "potential": "medium",
+      "gaps": [
+        "ParseBench 每千页成本未在真实文档上验证",
+        "layout 开关与同步、异步边界未见实测"
+      ]
+    },
+    {
+      "title": "TypeLLM/TypeLLM",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "sourceId": "source_6e883335f8b1dd57dfe9",
+      "selected": false,
+      "reason": "类型安全生成与 schema 约束输出是结构化任务的常见痛点，但材料字段说明密集，需要真跑通才写得出差别。",
+      "potential": "medium",
+      "gaps": [
+        "仅读到前 8000 字符，条件字段等新特性未读完",
+        "JevBench 分数为项目自述，未复现"
+      ]
+    }
+  ],
+  "zeroTargetNoteWrite": true,
+  "zeroPersistedDataChange": true,
+  "officialSecretStorage": true,
+  "secretExported": false,
+  "stages": [
+    {
+      "stage": "采集中",
+      "at": "2026-10-08T02:59:12.895Z"
+    },
+    {
+      "stage": "筛选中",
+      "at": "2026-10-08T02:59:15.920Z"
+    }
+  ],
+  "status": "completed",
+  "configuredTimeoutMs": 300000,
+  "stream": true,
+  "readerRecovery": "Official CLI polling helper stalled after a complete response; final result fetched through a separate guarded CLI read."
+}

@@ -1,0 +1,12 @@
+{
+  "done": true,
+  "error": "已整理，记录待检查；请查看正文，不要重复执行。",
+  "diagnostics": {
+    "canReformat": true,
+    "path": "Projects/选题库.md",
+    "receiptId": "e63de577-054a-4ebe-b4bd-655ce8796dd3",
+    "candidates": 10,
+    "selected": 5,
+    "changeRanges": 3
+  }
+}

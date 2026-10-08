@@ -1,0 +1,207 @@
+{
+  "version": "0.4.0",
+  "at": "2026-10-08T04:11:35.672Z",
+  "vault": "/tmp/draft-companion-qa-040-_1v5pchr/DraftCompanion040Test",
+  "syntheticPipeline": true,
+  "realSourceVerification": false,
+  "realModelVerification": false,
+  "officialCli": true,
+  "checks": [
+    {
+      "name": "历史日期保留，实际按钮空输入启动并将最新日期置顶",
+      "passed": true,
+      "zeroChatInput": true,
+      "realRunnerAndEditor": true,
+      "syntheticPipeline": true,
+      "twoSourceTabsExact": true,
+      "oneEditorTransaction": true,
+      "unrelatedBufferPreserved": true,
+      "receiptAppliedAndUndoAvailable": true,
+      "transientBufferDivergenceObserved": true
+    },
+    {
+      "name": "真实编辑器中文卡片、折叠预设和仅显示层隐藏标记",
+      "passed": true,
+      "headingOutsideCheckbox": true,
+      "headlineVisibleWithoutStrike": true,
+      "chineseDescription": true,
+      "shortMetadata": true,
+      "collapsedPresets": true,
+      "markerSourcePreserved": true,
+      "markerDisplayHidden": true,
+      "sourceUnchangedDuringCapture": true,
+      "screenshot": "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-readable-editor.png"
+    },
+    {
+      "name": "同日去重、增量追加和未发送草稿保持",
+      "passed": true,
+      "duplicateEntries": 0,
+      "incrementalEntry": true,
+      "draftPreserved": true
+    },
+    {
+      "name": "真实批次撤回只删除本次新增并保留后记",
+      "passed": true,
+      "unrelatedEditPreserved": true,
+      "localUndo": true
+    },
+    {
+      "name": "聊天忙时排队，切换文章不会改变固定写入目标",
+      "passed": true,
+      "queued": true,
+      "fixedTargetAfterSwitch": true
+    },
+    {
+      "name": "停止使等待中的结果失效，不提交迟到内容",
+      "passed": true,
+      "lateWriteBlocked": true
+    },
+    {
+      "name": "340/400/460px、明暗主题和长输入布局",
+      "passed": true,
+      "cases": 12
+    }
+  ],
+  "screenshots": [
+    "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-button-completed.png",
+    "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-readable-editor.png",
+    "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-light.png",
+    "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-dark.png",
+    "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-light-low-height.png",
+    "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-dark-low-height.png"
+  ],
+  "screenshotDetails": [
+    {
+      "name": "daily-button-completed",
+      "path": "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-button-completed.png",
+      "sha256": "c97db76829ab862fa37ad81cab65bda3b7c548a9615785f76b58f61074028a5b",
+      "pngWidth": 2048,
+      "pngHeight": 1600,
+      "captureMethod": "official-cli:Page.captureScreenshot",
+      "fromSurface": true,
+      "doubleAnimationFrame": true,
+      "themeDark": false,
+      "themeLight": true,
+      "bodyThemeClasses": [
+        "theme-light"
+      ],
+      "rootBackground": "rgb(251, 250, 248)",
+      "rootColor": "rgb(48, 54, 59)",
+      "bodyBackground": "rgb(255, 255, 255)",
+      "viewportWidth": 1024,
+      "viewportHeight": 800,
+      "sidebarWidth": 300,
+      "sidebarHeight": 760
+    },
+    {
+      "name": "daily-readable-editor",
+      "path": "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-readable-editor.png",
+      "sha256": "74d10982ab3780d372d18bfe3a1b5d8a122462c2e48295557c77988d8a41c2a0",
+      "pngWidth": 2048,
+      "pngHeight": 1600,
+      "captureMethod": "official-cli:Page.captureScreenshot",
+      "fromSurface": true,
+      "doubleAnimationFrame": true,
+      "themeDark": false,
+      "themeLight": true,
+      "bodyThemeClasses": [
+        "theme-light"
+      ],
+      "rootBackground": "rgb(251, 250, 248)",
+      "rootColor": "rgb(48, 54, 59)",
+      "bodyBackground": "rgb(255, 255, 255)",
+      "viewportWidth": 1024,
+      "viewportHeight": 800,
+      "sidebarWidth": 300,
+      "sidebarHeight": 760
+    },
+    {
+      "name": "daily-layout-light",
+      "path": "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-light.png",
+      "sha256": "c013aa4de1264b4af599395dc85bda8f11b794d56334fb590941d4f4defad106",
+      "pngWidth": 1280,
+      "pngHeight": 800,
+      "captureMethod": "official-cli:Page.captureScreenshot",
+      "fromSurface": true,
+      "doubleAnimationFrame": true,
+      "themeDark": false,
+      "themeLight": true,
+      "bodyThemeClasses": [
+        "theme-light"
+      ],
+      "rootBackground": "rgb(251, 250, 248)",
+      "rootColor": "rgb(48, 54, 59)",
+      "bodyBackground": "rgb(255, 255, 255)",
+      "viewportWidth": 1280,
+      "viewportHeight": 800,
+      "sidebarWidth": 400,
+      "sidebarHeight": 760
+    },
+    {
+      "name": "daily-layout-dark",
+      "path": "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-dark.png",
+      "sha256": "44cda3535d204f7b91fab95b15e86d43e5f342fa1d9ede129dc3feba135d8eba",
+      "pngWidth": 1280,
+      "pngHeight": 800,
+      "captureMethod": "official-cli:Page.captureScreenshot",
+      "fromSurface": true,
+      "doubleAnimationFrame": true,
+      "themeDark": true,
+      "themeLight": false,
+      "bodyThemeClasses": [
+        "theme-dark"
+      ],
+      "rootBackground": "rgb(32, 37, 42)",
+      "rootColor": "rgb(228, 232, 235)",
+      "bodyBackground": "rgb(28, 28, 28)",
+      "viewportWidth": 1280,
+      "viewportHeight": 800,
+      "sidebarWidth": 400,
+      "sidebarHeight": 760
+    },
+    {
+      "name": "daily-layout-light-low-height",
+      "path": "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-light-low-height.png",
+      "sha256": "1ea1f5f165b9da6296de8fa26cb35a9d957c73a99766ac7d600390a4beabb7ca",
+      "pngWidth": 1280,
+      "pngHeight": 600,
+      "captureMethod": "official-cli:Page.captureScreenshot",
+      "fromSurface": true,
+      "doubleAnimationFrame": true,
+      "themeDark": false,
+      "themeLight": true,
+      "bodyThemeClasses": [
+        "theme-light"
+      ],
+      "rootBackground": "rgb(251, 250, 248)",
+      "rootColor": "rgb(48, 54, 59)",
+      "bodyBackground": "rgb(255, 255, 255)",
+      "viewportWidth": 1280,
+      "viewportHeight": 600,
+      "sidebarWidth": 400,
+      "sidebarHeight": 560
+    },
+    {
+      "name": "daily-layout-dark-low-height",
+      "path": "/Users/chenzibo/data/project/personal_database/Projects/obsidian_side_review/docs/qa-0.4.0/daily-layout-dark-low-height.png",
+      "sha256": "7b74816d6ab99350cf539369a43e14cbba002f43ed7346e1b3f17351db8f101a",
+      "pngWidth": 1280,
+      "pngHeight": 600,
+      "captureMethod": "official-cli:Page.captureScreenshot",
+      "fromSurface": true,
+      "doubleAnimationFrame": true,
+      "themeDark": true,
+      "themeLight": false,
+      "bodyThemeClasses": [
+        "theme-dark"
+      ],
+      "rootBackground": "rgb(32, 37, 42)",
+      "rootColor": "rgb(228, 232, 235)",
+      "bodyBackground": "rgb(28, 28, 28)",
+      "viewportWidth": 1280,
+      "viewportHeight": 600,
+      "sidebarWidth": 400,
+      "sidebarHeight": 560
+    }
+  ]
+}

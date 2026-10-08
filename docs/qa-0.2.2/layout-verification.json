@@ -1,0 +1,752 @@
+{
+  "date": "2026-10-07T09:31:45.894Z",
+  "version": "0.2.2",
+  "isolatedVault": true,
+  "syntheticOnly": true,
+  "modelRequests": 0,
+  "checks": [
+    {
+      "name": "长输入、空对话与浮层：十二种桌面布局",
+      "passed": true,
+      "cases": 12
+    },
+    {
+      "name": "输入框真实滚轮与完整粘贴",
+      "passed": true,
+      "nativeWheelBothDirections": true,
+      "insertedCharacters": 15491
+    },
+    {
+      "name": "快捷任务只填输入，点击外部关闭，键盘菜单可达",
+      "passed": true,
+      "noAutomaticRequest": true,
+      "outsideClickCloses": true
+    },
+    {
+      "name": "长历史、展开本文要求、缩小窗口与停止入口",
+      "passed": true,
+      "readerWheel": true,
+      "briefExpanded": true,
+      "shortViewport": [
+        1280,
+        450
+      ],
+      "stopReachable": true
+    }
+  ],
+  "layouts": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sidebar": {
+        "x": 1080,
+        "y": 40,
+        "width": 360,
+        "height": 860,
+        "bottom": 900
+      },
+      "theme": "light",
+      "input": {
+        "x": 1088,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 1088,
+        "y": 247.8984375,
+        "width": 344,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 1088,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 1088,
+        "y": 442.59375,
+        "width": 344,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 860,
+      "rootClientHeight": 860,
+      "menu": {
+        "left": 1088,
+        "right": 1428,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sidebar": {
+        "x": 1080,
+        "y": 40,
+        "width": 360,
+        "height": 860,
+        "bottom": 900
+      },
+      "theme": "dark",
+      "input": {
+        "x": 1088,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 1088,
+        "y": 247.8984375,
+        "width": 344,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 1088,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 1088,
+        "y": 442.59375,
+        "width": 344,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 860,
+      "rootClientHeight": 860,
+      "menu": {
+        "left": 1088,
+        "right": 1428,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sidebar": {
+        "x": 1020,
+        "y": 40,
+        "width": 420,
+        "height": 860,
+        "bottom": 900
+      },
+      "theme": "light",
+      "input": {
+        "x": 1028,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 1028,
+        "y": 247.8984375,
+        "width": 404,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 1028,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 1028,
+        "y": 442.59375,
+        "width": 404,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 860,
+      "rootClientHeight": 860,
+      "menu": {
+        "left": 1028,
+        "right": 1368,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sidebar": {
+        "x": 1020,
+        "y": 40,
+        "width": 420,
+        "height": 860,
+        "bottom": 900
+      },
+      "theme": "dark",
+      "input": {
+        "x": 1028,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 1028,
+        "y": 247.8984375,
+        "width": 404,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 1028,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 1028,
+        "y": 442.59375,
+        "width": 404,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 860,
+      "rootClientHeight": 860,
+      "menu": {
+        "left": 1028,
+        "right": 1368,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sidebar": {
+        "x": 960,
+        "y": 40,
+        "width": 480,
+        "height": 860,
+        "bottom": 900
+      },
+      "theme": "light",
+      "input": {
+        "x": 968,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 968,
+        "y": 247.8984375,
+        "width": 464,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 968,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 968,
+        "y": 442.59375,
+        "width": 464,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 860,
+      "rootClientHeight": 860,
+      "menu": {
+        "left": 968,
+        "right": 1308,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "sidebar": {
+        "x": 960,
+        "y": 40,
+        "width": 480,
+        "height": 860,
+        "bottom": 900
+      },
+      "theme": "dark",
+      "input": {
+        "x": 968,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 968,
+        "y": 247.8984375,
+        "width": 464,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 968,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 968,
+        "y": 442.59375,
+        "width": 464,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 860,
+      "rootClientHeight": 860,
+      "menu": {
+        "left": 968,
+        "right": 1308,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "sidebar": {
+        "x": 920,
+        "y": 40,
+        "width": 360,
+        "height": 760,
+        "bottom": 800
+      },
+      "theme": "light",
+      "input": {
+        "x": 928,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 928,
+        "y": 247.8984375,
+        "width": 344,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 928,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 928,
+        "y": 442.59375,
+        "width": 344,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 760,
+      "rootClientHeight": 760,
+      "menu": {
+        "left": 928,
+        "right": 1268,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "sidebar": {
+        "x": 920,
+        "y": 40,
+        "width": 360,
+        "height": 760,
+        "bottom": 800
+      },
+      "theme": "dark",
+      "input": {
+        "x": 928,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 928,
+        "y": 247.8984375,
+        "width": 344,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 928,
+        "y": 302.6953125,
+        "width": 344,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 928,
+        "y": 442.59375,
+        "width": 344,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 760,
+      "rootClientHeight": 760,
+      "menu": {
+        "left": 928,
+        "right": 1268,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "sidebar": {
+        "x": 860,
+        "y": 40,
+        "width": 420,
+        "height": 760,
+        "bottom": 800
+      },
+      "theme": "light",
+      "input": {
+        "x": 868,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 868,
+        "y": 247.8984375,
+        "width": 404,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 868,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 868,
+        "y": 442.59375,
+        "width": 404,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 760,
+      "rootClientHeight": 760,
+      "menu": {
+        "left": 868,
+        "right": 1208,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "sidebar": {
+        "x": 860,
+        "y": 40,
+        "width": 420,
+        "height": 760,
+        "bottom": 800
+      },
+      "theme": "dark",
+      "input": {
+        "x": 868,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 868,
+        "y": 247.8984375,
+        "width": 404,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 868,
+        "y": 302.6953125,
+        "width": 404,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 868,
+        "y": 442.59375,
+        "width": 404,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 760,
+      "rootClientHeight": 760,
+      "menu": {
+        "left": 868,
+        "right": 1208,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "sidebar": {
+        "x": 800,
+        "y": 40,
+        "width": 480,
+        "height": 760,
+        "bottom": 800
+      },
+      "theme": "light",
+      "input": {
+        "x": 808,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 808,
+        "y": 247.8984375,
+        "width": 464,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 808,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 808,
+        "y": 442.59375,
+        "width": 464,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 760,
+      "rootClientHeight": 760,
+      "menu": {
+        "left": 808,
+        "right": 1148,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "sidebar": {
+        "x": 800,
+        "y": 40,
+        "width": 480,
+        "height": 760,
+        "bottom": 800
+      },
+      "theme": "dark",
+      "input": {
+        "x": 808,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 130,
+        "bottom": 432.6953125
+      },
+      "reader": {
+        "x": 808,
+        "y": 247.8984375,
+        "width": 464,
+        "height": 48.796875,
+        "bottom": 296.6953125
+      },
+      "composer": {
+        "x": 808,
+        "y": 302.6953125,
+        "width": 464,
+        "height": 191.4921875,
+        "bottom": 494.1875
+      },
+      "controls": {
+        "x": 808,
+        "y": 442.59375,
+        "width": 464,
+        "height": 30,
+        "bottom": 472.59375
+      },
+      "inputScrollable": true,
+      "inputResize": "none",
+      "empty": true,
+      "horizontalOverflow": false,
+      "controlsInside": true,
+      "rootScrollHeight": 760,
+      "rootClientHeight": 760,
+      "menu": {
+        "left": 808,
+        "right": 1148,
+        "top": 96.59375,
+        "bottom": 436.59375,
+        "height": 340,
+        "scrollable": true,
+        "composerHeight": 191.4921875,
+        "portal": true
+      }
+    }
+  ],
+  "passed": true,
+  "limitations": [
+    "Physical Chinese IME candidate window is not exercised; composition-event regression remains in unit tests.",
+    "CSS zoom and native OS window resizing are recorded only when separately verified."
+  ]
+}

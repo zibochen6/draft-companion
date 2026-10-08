@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-07T06:27:32.393Z",
+  "passed": true,
+  "from": "0.1.2",
+  "to": "0.2.0",
+  "vault": "personal_database",
+  "version": "0.2.0",
+  "schema": 2,
+  "enabled": true,
+  "providers": 1,
+  "roles": 6,
+  "sessions": 3,
+  "secretReferencesAvailable": true,
+  "configurationPreserved": true,
+  "legacySessionsPreserved": true,
+  "migrationBackupVerified": true,
+  "runtimeFilesVerified": true,
+  "realArticlesEdited": false,
+  "backupDirectory": "/Users/chenzibo/data/project/personal_database/.obsidian/plugins/draft-companion/rollback-0.1.2-20261007",
+  "persistentRollbackBackupVerified": true
+}

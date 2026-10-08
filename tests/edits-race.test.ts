@@ -116,7 +116,7 @@ describe('per-document asynchronous edit exclusion', () => {
     expect(candidate.state).toBe('stale'); expect(f.disk()).toBe('旧改稿正文');
     expect(f.session.undo?.candidateId).toBe('prior-application');
     await f.controller.clearSession();
-    expect(f.session.messages).toHaveLength(1); expect(f.session.undo?.candidateId).toBe('prior-application');
+    expect(f.session.messages).toEqual([]); expect(f.session.undo?.candidateId).toBe('prior-application');
   });
 
   it('blocks clearing while deletion reads its frozen document, then releases the lock after creating the candidate', async () => {

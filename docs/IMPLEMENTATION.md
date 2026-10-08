@@ -1,5 +1,7 @@
 # 稿伴 V0.1 实现说明
 
+本文件保留首版历史记录。当前本地 0.2.0 见 [同版实现说明](IMPLEMENTATION_0.2.0.md)。
+
 ## 宿主与构建
 
 使用 TypeScript、Obsidian 原生 `ItemView` 侧栏、`Modal` 与设置控件，不引入 React、通用 Agent 框架或浏览器网页壳。生产构建为单个 CommonJS `main.js`；Obsidian 和 Node 内建模块由桌面宿主提供。`styles.css` 使用 Obsidian 主题变量，界面为中文。
@@ -51,3 +53,5 @@ SSE 解析处理中文 UTF-8 跨分片、LF/CRLF、多行 data、usage 空 choic
 打包脚本只读取三个明确运行文件，不遍历目录，拒绝输入与输出符号链接，同时生成可安装目录 `dist/draft-companion/`、版本目录 `dist/draft-companion-版本/draft-companion/` 和 `dist/draft-companion-版本.zip`。两个安装目录和 ZIP 均只包含 `main.js/manifest.json/styles.css`；ZIP 根目录为插件 ID，不含 `data.json`、模拟记录、测试材料、源映射或凭据。ZIP 使用内建 CRC32 与无压缩存储格式，不依赖操作系统打包工具。
 
 V0.1 不实现全库检索、联网抓取、原文持久批注、逐条补丁合并、公众号排版或后台发布。测试服务证明流程与协议行为，不能代替真实服务商的模型能力、实际网络环境或最低版本的安装验证。
+
+最新本地迭代见 [0.4.0 智能与每日选题实现](IMPLEMENTATION_0.4.0.md)。

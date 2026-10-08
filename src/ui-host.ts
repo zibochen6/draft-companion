@@ -1,4 +1,7 @@
 import type { Candidate, DocumentRecord, EditScope, ModelInfo, PluginData, Provider, RunningRequest, Session, TaskMode } from './types';
+import type { SelectionSummary, Suggestion, SuggestionPreview } from './review-types';
+import type { AgentSubmitOptions, AgentActionReceipt } from './agent-types';
+import type { DailyTopicRun } from './daily-types';
 
 /** UI contract. Provider and role edits mutate data, then await saveSettings(). No API secrets live in data. */
 export interface UIHost {
@@ -9,15 +12,44 @@ export interface UIHost {
   subscribe(listener: () => void): () => void;
   saveSettings(): Promise<void>;
   send(input: string, mode: TaskMode, scope: EditScope): Promise<void>;
+  sendAgent(input: string, options?: AgentSubmitOptions): Promise<void>;
+  bindTopicLibrary(): Promise<void>;
+  startDailyTopics?(): Promise<void>;
+  stopDailyTopics?(): void;
+  dailyEnabled?(): boolean;
+  setDailyEnabled?(enabled: boolean): Promise<void>;
+  dailyStatus?(): DailyTopicRun | undefined;
+  openDailyResult?(): void;
+  undoTopicBatch?(id: string): Promise<void>;
+  canUndoTopicBatch?(id: string): boolean;
+  agentActions(): AgentActionReceipt[];
+  undoAgentAction(id: string): Promise<void>;
+  canUndoAgentAction(id: string): boolean;
+  locateAgentAction(id: string): Promise<void>;
   stop(): void;
   apply(candidate: Candidate): Promise<void>;
   discard(candidate: Candidate): Promise<void>;
   undo(): Promise<void>;
+  canUndoWhole(): boolean;
   deleteRange(scope: EditScope): Promise<void>;
-  clearSession(): Promise<void>;
+  clearSession(sessionId?: string): Promise<void>;
   chooseRole(roleId: string): Promise<void>;
   setBrief(brief: string): Promise<void>;
-  models(provider: Provider): Promise<ModelInfo[]>;
+  models(provider: Provider, signal?: AbortSignal): Promise<ModelInfo[]>;
   testProvider(provider: Provider): Promise<string>;
   openSettings(): void;
+  review(input?: string, scope?: EditScope): Promise<void>;
+  retryReview(documentId: string, runId: string): Promise<void>;
+  selectionSummary(): SelectionSummary;
+  selectSuggestion(documentId: string, suggestionId: string): void;
+  selectedSuggestion(): Suggestion | undefined;
+  locateSuggestion(documentId: string, id: string): Promise<void>;
+  previewSuggestion(documentId: string, id: string): Promise<SuggestionPreview>;
+  acceptSuggestion(documentId: string, id: string): Promise<void>;
+  ignoreSuggestion(documentId: string, id: string): Promise<void>;
+  undoSuggestion(documentId: string, id: string): Promise<void>;
+  canUndoSuggestion(documentId: string, id: string): boolean;
+  askSuggestion(documentId: string, id: string, input: string, revise: boolean): Promise<void>;
+  openReview(documentId: string, id?: string): Promise<void>;
+  bindReview(documentId: string): void;
 }

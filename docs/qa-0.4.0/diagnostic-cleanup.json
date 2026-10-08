@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-08T04:20:29.477278+00:00",
+  "temporaryOfficialCliDisabled": true,
+  "verification": "Command line interface is not enabled. Please turn it on in Settings > General > Advanced.",
+  "diagnosticGlobalsRemoved": true,
+  "cleanupMethod": "Guarded final runtime inspection and real-model QA finally blocks removed their in-app diagnostic globals.",
+  "isolatedVaultWindowClosed": true,
+  "personalVaultVisible": true,
+  "localDailySchedulePreserved": true,
+  "time": "09:00",
+  "timeZone": "Asia/Shanghai"
+}

@@ -1,0 +1,29 @@
+{
+  "done": true,
+  "evidence": {
+    "at": "2026-10-08T04:04:13.992Z",
+    "status": "formatted",
+    "path": "Projects/选题库.md",
+    "receiptId": "e63de577-054a-4ebe-b4bd-655ce8796dd3",
+    "candidates": 10,
+    "selected": 5,
+    "formatBackup": ".obsidian/plugins/draft-companion/backup-topic-format-1791431979811-0120ad5b-a241-4230-ab97-6848d7d261a5",
+    "receiptState": "applied",
+    "settledBufferCount": 2,
+    "allBuffersExact": true,
+    "expectedVersionExact": true,
+    "allTenAnchorsExact": true,
+    "canUndo": true,
+    "originalLibraryOutsideManagedAreaUnchanged": true,
+    "zeroModelRequests": true,
+    "runCount": 1,
+    "settingsUnchanged": true,
+    "localScheduleUnchanged": true,
+    "preferredHeadings": 5,
+    "foldedWritingPresets": 5,
+    "compactSummary": true,
+    "selectedFirst": true,
+    "hostNumberingRemoved": true,
+    "technicalMarkersKeptForSafety": true
+  }
+}

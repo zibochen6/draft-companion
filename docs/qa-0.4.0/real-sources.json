@@ -1,0 +1,84 @@
+{
+  "at": "2026-10-08T02:08:14.112Z",
+  "mode": "real public sources; no model or vault write",
+  "sources": [
+    {
+      "name": "Git Stars",
+      "status": "failed",
+      "message": "来源返回 HTTP 403。",
+      "at": 1791425291298
+    },
+    {
+      "name": "GitHub",
+      "status": "fallback",
+      "message": "Git Stars 受阻，使用 GitHub 官方仓库搜索补充；不是 Git Stars 榜单。",
+      "at": 1791425293467
+    },
+    {
+      "name": "AIHOT 精选",
+      "status": "success",
+      "message": "已读取最近 24 小时精选。",
+      "at": 1791425290870
+    },
+    {
+      "name": "AIHOT 热点",
+      "status": "success",
+      "message": "已读取当前事件热点排序。",
+      "at": 1791425290945
+    }
+  ],
+  "count": 88,
+  "counts": {
+    "repository": 56,
+    "news": 32
+  },
+  "first": [
+    {
+      "id": "source_d15cb5c195dbe510b445",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "title": "strands-labs/strands-decider",
+      "repository": "strands-labs/strands-decider"
+    },
+    {
+      "id": "source_d2448b9c94b4355b0440",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "title": "KKKKhazix/AIHOT",
+      "repository": "kkkkhazix/aihot"
+    },
+    {
+      "id": "source_ae61fcc1be9c36bfdf1a",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "title": "amitshekhariitbhu/ai-system-design",
+      "repository": "amitshekhariitbhu/ai-system-design"
+    }
+  ],
+  "materials": [
+    {
+      "id": "source_d15cb5c195dbe510b445",
+      "source": "GitHub（Git Stars 受阻后的补充）",
+      "results": [
+        {
+          "url": "https://api.github.com/repos/strands-labs/strands-decider/readme",
+          "status": "verified",
+          "truncated": true,
+          "chars": 8000,
+          "message": "仅读取开头 8000 字符，未宣称读完全文。"
+        }
+      ]
+    },
+    {
+      "id": "source_44ba818e35eb5140513a",
+      "source": "AIHOT",
+      "results": [
+        {
+          "url": "https://research.google/blog/does-better-work-always-mean-better-workers/",
+          "status": "verified",
+          "truncated": true,
+          "chars": 8000,
+          "message": "仅读取开头 8000 字符，未宣称读完全文。"
+        }
+      ]
+    }
+  ],
+  "network": "HTTPS public host names support reserved TUN DNS fake IP; RFC1918/linklocal/localhost/IP-literal fakeIP blocked; normal TLS certificate verification retained"
+}

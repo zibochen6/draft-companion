@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2021", "module": "ESNext", "moduleResolution": "bundler",
-    "lib": ["ES2021", "DOM"], "strict": true, "noUncheckedIndexedAccess": true,
+    "lib": ["ES2021", "ES2022.Array", "ES2022.Intl", "DOM"], "strict": true, "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true, "skipLibCheck": true, "esModuleInterop": true,
     "types": ["node"], "forceConsistentCasingInFileNames": true
   },

@@ -1,0 +1,102 @@
+{
+  "at": "2026-10-08T03:17:37.861Z",
+  "version": "0.4.0",
+  "enabled": true,
+  "running": false,
+  "editing": false,
+  "state": "applied",
+  "canUndo": true,
+  "bufferPresent": true,
+  "hashMatches": true,
+  "blocks": [
+    {
+      "valid": true,
+      "boundaryFrom": 243,
+      "boundaryTo": 838,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 838,
+      "boundaryTo": 2004,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 2004,
+      "boundaryTo": 2721,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 2721,
+      "boundaryTo": 4145,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 4145,
+      "boundaryTo": 4691,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 4691,
+      "boundaryTo": 5768,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 5768,
+      "boundaryTo": 6831,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 6831,
+      "boundaryTo": 8098,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 8098,
+      "boundaryTo": 8607,
+      "textMatches": true
+    },
+    {
+      "valid": true,
+      "boundaryFrom": 8607,
+      "boundaryTo": 9067,
+      "textMatches": true
+    }
+  ],
+  "scheduleEnabled": true,
+  "local": {
+    "enabled": true,
+    "deviceId": "436f8847-ad2b-437d-b98e-386b470ee935",
+    "handledDate": "2026-10-08"
+  },
+  "profileBlank": true,
+  "cards": [
+    {
+      "project": "pgrundev/pgbot",
+      "primaryTitle": "不装监控也能做体检：pgbot 用只读角色看 Postgres"
+    },
+    {
+      "project": "Paritok-official/paritok-4b-v1",
+      "primaryTitle": "Claude Code 的 token 花在哪：一个压缩网关拆出的三个杠杆"
+    },
+    {
+      "project": "Google 开源多模态嵌入模型 EmbeddingGemma 2",
+      "primaryTitle": "把音频和图片放进一个搜索框：EmbeddingGemma 2 的本地检索思路"
+    },
+    {
+      "project": "Google 全球开放 SynthID 水印检测器",
+      "primaryTitle": "上传一张图，看它带没带 AI 水印：SynthID 检测器的用法与边界"
+    },
+    {
+      "project": "Alisa0808/vox-director",
+      "primaryTitle": "一个主题进去，一个 mp4 出来：vox-director 的拼贴视频流水线"
+    }
+  ]
+}

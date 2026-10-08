@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-07T06:12:51.482Z",
+  "version": "0.2.0",
+  "environment": "macOS ARM64 / actual Obsidian desktop",
+  "isolatedVault": true,
+  "liveRequested": true,
+  "checks": [
+    {
+      "name": "真实服务：只发送合成材料、官方密钥引用与完整审稿结果",
+      "passed": false,
+      "status": "failed",
+      "error": "请求超时，连接已中止。",
+      "stream": false,
+      "timeoutMs": 120000
+    }
+  ],
+  "fatal": "Non-streaming request exceeded the configured 120-second timeout. Connection stopped; no annotations and no document writes.",
+  "passed": false,
+  "limitations": [
+    "Physical Chinese IME candidate-window interaction requires manual follow-up; composition events are tested.",
+    "Windows/Linux and minimum Obsidian 1.11.4 are not verified.",
+    "CRLF source writes are deliberately blocked because Obsidian normalizes them; use reading mode and review again.",
+    "Remote billing cancellation is not guaranteed."
+  ]
+}

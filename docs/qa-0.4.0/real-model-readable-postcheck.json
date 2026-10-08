@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-08T04:20:29.476949+00:00",
+  "modelProtocolPassed": true,
+  "modelDurationMs": 191432,
+  "originalGlobalEventAssertionPassed": false,
+  "globalCounterWasNotTargetSpecific": true,
+  "allVaultEventAbsenceNotProven": true,
+  "persistedDataUnchanged": true,
+  "targetFullTextStillMatchesSameReceipt": true,
+  "allTenOriginalAnchorsExact": true,
+  "runCountAfterPreview": 1,
+  "safeUndoAfterPreview": true,
+  "freshModelRequestsAfterAssertionFailure": 0,
+  "additionalTopicWrites": 0,
+  "sourceModelReport": "real-model-readable.json",
+  "postcheckReport": "readability-final-installed-state.json",
+  "note": "The original QA counter observed all vault events; keep its false assertion. Production preview uses public sources only. Subsequent exact receipt verification proves target content unchanged, without claiming absence of every vault event."
+}

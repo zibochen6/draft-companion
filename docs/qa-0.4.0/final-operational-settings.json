@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-08T03:18:51.616Z",
+  "version": "0.4.0",
+  "enabled": true,
+  "scheduleEnabled": true,
+  "time": "09:00",
+  "timeZone": "Asia/Shanghai",
+  "handledDate": "2026-10-08",
+  "nextDue": "2026-10-09T09:00:00+08:00",
+  "status": "completed",
+  "candidates": 10,
+  "selected": 5,
+  "canUndo": true,
+  "profileInitializedOnlyBecauseBlank": true,
+  "profile": "中文公众号创作者，关注 AI 的实际用途、知识管理、内容创作和可复用工作流；重视来源依据和可操作的演示。",
+  "runCount": 1,
+  "secretExported": false
+}

@@ -22,7 +22,7 @@ replacement 仅包含下面冻结范围的完整替换内容。选中部分仅�
 export function buildMessages(snapshot: RequestSnapshot): ChatMessage[] {
   const messages: ChatMessage[] = [{
     role: 'system',
-    content: `${COMMON_RULES}\n\n当前角色：${snapshot.role.name}\n${snapshot.role.systemPrompt}\n\n${snapshot.mode === 'edit' ? EDIT_RULES : '本轮方式：讨论。用正常 Markdown 回复，仅提供讨论、建议或审阅意见，不写入文件；不要输出改稿 JSON。'}`,
+    content: `${COMMON_RULES}\n\n当前角色：${snapshot.role.name}\n${snapshot.role.systemPrompt}\n\n${snapshot.mode === 'edit' ? EDIT_RULES : snapshot.mode === 'review' ? '本轮方式：审阅。按本轮运行时审稿协议返回结构化 JSON；意见先成为批注候选，用户采纳前不写入文稿。' : '本轮方式：讨论。用正常 Markdown 回复，仅提供讨论、建议或审阅意见，不写入文件；不要输出改稿 JSON。'}`,
   }];
   for (const message of snapshot.history) {
     if (message.status === 'running' || !message.content) continue;
@@ -62,5 +62,5 @@ ${snapshot.input}`,
 /** A rough byte-based estimate, not a provider tokenizer or a inferred model limit. */
 export function estimateTokens(messages: ChatMessage[]): number {
   const encoder = new TextEncoder();
-  return messages.reduce((total, message) => total + 12 + Math.ceil(encoder.encode(message.content).byteLength / 3), 0);
+  return messages.reduce((total, message) => total + 12 + Math.ceil(encoder.encode((message.content ?? '') + JSON.stringify(message.tool_calls ?? [])).byteLength / 3), 0);
 }

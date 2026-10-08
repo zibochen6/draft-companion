@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-07T06:25:29.581Z",
+  "version": "0.2.0",
+  "success": true,
+  "total": 168,
+  "passed": 168,
+  "failed": 0,
+  "suites": 14,
+  "files": [
+    {
+      "name": "documents-controller.test.ts",
+      "status": "passed",
+      "tests": 20
+    },
+    {
+      "name": "documents-lifecycle.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "name": "editing.test.ts",
+      "status": "passed",
+      "tests": 12
+    },
+    {
+      "name": "edits-race.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "name": "provider.test.ts",
+      "status": "passed",
+      "tests": 35
+    },
+    {
+      "name": "render.test.ts",
+      "status": "passed",
+      "tests": 12
+    },
+    {
+      "name": "review-anchors.test.ts",
+      "status": "passed",
+      "tests": 11
+    },
+    {
+      "name": "review-editor.test.ts",
+      "status": "passed",
+      "tests": 12
+    },
+    {
+      "name": "review-protocol.test.ts",
+      "status": "passed",
+      "tests": 14
+    },
+    {
+      "name": "review-workflow.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "name": "revision-render.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "name": "settings-models.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "name": "store-prompts.test.ts",
+      "status": "passed",
+      "tests": 14
+    },
+    {
+      "name": "workflow.test.ts",
+      "status": "passed",
+      "tests": 1
+    }
+  ]
+}

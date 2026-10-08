@@ -1,0 +1,26 @@
+[
+  {
+    "flow": "topic-native",
+    "syntheticOnly": true,
+    "before": "---\ntitle: 合成选题验收\n---\n# 合成选题库\n\n- [ ] **synthetic-checker**（合成）— 帮助作者按自己提供的规则逐句检查文案。｜ https://example.invalid/checker\n- [ ] **synthetic-ledger**（合成）— 将作者提供的用量记录整理成费用表。｜ https://example.invalid/ledger\n  - [ ] 子任务不能被当作选题\n\n```markdown\n- [ ] **代码示例不能操作**\n```\n\n作者后记：这是无私人信息的隔离测试材料。\n",
+    "after": "---\ntitle: 合成选题验收\n---\n# 合成选题库\n\n- [x] **synthetic-checker**（合成）— 帮助作者按自己提供的规则逐句检查文案。｜ https://example.invalid/checker\n- [ ] **synthetic-ledger**（合成）— 将作者提供的用量记录整理成费用表。｜ https://example.invalid/ledger\n  - [ ] 子任务不能被当作选题\n\n```markdown\n- [ ] **代码示例不能操作**\n```\n\n作者后记：这是无私人信息的隔离测试材料。\n",
+    "feedback": "已选择一个可用选题。\n\n切入角度：从作者眼前的真实写作阻塞开始。\n\n首推标题：把一个具体写作问题写清楚\n\n备选标题：\n1. 从一处卡点开始写文章\n2. 让选题回到读者的问题\n3. 一篇稿子的第一个可验证承诺\n4. 先写清楚谁会需要它",
+    "actions": [
+      {
+        "id": "44f10c05-6689-4b4e-98d4-9f5831b772f3",
+        "state": "applied",
+        "kind": "topic-check",
+        "before": " ",
+        "replacement": "x"
+      }
+    ]
+  },
+  {
+    "flow": "local-edit-native",
+    "syntheticOnly": true,
+    "before": "# 合成改稿\n\n这句话很长，需要改得更具体。😀\n\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n",
+    "after": "# 合成改稿\n\n【本地模拟】先检查文案，再决定怎么修改。😀\n\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n作者后来补充的独立文字。",
+    "feedback": "已完成本地模拟改写；只修改了工具授权的位置。",
+    "undo": "# 合成改稿\n\n这句话很长，需要改得更具体。😀\n\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n保持原文的独立段落。\n作者后来补充的独立文字。"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "version": "0.4.0",
+  "at": "2026-10-08T04:10:49.379Z",
+  "vault": "/tmp/draft-companion-qa-040-_1v5pchr/DraftCompanion040Test",
+  "syntheticPipeline": true,
+  "officialCli": true,
+  "publicWorkspaceEditorApis": true,
+  "priorDate": {
+    "sourcePaneCount": 2,
+    "allBuffersExact": true,
+    "allBuffersMatchReceipt": true,
+    "allPanesSameDocument": true,
+    "receiptState": "applied",
+    "canUndo": true,
+    "running": false,
+    "editorTransactions": 1,
+    "immediateTransactionBufferAgreement": [
+      false
+    ],
+    "transientBufferDivergenceObserved": true,
+    "unrelatedBufferPreserved": true,
+    "originalAuthoredContentPreserved": true
+  },
+  "currentDate": {
+    "sourcePaneCount": 2,
+    "allBuffersExact": true,
+    "allBuffersMatchReceipt": true,
+    "allPanesSameDocument": true,
+    "receiptState": "applied",
+    "canUndo": true,
+    "running": false,
+    "editorTransactions": 1,
+    "immediateTransactionBufferAgreement": [
+      false
+    ],
+    "transientBufferDivergenceObserved": true,
+    "unrelatedBufferPreserved": true,
+    "originalAuthoredContentPreserved": true
+  }
+}

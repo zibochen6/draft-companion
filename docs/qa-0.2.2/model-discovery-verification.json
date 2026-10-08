@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-07T09:29:22.394Z",
+  "provider": "test_api",
+  "model": "mimo-v2.6-flash",
+  "status": "completed",
+  "count": 8,
+  "selectedIncluded": true,
+  "durationMs": 216
+}

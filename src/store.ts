@@ -1,7 +1,11 @@
 import { createDefaultRoles, DEFAULT_PREFERENCES } from './roles';
 import type { DocumentRecord, Message, PluginData, Session } from './types';
+import { validateAgentActions } from './agent-validation';
+import { validateReviewData } from './review-validation';
+import { defaultDailyTopicData } from './daily-types';
+import { validateDailyTopicData } from './daily-validation';
 
-export const DATA_VERSION = 1;
+export const DATA_VERSION = 4;
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -41,14 +45,18 @@ function strings(value: unknown, label: string): void {
   for (const item of array(value, label)) string(item, label);
 }
 
-function document(value: unknown): Record<string, unknown> {
+/** A native file identity was added in schema 3; older snapshots must reject it. */
+function document(value: unknown, version: number): DocumentRecord {
   const data = object(value, '文稿关联');
-  keys(data, ['id', 'path', 'ctime', 'deleted'], '文稿关联');
+  keys(data, ['id', 'path', 'ctime', 'deleted', ...(version >= 3 ? ['nativeId'] : [])], '文稿关联');
   string(data.id, '文稿 ID', true);
   string(data.path, '文稿路径', true);
   number(data.ctime, '文稿创建时间');
   if (data.deleted !== undefined) boolean(data.deleted, '文稿删除状态');
-  return data;
+  if (version >= 3 && data.nativeId !== undefined) string(data.nativeId, '文稿原生身份', true);
+  return { id: data.id as string, path: data.path as string, ctime: data.ctime as number,
+    ...(data.deleted === true ? { deleted: true } : {}),
+    ...(typeof data.nativeId === 'string' ? { nativeId: data.nativeId } : {}) } as DocumentRecord;
 }
 
 function offsets(data: Record<string, unknown>, text: unknown): void {
@@ -59,20 +67,36 @@ function offsets(data: Record<string, unknown>, text: unknown): void {
 }
 
 /** Refuse corrupt/future data before the caller can save over the original. */
-function validate(raw: unknown): asserts raw is PluginData {
+function validate(raw: unknown, version = DATA_VERSION): asserts raw is PluginData {
   const data = object(raw, '配置');
-  if (data.version !== DATA_VERSION) throw new Error('稿伴数据版本不受此版本插件支持。请保留原数据并使用匹配的插件版本；原数据未覆盖。');
-  keys(data, ['version', 'initialized', 'providers', 'activeProviderId', 'roles', 'preferences', 'sessions'], '配置');
+  if (data.version !== version) throw new Error('稿伴数据版本不受此版本插件支持。请保留原数据并使用匹配的插件版本；原数据未覆盖。');
+  keys(data, [
+    'version', 'initialized', 'providers', 'activeProviderId', 'roles', 'preferences', 'sessions',
+    ...(version >= 3 ? ['topicLibrary', 'toolCapabilities'] : []),
+    ...(version >= 4 ? ['dailyTopics'] : []),
+  ], '配置');
   boolean(data.initialized, '初始化状态'); string(data.activeProviderId, '当前连接'); string(data.preferences, '全局偏好');
+  if (version >= 4 && data.dailyTopics !== undefined) validateDailyTopicData(data.dailyTopics);
   const providerIds = new Set<string>();
   for (const item of array(data.providers, '连接')) {
     const provider = object(item, '连接');
-    keys(provider, ['id', 'name', 'baseUrl', 'secretRef', 'model', 'stream', 'timeoutMs', 'contextLimit'], '连接');
+    keys(provider, ['id', 'name', 'baseUrl', 'secretRef', 'model', 'stream', 'timeoutMs', 'contextLimit', ...(version >= 3 ? ['toolMode'] : [])], '连接');
     for (const key of ['id', 'name', 'baseUrl', 'secretRef', 'model']) string(provider[key], '连接字段', key === 'id');
     boolean(provider.stream, '流式设置'); number(provider.timeoutMs, '超时', 1);
     if (provider.contextLimit !== undefined) number(provider.contextLimit, '上下文上限', 1);
+    if (provider.toolMode !== undefined) enumeration(provider.toolMode, ['auto', 'native', 'structured'], '工具调用模式');
     if (providerIds.has(provider.id as string)) throw new Error('稿伴数据损坏：连接 ID 重复。原数据未覆盖。');
     providerIds.add(provider.id as string);
+  }
+  if (version >= 3) {
+    if (data.topicLibrary !== undefined) document(data.topicLibrary, version);
+    if (data.toolCapabilities !== undefined) {
+      const capabilities = object(data.toolCapabilities, '工具能力缓存');
+      for (const [providerId, mode] of Object.entries(capabilities)) {
+        if (!/^[a-f\d]{64}$/i.test(providerId)) throw new Error('稿伴数据损坏：工具能力缓存键无效。原数据未覆盖。');
+        enumeration(mode, ['native', 'structured'], '工具能力缓存');
+      }
+    }
   }
   const roleIds = new Set<string>();
   for (const item of array(data.roles, '创作伙伴')) {
@@ -87,19 +111,38 @@ function validate(raw: unknown): asserts raw is PluginData {
   const sessionIds = new Set<string>();
   for (const [documentId, value] of Object.entries(sessions)) {
     const session = object(value, '会话');
-    keys(session, ['id', 'document', 'brief', 'selectedRoleId', 'mode', 'messages', 'candidate', 'undo'], '会话');
+    keys(session, [
+      'id', 'document', 'brief', 'selectedRoleId', 'mode', 'messages', 'candidate', 'undo',
+      ...(version >= 2 ? ['review'] : []),
+      ...(version >= 3 ? ['agentActions'] : []),
+    ], '会话');
     string(session.id, '会话 ID', true); string(session.brief, '本文要求'); string(session.selectedRoleId, '所选角色');
-    enumeration(session.mode, ['discuss', 'edit'], '会话方式');
-    const doc = document(session.document);
+    enumeration(session.mode, version >= 2 ? ['discuss', 'edit', 'review'] : ['discuss', 'edit'], '会话方式');
+    const doc = document(session.document, version);
     if (doc.id !== documentId || sessionIds.has(session.id as string)) throw new Error('稿伴数据损坏：会话与文稿关联无效。原数据未覆盖。');
     sessionIds.add(session.id as string);
+    const messageActionIds = new Set<string>();
     for (const item of array(session.messages, '会话消息')) {
       const message = object(item, '消息');
-      keys(message, ['id', 'role', 'content', 'at', 'roleName', 'model', 'providerName', 'status', 'candidateId'], '消息');
+      keys(message, [
+        'id', 'role', 'content', 'at', 'roleName', 'model', 'providerName', 'status', 'candidateId',
+        ...(version >= 3 ? ['presentation', 'actionIds'] : []),
+      ], '消息');
       string(message.id, '消息 ID', true); string(message.content, '消息内容'); number(message.at, '消息时间');
       enumeration(message.role, ['user', 'assistant', 'event'], '消息角色');
       for (const key of ['roleName', 'model', 'providerName', 'candidateId']) if (message[key] !== undefined) string(message[key], '消息信息');
       if (message.status !== undefined) enumeration(message.status, ['running', 'completed', 'stopped', 'failed', 'interrupted'], '消息状态');
+      if (message.presentation !== undefined) enumeration(message.presentation, ['text', 'candidate', 'tool', 'legacy'], '消息呈现方式');
+      if (message.actionIds !== undefined) {
+        const actionIds = array(message.actionIds, '消息操作 ID');
+        const ids = new Set<string>();
+        for (const actionId of actionIds) {
+          if (typeof actionId !== 'string' || !actionId) throw new Error('稿伴数据损坏：消息操作 ID 应为非空文本。原数据未覆盖。');
+          if (ids.has(actionId)) throw new Error('稿伴数据损坏：消息操作 ID 重复。原数据未覆盖。');
+          ids.add(actionId);
+          messageActionIds.add(actionId);
+        }
+      }
     }
     if (session.candidate !== undefined) {
       const candidate = object(session.candidate, '候选');
@@ -113,10 +156,23 @@ function validate(raw: unknown): asserts raw is PluginData {
     }
     if (session.undo !== undefined) {
       const undo = object(session.undo, '撤回记录');
-      keys(undo, ['documentId', 'path', 'before', 'from', 'to', 'replacement', 'candidateId'], '撤回记录');
+      keys(undo, ['documentId', 'path', 'before', 'from', 'to', 'replacement', 'candidateId', ...(version >= 3 ? ['needsCheck'] : [])], '撤回记录');
       for (const key of ['documentId', 'path', 'before', 'replacement', 'candidateId']) string(undo[key], '撤回字段', ['documentId', 'path', 'candidateId'].includes(key));
       offsets(undo, undo.before);
+      if (version >= 3 && undo.needsCheck !== undefined) boolean(undo.needsCheck, '撤回待重检状态');
       if (undo.documentId !== doc.id) throw new Error('稿伴数据损坏：撤回记录关联无效。原数据未覆盖。');
+    }
+    if (version >= 2 && session.review !== undefined) validateReviewData(session.review, documentId);
+    const actionReceiptIds = new Set<string>();
+    const agentActions = session.agentActions;
+    if (version >= 3 && agentActions !== undefined) {
+      validateAgentActions(agentActions, doc);
+      for (const action of agentActions) actionReceiptIds.add(action.id);
+    }
+    if (messageActionIds.size) {
+      if ([...messageActionIds].some(actionId => !actionReceiptIds.has(actionId))) {
+        throw new Error('稿伴数据损坏：消息操作关联无效。原数据未覆盖。');
+      }
     }
   }
 }
@@ -129,16 +185,36 @@ export class Store {
   readonly data: PluginData;
   private saveQueue: Promise<void> = Promise.resolve();
 
+  /** Validate first, then require a successful byte-preserving backup before migration. */
+  static async migrate(raw: unknown, backup: () => Promise<void>): Promise<unknown> {
+    if (raw === null || raw === undefined) return raw;
+    const version = object(raw, '配置').version;
+    if (version === 1 || version === 2 || version === 3) {
+      validate(raw, version);
+      await backup();
+      return { ...clone(raw), version: DATA_VERSION, dailyTopics: defaultDailyTopicData() };
+    }
+    validate(raw);
+    return raw;
+  }
+
   constructor(raw: unknown, private readonly persist: (data: PluginData) => Promise<void>) {
     if (raw === null || raw === undefined) {
       this.data = {
         version: DATA_VERSION, initialized: true, providers: [], activeProviderId: '',
         roles: createDefaultRoles(), preferences: DEFAULT_PREFERENCES, sessions: {},
+        dailyTopics: defaultDailyTopicData(),
       };
       return;
     }
     validate(raw);
     this.data = clone(raw);
+    this.data.dailyTopics ??= defaultDailyTopicData();
+    for (const run of this.data.dailyTopics.runs) {
+      if (['queued', 'collecting', 'screening', 'reading', 'preparing', 'committing'].includes(run.status)) {
+        run.status = 'interrupted'; run.stage = '已中断'; run.message = '上次选题因插件关闭或重启中断，未自动重发；如存在准备回执，将先核实文稿。';
+      }
+    }
     for (const session of Object.values(this.data.sessions)) {
       let interrupted = false;
       for (const message of session.messages) {
@@ -152,6 +228,26 @@ export class Store {
       if (session.document.deleted) {
         if (session.candidate) session.candidate.state = 'stale';
         delete session.undo;
+      }
+      if (session.agentActions) {
+        for (const receipt of session.agentActions) {
+          if (session.document.deleted) {
+            receipt.state = 'needs-check';
+            receipt.invalidReason = '原文稿已删除，无法确认本次操作是否仍有效。';
+          } else if (receipt.state === 'prepared') {
+            receipt.state = 'needs-check';
+            receipt.invalidReason = '插件重启前操作尚未完成，未自动重发；请检查正文后重新执行。';
+          }
+        }
+      }
+      if (session.review) {
+        for (const run of session.review.runs) if (run.status === 'running') run.status = 'interrupted';
+        for (const suggestion of session.review.suggestions) {
+          if (suggestion.state === 'applying' || session.document.deleted) {
+            suggestion.state = 'needs-check'; suggestion.invalidReason = '上次写入被中断或文稿已删除，请检查正文并重新审阅。';
+          }
+        }
+        for (const receipt of session.review.receipts) if (session.document.deleted) receipt.state = 'needs-check';
       }
     }
   }
@@ -171,9 +267,14 @@ export class Store {
       existing.document = { ...documentRecord };
       if (existing.candidate) existing.candidate.path = documentRecord.path;
       if (existing.undo) existing.undo.path = documentRecord.path;
+      for (const receipt of existing.agentActions ?? []) receipt.path = documentRecord.path;
       if (documentRecord.deleted) {
         if (existing.candidate) existing.candidate.state = 'stale';
         delete existing.undo;
+        for (const receipt of existing.agentActions ?? []) {
+          receipt.state = 'needs-check';
+          receipt.invalidReason = '原文稿已删除，无法确认本次操作是否仍有效。';
+        }
       }
       return existing;
     }
@@ -188,11 +289,11 @@ export class Store {
   }
 
   clear(session: Session): void {
-    const candidateId = session.candidate?.id;
     if (session.candidate) session.candidate.state = 'discarded';
     delete session.candidate;
-    session.messages = [event(candidateId
-      ? '已重新开始当前文稿会话；旧讨论已清空，当前候选已放弃。本文要求、正文和最近一次 AI 改稿撤回记录保留。'
-      : '已重新开始当前文稿会话；本文要求、正文和最近一次 AI 改稿撤回记录保留。', candidateId)];
+    // A cleared conversation must be literally empty. Do not leave a synthetic
+    // event behind: it would look like history and makes a fresh test chat hard
+    // to distinguish from an older session.
+    session.messages = [];
   }
 }

@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-07T22:44:05.341Z",
+  "done": true,
+  "version": "0.3.0",
+  "provider": "test_api",
+  "model": "mimo-v2.6-flash",
+  "protocol": "native",
+  "durationMs": 18023,
+  "source": "# 合成选题库（非真实项目）\n\n以下只是合成验收素材，所有链接均为保留测试域名，不能声称读过网页。\n\n- [ ] **synthetic-doc-checker** — 帮助内容作者按自己提供的核对清单标记文案缺项。材料只有这句描述。｜ https://example.invalid/checker\n- [ ] **synthetic-cost-notes** — 把作者自己填写的用量记录列为费用表，不会自动取得账户费用。材料只有这句描述。｜ https://example.invalid/cost\n- [ ] **synthetic-idea-box** — 为已提供的想法按目标读者整理标签，读者判断由作者完成。材料只有这句描述。｜ https://example.invalid/ideas\n\n作者声明：这是合成测试库，不是用户的真实文章。\n",
+  "after": "# 合成选题库（非真实项目）\n\n以下只是合成验收素材，所有链接均为保留测试域名，不能声称读过网页。\n\n- [x] **synthetic-doc-checker** — 帮助内容作者按自己提供的核对清单标记文案缺项。材料只有这句描述。｜ https://example.invalid/checker\n- [ ] **synthetic-cost-notes** — 把作者自己填写的用量记录列为费用表，不会自动取得账户费用。材料只有这句描述。｜ https://example.invalid/cost\n- [ ] **synthetic-idea-box** — 为已提供的想法按目标读者整理标签，读者判断由作者完成。材料只有这句描述。｜ https://example.invalid/ideas\n\n作者声明：这是合成测试库，不是用户的真实文章。\n",
+  "changedOffsets": [
+    54
+  ],
+  "feedback": "## 选题反馈\n\n**已勾选项目**：synthetic-doc-checker\n**实际目标文件**：0.3真实模型合成选题库.md（仅勾选复选框，未写入任何标题或说明）\n\n**简短理由**\n三个未勾选项目里，这一条与\"希望把 AI 用到实际工作\"的读者关系最直接：内容作者日常最常遇到的不是缺工具，而是稿件反复漏项、核对标准在自己脑子里。它有明确的使用者（内容作者）、明确的动作（按自己提供的核对清单标记缺项），比\"整理费用表\"和\"给想法打标签\"更容易落到具体场景。另外两条的判断责任完全在作者，文章角度更窄。\n\n**一句话切入角度**\n把\"我自己定的核对清单\"交给 AI 逐条标记缺项，作者只做最终判断——这篇文章讲清楚这个用法的边界在哪、为什么它不会替你决定文案好坏。\n\n**首推标题**\n《核对清单我来定，缺项让 AI 标：内容作者的一个实用用法》\n\n**四个不同角度的备选标题**\n1. 场景角度：《稿子总漏项？用你自己的清单让 AI 帮你过一遍》\n2. 边界角度：《AI 只标缺项、不替你改：一个不越界的文案核对用法》\n3. 上手角度：《怎么开始：把脑中的核对清单变成 AI 能执行的检查步骤》\n4. 判断角度：《为什么标记缺项可以交给 AI，决定怎么改必须留给自己》\n\n**待补材料提醒**：这条只有描述句，链接是保留测试域名、不可访问。真正动笔前需要作者补充自己的核对清单实例、一次实际标记结果，以及哪些缺项 AI 容易误判——目前不能声称有实测或读者反馈。",
+  "receipts": [
+    {
+      "kind": "topic-check",
+      "state": "applied",
+      "before": " ",
+      "replacement": "x",
+      "label": "勾选「synthetic-doc-checker」"
+    }
+  ],
+  "syntheticOnly": true,
+  "officialSecretStorage": true,
+  "dailyVaultModelRequests": 0,
+  "dailyVaultArticleWrites": 0,
+  "exactLocalUndo": true,
+  "passed": true,
+  "localEdit": {
+    "done": true,
+    "after": "---\ntitle: 合成局部执行\n---\n# 合成文稿\n\n先核对材料，再写出建议。😀\n\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n",
+    "feedback": "已完成替换。\n\n- **位置**：`0.3真实模型合成改稿.md` 中冻结选区（原为「这段合成表达需要更直接一些。😀」）\n- **结果**：已改为「先核对材料，再写出建议。😀」，其余内容未改动\n- 操作回执：成功（actionId: `7a1b52e5-1d2e-46e5-993b-e3ae64df9ba8`）",
+    "receipts": [
+      {
+        "kind": "replace",
+        "state": "applied",
+        "label": "替换冻结选区为用户指定句子"
+      }
+    ],
+    "before": "---\ntitle: 合成局部执行\n---\n# 合成文稿\n\n这段合成表达需要更直接一些。😀\n\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n",
+    "syntheticOnly": true,
+    "onlyFrozenSelectionChanged": true,
+    "undo": "---\ntitle: 合成局部执行\n---\n# 合成文稿\n\n这段合成表达需要更直接一些。😀\n\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n独立段落保持原样。\n作者后来追加的独立文字。",
+    "undoPreservesUnrelatedEdit": true,
+    "passed": true
+  }
+}

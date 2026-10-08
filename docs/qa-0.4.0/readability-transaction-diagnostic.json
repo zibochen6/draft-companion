@@ -1,0 +1,91 @@
+{
+  "done": true,
+  "result": {
+    "expectedChars": 10098,
+    "actualChars": 10098,
+    "expectedHash": "1949bcaccfb9de39473bf7db02c93c13258776011402afa5c1c20b130679157f",
+    "receiptHash": "1949bcaccfb9de39473bf7db02c93c13258776011402afa5c1c20b130679157f",
+    "firstDiff": 900,
+    "expectedAtDiff": "1. 一条命令加一个只读角色：pgbot 的数据库体检怎么跑\n> 2. pgbot 和监控平台不是一回事：诊断工具该在什么时候用\n> 3. 让 agent 读数据库结论：pgbot 的 JSON 契约与 MCP 用法\n> 4. AI 只解释、不下结论：pgbot 把发现留给确定性",
+    "actualAtDiff": "6. 一条命令加一个只读角色：pgbot 的数据库体检怎么跑\n> 7. pgbot 和监控平台不是一回事：诊断工具该在什么时候用\n> 8. 让 agent 读数据库结论：pgbot 的 JSON 契约与 MCP 用法\n> 9. AI 只解释、不下结论：pgbot 把发现留给确定性",
+    "changes": [
+      {
+        "from": 90,
+        "to": 111,
+        "added": 21
+      },
+      {
+        "from": 111,
+        "to": 242,
+        "added": 23
+      },
+      {
+        "from": 243,
+        "to": 9067,
+        "added": 7723
+      }
+    ],
+    "blocks": [
+      {
+        "from": 135,
+        "to": 1262,
+        "actualMarkerAt": 135,
+        "exact": false
+      },
+      {
+        "from": 1262,
+        "to": 2365,
+        "actualMarkerAt": 1262,
+        "exact": false
+      },
+      {
+        "from": 2365,
+        "to": 3457,
+        "actualMarkerAt": 2365,
+        "exact": false
+      },
+      {
+        "from": 3457,
+        "to": 4535,
+        "actualMarkerAt": 3457,
+        "exact": false
+      },
+      {
+        "from": 4535,
+        "to": 5656,
+        "actualMarkerAt": 4535,
+        "exact": false
+      },
+      {
+        "from": 5656,
+        "to": 6150,
+        "actualMarkerAt": 5656,
+        "exact": true
+      },
+      {
+        "from": 6150,
+        "to": 6586,
+        "actualMarkerAt": 6150,
+        "exact": true
+      },
+      {
+        "from": 6586,
+        "to": 7034,
+        "actualMarkerAt": 6586,
+        "exact": true
+      },
+      {
+        "from": 7034,
+        "to": 7447,
+        "actualMarkerAt": 7034,
+        "exact": true
+      },
+      {
+        "from": 7447,
+        "to": 7858,
+        "actualMarkerAt": 7447,
+        "exact": true
+      }
+    ]
+  }
+}

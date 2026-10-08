@@ -1,0 +1,70 @@
+{
+  "at": "2026-10-08T04:10:34.045Z",
+  "mode": "independent local HTTP mock Provider with actual provider.chat transport and pure daily pipeline",
+  "status": "passed",
+  "scenariosExpected": 7,
+  "syntheticOnly": true,
+  "realModelCalls": 0,
+  "externalNetworkRequests": 0,
+  "providerCredential": "dummy fixture only; value not recorded",
+  "sourceCredentialForwarded": false,
+  "noteWrites": 0,
+  "scenarios": [
+    {
+      "scenario": "two-stage complete Chinese JSON",
+      "modelRequests": 2,
+      "publicReads": 1,
+      "completedOutput": true,
+      "noteWrites": 0,
+      "passed": true
+    },
+    {
+      "scenario": "invalid-json",
+      "modelRequests": 2,
+      "publicReads": 1,
+      "completedOutput": false,
+      "noteWrites": 0,
+      "passed": true
+    },
+    {
+      "scenario": "truncated",
+      "modelRequests": 2,
+      "publicReads": 1,
+      "completedOutput": false,
+      "noteWrites": 0,
+      "passed": true
+    },
+    {
+      "scenario": "stop during second actual HTTP request",
+      "modelRequests": 2,
+      "publicReads": 1,
+      "completedOutput": false,
+      "noteWrites": 0,
+      "passed": true
+    },
+    {
+      "scenario": "zero qualified shortlist",
+      "modelRequests": 1,
+      "publicReads": 0,
+      "completedOutput": true,
+      "noteWrites": 0,
+      "passed": true
+    },
+    {
+      "scenario": "two-stage streaming with UTF-8 and Chinese SSE fragments",
+      "modelRequests": 2,
+      "publicReads": 1,
+      "completedOutput": true,
+      "noteWrites": 0,
+      "passed": true
+    },
+    {
+      "scenario": "stop suppresses late complete streaming JSON before validation",
+      "modelRequests": 2,
+      "publicReads": 1,
+      "completedOutput": false,
+      "noteWrites": 0,
+      "passed": true
+    }
+  ]
+}

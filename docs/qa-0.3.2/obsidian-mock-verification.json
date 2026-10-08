@@ -1,0 +1,61 @@
+{
+  "version": "0.3.2",
+  "at": "2026-10-07T23:23:01.003Z",
+  "syntheticOnly": true,
+  "checks": [
+    {
+      "name": "原生工具：实际勾选一个，只改变状态字符",
+      "passed": true,
+      "oneCharacterChanged": true,
+      "oneReceipt": true,
+      "exactLocalUndo": true
+    },
+    {
+      "name": "只推荐、普通历史伪命令：零写入",
+      "passed": true,
+      "recommendationWrites": 0,
+      "historyRenderWrites": 0
+    },
+    {
+      "name": "兼容工具：实际勾选、验证和局部撤回",
+      "passed": true,
+      "actualStructuredWrites": 1,
+      "exactLocalUndo": true
+    },
+    {
+      "name": "真实源文选区：执行、无关后续编辑、局部撤回",
+      "passed": true,
+      "realEditorTransaction": true,
+      "selectionFrozen": true,
+      "unrelatedEditPreserved": true
+    },
+    {
+      "name": "银白布局：340/400/460px、明暗主题、长输入与菜单",
+      "passed": true,
+      "cases": 12,
+      "nativeInputWheel": true
+    },
+    {
+      "name": "标签只改变阅读，空输入禁用，中文组词期间不发送",
+      "passed": true,
+      "emptyInputDisabled": true,
+      "viewingTabDoesNotSend": true,
+      "chromiumCompositionGuard": true,
+      "physicalMacImeNotManuallyTested": true
+    }
+  ],
+  "mockRequests": {
+    "requests": 10,
+    "modelRequests": 0,
+    "chatRequests": 10,
+    "nativeRequests": 6,
+    "structuredRequests": 3,
+    "streamRequests": 9,
+    "toolNames": [
+      "list_topic_items",
+      "set_topic_checked",
+      "replace_text_range"
+    ]
+  },
+  "physicalKeyboardVerification": false
+}

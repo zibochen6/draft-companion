@@ -98,7 +98,8 @@ describe('document identity and conservative lifecycle recovery', () => {
     const saved = withSavedEdit(); const recreated = new TFile('测试/A.md'); recreated.stat.ctime = 2;
     const f = appFixture(recreated); const r = restored(saved.raw, f);
     const originalSession = r.store.data.sessions[saved.documentId]!;
-    expect(originalSession.candidate?.state).toBe('stale'); expect(originalSession.undo).toBeUndefined();
+    expect(originalSession.candidate?.state).toBe('stale'); expect(originalSession.undo).toMatchObject({needsCheck:true});
+    await expect(r.documents.restoreRange(originalSession.document,originalSession.undo!)).rejects.toThrow('身份无法可靠确认');
     const newSession = r.controller.currentSession()!;
     expect(newSession.document.id).not.toBe(saved.documentId);
     expect(newSession.messages).toEqual([]);
@@ -112,7 +113,8 @@ describe('document identity and conservative lifecycle recovery', () => {
     const originalSession = r.store.data.sessions[saved.documentId]!;
     expect(originalSession.document.path).toBe('测试/A.md');
     expect(originalSession.messages[0]!.content).toBe('原文稿的讨论');
-    expect(originalSession.candidate?.state).toBe('stale'); expect(originalSession.undo).toBeUndefined();
+    expect(originalSession.candidate?.state).toBe('stale'); expect(originalSession.undo).toMatchObject({needsCheck:true});
+    await expect(r.documents.restoreRange(originalSession.document,originalSession.undo!)).rejects.toThrow('身份无法可靠确认');
     expect(r.controller.currentSession()?.document.id).not.toBe(saved.documentId);
     expect(() => r.documents.resolve(saved.documentId)).toThrow('身份无法确认');
     expect(new Set(f.getByPath.mock.calls.map(([path]) => path))).toEqual(new Set(['测试/A.md', '离线改名/B.md']));

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-07T05:44:48.696Z",
+  "version": "0.2.0",
+  "environment": "macOS ARM64 / actual Obsidian desktop",
+  "isolatedVault": true,
+  "liveRequested": true,
+  "checks": [
+    {
+      "name": "真实服务：只发送合成材料、官方密钥引用与完整审稿结果",
+      "passed": false,
+      "provider": "https://api.meai.cloud/v1",
+      "model": "claude-opus-4-6-thinking",
+      "durationMs": 33396,
+      "status": "completed",
+      "added": 4,
+      "duplicates": 0,
+      "syntheticOnly": true,
+      "officialSecretReference": true,
+      "pending": 0,
+      "comments": 0,
+      "unlocated": 4
+    }
+  ],
+  "passed": false,
+  "limitations": [
+    "Physical Chinese IME candidate-window interaction requires manual follow-up; composition events are tested.",
+    "Windows/Linux and minimum Obsidian 1.11.4 are not verified.",
+    "CRLF source writes are deliberately blocked because Obsidian normalizes them; use reading mode and review again.",
+    "Remote billing cancellation is not guaranteed."
+  ],
+  "protocolPassed": true,
+  "exactLocationPassed": false,
+  "fatal": "Structured response accepted, but all four suggestions had non-adjacent contexts and could not be located safely."
+}

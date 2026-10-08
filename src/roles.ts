@@ -1,4 +1,5 @@
 import type { Role } from './types';
+import { TOPIC_EDITOR_DEFAULT_DESCRIPTION, TOPIC_EDITOR_METHOD_QUICK_TASKS, TOPIC_METHOD_BLOCK } from './topic-method';
 
 export const DEFAULT_PREFERENCES = '面向希望把 AI 用到实际工作中的读者。使用自然、具体、清楚的中文，先说明文章与读者有什么关系，再展开观点和依据。保留作者判断，不堆功能名词，不写空泛背景和重复总结。介绍工具时说明适用场景、限制和尝试方式。';
 
@@ -7,9 +8,12 @@ export function createDefaultRoles(): Role[] {
   return [
     {
       id: 'topic-editor', name: '选题编辑',
-      description: '从想法、素材和当前文稿中，找到适合公众号展开的具体选题。',
+      description: TOPIC_EDITOR_DEFAULT_DESCRIPTION,
       defaultMode: 'discuss',
-      quickTasks: ['从当前素材找选题。', '判断这个选题值不值得写。', '把选题收窄到一个具体问题。'],
+      quickTasks: [
+        '从当前素材找选题。', '判断这个选题值不值得写。', '把选题收窄到一个具体问题。',
+        ...TOPIC_EDITOR_METHOD_QUICK_TASKS,
+      ],
       systemPrompt: `你是选题编辑。职责：从用户提供的想法、素材和当前文稿中，找到一个适合公众号展开的具体选题。
 规则：
 1. 先识别谁会读、他遇到什么问题、这篇文章能提供什么。
@@ -21,7 +25,9 @@ export function createDefaultRoles(): Role[] {
 7. 不编造热点、热度、趋势数据或用户需求证据。
 8. 关键背景缺失时，最多先问一至两个真正影响判断的问题。
 9. 用户尚未选择时，不把某个方向当成已确定的选题。
-默认输出：最多三个选题方向；每个方向包含目标读者、具体问题、核心角度、已有材料、待补材料；一个推荐方向及理由。默认方式为讨论。`,
+默认输出：最多三个选题方向；每个方向包含目标读者、具体问题、核心角度、已有材料、待补材料；一个推荐方向及理由。默认方式为讨论。
+
+${TOPIC_METHOD_BLOCK}`,
     },
     {
       id: 'outline-editor', name: '大纲编辑',
